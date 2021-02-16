@@ -68,17 +68,6 @@
                         
                         
                     <li class="layui-nav-item">
-                        <a href="/search/ ">
-                            <i class=" fas fa-search-plus " style="color: rgb(3 169 244);"></i>
-                            <span class="layui-nav-item-name">搜索</span>
-                        </a>
-                    </li>
-                    
-                        
-                        
-                        
-                        
-                    <li class="layui-nav-item">
                         <a href="/ ">
                             <i class=" fab fa-fort-awesome " style="color: rgb(255 107 107);"></i>
                             <span class="layui-nav-item-name">首页</span>
@@ -189,6 +178,49 @@
             
                   <p>此博客为本人近期才正式上传，此前一直放在本地(别问为什么，问就是害怕被大佬笑话)，中途因为个人原因和工作繁忙一直未能上线，逢此春节七天留沪过年的时间，经过激烈的思想斗争，最终还是上来了，望大佬清喷~，有错误的地方还请务必提醒笔者改正，万分感谢！</p>
 
+             
+          </div>
+        </div>
+      <div class="post-footer">
+        
+    </div>
+    
+      <div class="recent-post-item">
+          <div class="post-title ">
+            <a href="/2020/04/06/javascript/javascript/">防抖节流</a>
+          </div>
+          <div class="post-meta">
+            
+            
+              <div class="post-meta-item date">
+                <span title="Created 2020.04.06"><i class="far fa-calendar-alt"></i> 2020.04.06</span>
+              </div>
+              <div class="post-meta-item updated">
+                <span title="Updated 2021.02.16"><i class="far fa-calendar-check"></i> 2021.02.16</span>
+              </div>
+             
+            
+              <div class="post-meta-item categories">
+                
+                  <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/JavaScript/">JavaScript</a>
+                
+              </div>
+             
+            
+             <div class="post-meta-item wordcount">
+                
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">127 words</span>
+                   
+                
+                  <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                                       
+              </div>
+             
+        </div>
+          <div class="content">
+            
+                  <h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>防抖：一个周期延迟执行函数，若在周期内函数再次执行、则刷新延迟时间，直到最后执行函数，这里函数收集到的结果是最后一次操作的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function handleClick (e) &#123;</span><br><span class="line">    &#x2F;&#x2F; 执行方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function debounce (fn, delay) &#123;</span><br><span class="line">    var timer &#x3D; void 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var self &#x3D; this;</span><br><span class="line">        var args &#x3D; arguments;</span><br><span class="line">        timer &amp;&amp; clearTimeout(timer);</span><br><span class="line">        timer &#x3D; setTimeout(function () &#123;</span><br><span class="line">            fn.apply(self, args)</span><br><span class="line">            timer &#x3D; void 0;</span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">document.querySelector(&quot;#test&quot;).addEventListener(&#39;click&#39;, debounce(keyup, 1000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
              
           </div>
         </div>

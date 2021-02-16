@@ -6,4 +6,13 @@
     <content><![CDATA[<p>此博客为本人近期才正式上传，此前一直放在本地(别问为什么，问就是害怕被大佬笑话)，中途因为个人原因和工作繁忙一直未能上线，逢此春节七天留沪过年的时间，经过激烈的思想斗争，最终还是上来了，望大佬清喷~，有错误的地方还请务必提醒笔者改正，万分感谢！</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>防抖节流</title>
+    <url>/2020/04/06/javascript/javascript/</url>
+    <content><![CDATA[<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>防抖：一个周期延迟执行函数，若在周期内函数再次执行、则刷新延迟时间，直到最后执行函数，这里函数收集到的结果是最后一次操作的结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function handleClick (e) &#123;</span><br><span class="line">    &#x2F;&#x2F; 执行方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function debounce (fn, delay) &#123;</span><br><span class="line">    var timer &#x3D; void 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        var self &#x3D; this;</span><br><span class="line">        var args &#x3D; arguments;</span><br><span class="line">        timer &amp;&amp; clearTimeout(timer);</span><br><span class="line">        timer &#x3D; setTimeout(function () &#123;</span><br><span class="line">            fn.apply(self, args)</span><br><span class="line">            timer &#x3D; void 0;</span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">document.querySelector(&quot;#test&quot;).addEventListener(&#39;click&#39;, debounce(keyup, 1000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
 </search>
