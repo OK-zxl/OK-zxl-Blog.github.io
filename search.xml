@@ -40,7 +40,7 @@
       </categories>
   </entry>
   <entry>
-    <title>手写Promise</title>
+    <title>Promise 原理及实现</title>
     <url>/2020/04/08/javascript/javascript03/</url>
     <content><![CDATA[<h4 id="表述"><a href="#表述" class="headerlink" title="表述"></a>表述</h4><p>Promise就是将异步任务队列化，将多个异步任务按照顺序输出，同时用链式调用解决回调地狱的问题。<br>今天我们就来好好剖析下Promise的原理：</p>
 <h4 id="Promise规范"><a href="#Promise规范" class="headerlink" title="Promise规范"></a>Promise规范</h4><p>1.存在三个状态：等待态(<code>pending</code>)，执行态(<code>fulfilled</code>)，失败态(<code>rejected</code>)<br>2.初始态为等待态，可以转化为执行态和失败态<br>3.执行态不可转化为其他状态，且必须有一个不可变的终值(value)<br>4.失败态不可转化为其他状态，且必须有一个不可变的原因(reason)<br>5.必须提供一个<code>then</code>方法，以供访问其当前值，如果状态成功调用成功回调函数、如果状态是失败，调用失败回调函数<br>6.then方法提供两个参数：<code>onFulfilled</code>和<code>onRejected</code><br>7.<code>onFulfilled</code>和<code>onRejected</code>如果不是函数类型，必须忽略其<br>8.如果<code>executor</code>执行报错，直接执行reject<br>9.不同的<code>promise</code>可以相互套用<br>更多详细内容还请自行参考<code>Promise A+</code>规范</p>
