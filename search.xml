@@ -7,12 +7,12 @@
 ]]></content>
   </entry>
   <entry>
-    <title>webpack 的使用和部分原理</title>
+    <title>Next.js+koa项目环境搭建</title>
     <url>/2020/04/08/javascript/webpack/</url>
-    <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>本质上，webpack 是一个用于现代 JavaScript 应用程序的静态模块打包工具_。<br>当 webpack 处理应用程序时，它会在内部构建一个 依赖图(dependency graph)，<br>此依赖图对应映射到项目所需的每个模块，并生成一个或多个 bundle。</p>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
 ]]></content>
       <categories>
-        <category>Webpack</category>
+        <category>react</category>
       </categories>
   </entry>
   <entry>
