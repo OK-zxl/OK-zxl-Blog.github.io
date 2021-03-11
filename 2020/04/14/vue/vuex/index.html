@@ -22,7 +22,7 @@
 
   
 
-  <title>Redux | Soliton&#39;s Blog</title>
+  <title>vuex | Soliton&#39;s Blog</title>
 
   
 
@@ -146,29 +146,29 @@
 
     
 <article id="post">
-  <div class="post-title">Redux</div>
+  <div class="post-title">vuex</div>
   
 <div class="post-meta">
     
     
       <div class="post-meta-item date">
-        <span title="Created 2020.04.13"><i class="far fa-calendar-alt"></i> 2020.04.13</span>
+        <span title="Created 2020.04.14"><i class="far fa-calendar-alt"></i> 2020.04.14</span>
       </div>
       <div class="post-meta-item updated">
-        <span title="Updated 2021.03.10"><i class="far fa-calendar-check"></i> 2021.03.10</span>
+        <span title="Updated 2021.03.11"><i class="far fa-calendar-check"></i> 2021.03.11</span>
       </div>
      
     
       <div class="post-meta-item categories">
         
-          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/react/">react</a>
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/vue/">vue</a>
         
       </div>
      
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">109 words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">361 words</span>
            
         
           <i class="far fa-clock"></i> <span class="post-count">1 min</span>
@@ -180,10 +180,11 @@
 
   
   <div class="content">
-        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
-<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
-<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
-</div>
+        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了看一下自己在市场上的行情，出去面试了一波，结果被虐的体无完肤，<br>问到vuex的时候，只知道使用，却不知道里面工作的原理，<br>顿时倍感受挫，决定回来好好补习下</p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>state：驱动应用的数据源<br>view：以声明的方式将state映射到视图<br>actions，响应在view上的用户输入导致的状态变化</p>
+<p>store中主要有一下几个api<br>state: 主要用来存储数据<br>getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>mutation: 主要对数据进行同步操作的处理<br>action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>module:可以生成多个store类</p>
+<p>接下来我们就来简单实现下store类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">let _Vue &#x3D; null</span><br><span class="line"></span><br><span class="line">class Store&#123;</span><br><span class="line">    cinstructor (options) &#123;</span><br><span class="line">        const &#123;</span><br><span class="line">            state &#x3D; &#123;&#125;,</span><br><span class="line">            getters &#x3D; &#123;&#125;</span><br><span class="line">            mutations &#x3D; &#123;&#125;</span><br><span class="line">            actions &#x3D; &#123;&#125;</span><br><span class="line">        &#125; &#x3D; optinos</span><br><span class="line">        this.state &#x3D; _Vue.observable(state)</span><br><span class="line">        this.getters &#x3D; Object.create(null)</span><br><span class="line">        Object.keys(getters).forEach(key &#x3D;&gt; &#123;</span><br><span class="line">            Object.defineProperty(this.getters, key, &#123;</span><br><span class="line">                get: ()&#x3D;&gt; getters[key](state)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        this._mutations &#x3D; mutations</span><br><span class="line">        this._actions &#x3D; actions</span><br><span class="line"></span><br><span class="line">        commit ( type,payload ) &#123;</span><br><span class="line">            this._mutations[type](this.state, payload)</span><br><span class="line">        &#125;</span><br><span class="line">        dispatch (type, payload) &#123;</span><br><span class="line">            this._actions[type]( this , payload)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
         
   </div>
 
@@ -193,12 +194,12 @@
     <div class="post-nav">
       
         <div class="post-nav-prev post-nav-item">
-            <a href="/2020/04/14/vue/vuex/" >vuex<i class="fa fa-chevron-left"></i></a>
+            <a href="/2021/02/14/hello-world/" >你好，很荣幸您能来到我的博客！<i class="fa fa-chevron-left"></i></a>
         </div>
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/12/react/reactHooks/" >react Hooks<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/04/13/react/redux/" >Redux<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
