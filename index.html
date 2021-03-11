@@ -232,7 +232,7 @@
                 <span title="Created 2020.04.14"><i class="far fa-calendar-alt"></i> 2020.04.14</span>
               </div>
               <div class="post-meta-item updated">
-                <span title="Updated 2021.03.11"><i class="far fa-calendar-check"></i> 2021.03.11</span>
+                <span title="Updated 2021.03.12"><i class="far fa-calendar-check"></i> 2021.03.12</span>
               </div>
              
             
@@ -245,7 +245,7 @@
             
              <div class="post-meta-item wordcount">
                 
-                  <i class="fas fa-pencil-alt"></i> <span class="post-count">561 words</span>
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">572 words</span>
                    
                 
                   <i class="far fa-clock"></i> <span class="post-count">2 min</span>
@@ -255,7 +255,7 @@
         </div>
           <div class="content">
             
-                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了看一下自己在市场上的行情，出去面试了一波，结果被虐的体无完肤，<br>问到vuex的时候，只知道使用，却不知道里面工作的原理，<br>顿时倍感受挫，决定回来好好补习下</p>
+                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢<del>(大佬轻喷</del>)</p>
 <h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>state：驱动应用的数据源<br>view：以声明的方式将state映射到视图<br>actions，响应在view上的用户输入导致的状态变化</p>
 <p>store中主要有一下几个api<br>state: 主要用来存储数据<br>getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>mutation: 主要对数据进行同步操作的处理<br>action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>module:可以生成多个store类</p>
 <p>接下来我们就来简单实现下store类</p>
