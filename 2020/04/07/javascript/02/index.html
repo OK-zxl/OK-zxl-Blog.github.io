@@ -155,7 +155,7 @@
         <span title="Created 2020.04.07"><i class="far fa-calendar-alt"></i> 2020.04.07</span>
       </div>
       <div class="post-meta-item updated">
-        <span title="Updated 2021.03.13"><i class="far fa-calendar-check"></i> 2021.03.13</span>
+        <span title="Updated 2021.03.14"><i class="far fa-calendar-check"></i> 2021.03.14</span>
       </div>
      
     
@@ -168,10 +168,10 @@
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">273 words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">502 words</span>
            
         
-          <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+          <i class="far fa-clock"></i> <span class="post-count">2 min</span>
                                
       </div>
      
@@ -181,8 +181,12 @@
   
   <div class="content">
         <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
-<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>数据类型我们分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined<br>    null: null<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合)</p>
-</div>
+<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>数据类型我们分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined<br>    null: null<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
+<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><h5 id="基本类型的判断"><a href="#基本类型的判断" class="headerlink" title="基本类型的判断"></a>基本类型的判断</h5><pre><code>    typeof: 返回数据类型的字符串表达 &quot;undefined&quot;/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
+    instanceof: 判断对象的具体类型，判断A是不是构造函数B的实例
+    ===： 可以判断undefined、null
+</code></pre>
+<h4 id="引用数据类型的判断"><a href="#引用数据类型的判断" class="headerlink" title="引用数据类型的判断"></a>引用数据类型的判断</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var b1 &#x3D;&#123;</span><br><span class="line">    b2:[1,&#39;abc&#39;,console.log],</span><br><span class="line">    b3:function ()&#123;</span><br><span class="line">        console.log(&#39;b3)</span><br><span class="line">        return function() &#123;</span><br><span class="line">            return &#39;js&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) &#x2F;&#x2F;true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) &#x2F;&#x2F;true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) &#x2F;&#x2F;true true</span><br><span class="line">console.log(typeof b1.b3 &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#x2F;&#x2F;true</span><br><span class="line">console.log(typeof b1.b[2] &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#x2F;&#x2F;true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) &#x2F;&#x2F;这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) &#x2F;&#x2F;js</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
         
   </div>
 
