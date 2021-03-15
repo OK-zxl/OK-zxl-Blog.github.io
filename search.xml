@@ -12,12 +12,48 @@
 ]]></content>
   </entry>
   <entry>
+    <title>函数式编程的柯里化</title>
+    <url>/2020/04/07/javascript/02/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
+<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined // 已声明未赋值<br>    null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
+<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><h5 id="基本类型的判断"><a href="#基本类型的判断" class="headerlink" title="基本类型的判断"></a>基本类型的判断</h5><pre><code>    typeof: 返回数据类型的字符串表达 &quot;undefined&quot;/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
+    instanceof: 判断对象的具体类型，判断A是不是构造函数B的实例
+    ===： 可以判断undefined、null
+</code></pre>
+<h4 id="引用数据类型的判断"><a href="#引用数据类型的判断" class="headerlink" title="引用数据类型的判断"></a>引用数据类型的判断</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var b1 &#x3D;&#123;</span><br><span class="line">    b2:[1,&#39;abc&#39;,console.log],</span><br><span class="line">    b3:function ()&#123;</span><br><span class="line">        console.log(&#39;b3)</span><br><span class="line">        return function() &#123;</span><br><span class="line">            return &#39;js&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) &#x2F;&#x2F;true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) &#x2F;&#x2F;true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) &#x2F;&#x2F;true true</span><br><span class="line">console.log(typeof b1.b3 &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#x2F;&#x2F;true</span><br><span class="line">console.log(typeof b1.b[2] &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#x2F;&#x2F;true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) &#x2F;&#x2F;这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) &#x2F;&#x2F;js</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>最后一个题外话：我们如何区分数据类型和变量类型呢？</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Next.js+koa项目环境搭建</title>
     <url>/2020/04/08/react/next/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
 ]]></content>
       <categories>
         <category>react</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>函数式编程的柯里化</title>
+    <url>/2020/04/07/javascript/curry/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> 在聊函数柯里化之前我们要知道一下概念：</p>
+<ol>
+<li>什么是高阶函数，什么是回调函数？<br>我们都知道函数可以作为参数传递到函数中，那么这个作为参数的函数就叫做回调函数、而使用这个参数的函数就叫做高阶函数</li>
+<li>那什么是函数式编程呢？<br>高阶函数执行的时候,根据回调函数内部的逻辑不同高阶函数的执行结果也会有所不同，这就叫函数式编程</li>
+</ol>
+<hr>
+<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>上面我们了解了什么是函数式编程，那么函数柯里化其实就是函数式编程的一个重要思想，也是高阶函数的一个重要应用。就是给函数分步骤传递参数，每次传递部分参数，并返回一个更具体的函数接收剩下的参数，这期间可嵌套多层这样的接收部分参数的函数，直至返回最后的结果。</p>
+<h4 id="1-简单的柯里化"><a href="#1-简单的柯里化" class="headerlink" title="1.简单的柯里化"></a>1.简单的柯里化</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 原函数</span><br><span class="line">function sum(a,b,c)&#123;</span><br><span class="line">    return a+b+c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 调用原函数</span><br><span class="line">sum(1,2,3)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 柯里化函数</span><br><span class="line">function sumCurry(a)&#123;</span><br><span class="line"> return function(b)&#123;</span><br><span class="line">     return function(c)&#123;</span><br><span class="line">         return a+b+c</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 调用柯里化函数</span><br><span class="line">sumCurry(1)(2)(3)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这就是一个最基本的柯里化拆分， 柯里化后的函数<code>sumCurry</code>每次的返回值都为一个函数，并使用下一个参数作为形参，直到三个参数都被传入后，在返回的最后一个函数内部执行求和操作，这其实利用了闭包的特性来实现的。</p>
+<h4 id="2-通用柯里化函数"><a href="#2-通用柯里化函数" class="headerlink" title="2.通用柯里化函数"></a>2.通用柯里化函数</h4><p>上面的柯里化函数只是最基本最简单的函数，并没有涉及到高阶函数，也没有通用性，面对形参个数不定或者不知道的函数时就束手无策了，那么下面我们就用<code>ES6</code>来封装一个通用的柯里化转换函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function curry (func)&#123;</span><br><span class="line">    return function curriedFn(...args)&#123;</span><br><span class="line">        if( args.length &lt; func.length )&#123;</span><br><span class="line">            return function()&#123;</span><br><span class="line">                return curriedFn(...args.concat.(Array.from(arguments)))</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return func(...args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h4><p>1.函数的柯里化可以让我们给一个函数传递较少的参数得到一个已经记住的某些固定参数的新函数<br>2.这是一种对函数参数的’缓存’<br>3.让函数变的更灵活，让函数的粒度更小<br>可以把多元函数转换为一元函数，可以组合使用函数产生强大的功能</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
       </categories>
   </entry>
   <entry>
@@ -45,53 +81,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Redux</title>
-    <url>/2020/04/13/react/redux/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
-<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
-<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
-]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>函数式编程的柯里化</title>
-    <url>/2020/04/07/javascript/02/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
-<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>数据类型我们分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined // 已声明未赋值<br>    null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
-<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><h5 id="基本类型的判断"><a href="#基本类型的判断" class="headerlink" title="基本类型的判断"></a>基本类型的判断</h5><pre><code>    typeof: 返回数据类型的字符串表达 &quot;undefined&quot;/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
-    instanceof: 判断对象的具体类型，判断A是不是构造函数B的实例
-    ===： 可以判断undefined、null
-</code></pre>
-<h4 id="引用数据类型的判断"><a href="#引用数据类型的判断" class="headerlink" title="引用数据类型的判断"></a>引用数据类型的判断</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var b1 &#x3D;&#123;</span><br><span class="line">    b2:[1,&#39;abc&#39;,console.log],</span><br><span class="line">    b3:function ()&#123;</span><br><span class="line">        console.log(&#39;b3)</span><br><span class="line">        return function() &#123;</span><br><span class="line">            return &#39;js&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) &#x2F;&#x2F;true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) &#x2F;&#x2F;true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) &#x2F;&#x2F;true true</span><br><span class="line">console.log(typeof b1.b3 &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#x2F;&#x2F;true</span><br><span class="line">console.log(typeof b1.b[2] &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#x2F;&#x2F;true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) &#x2F;&#x2F;这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) &#x2F;&#x2F;js</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>最后一个题外话：我们如何区分数据类型和变量类型呢？</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>函数式编程的柯里化</title>
-    <url>/2020/04/07/javascript/curry/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> 在聊函数柯里化之前我们要知道一下概念：</p>
-<ol>
-<li>什么是高阶函数，什么是回调函数？<br>我们都知道函数可以作为参数传递到函数中，那么这个作为参数的函数就叫做回调函数、而使用这个参数的函数就叫做高阶函数</li>
-<li>那什么是函数式编程呢？<br>高阶函数执行的时候,根据回调函数内部的逻辑不同高阶函数的执行结果也会有所不同，这就叫函数式编程</li>
-</ol>
-<hr>
-<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>上面我们了解了什么是函数式编程，那么函数柯里化其实就是函数式编程的一个重要思想，也是高阶函数的一个重要应用。就是给函数分步骤传递参数，每次传递部分参数，并返回一个更具体的函数接收剩下的参数，这期间可嵌套多层这样的接收部分参数的函数，直至返回最后的结果。</p>
-<h4 id="1-简单的柯里化"><a href="#1-简单的柯里化" class="headerlink" title="1.简单的柯里化"></a>1.简单的柯里化</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 原函数</span><br><span class="line">function sum(a,b,c)&#123;</span><br><span class="line">    return a+b+c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 调用原函数</span><br><span class="line">sum(1,2,3)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 柯里化函数</span><br><span class="line">function sumCurry(a)&#123;</span><br><span class="line"> return function(b)&#123;</span><br><span class="line">     return function(c)&#123;</span><br><span class="line">         return a+b+c</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 调用柯里化函数</span><br><span class="line">sumCurry(1)(2)(3)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这就是一个最基本的柯里化拆分， 柯里化后的函数<code>sumCurry</code>每次的返回值都为一个函数，并使用下一个参数作为形参，直到三个参数都被传入后，在返回的最后一个函数内部执行求和操作，这其实利用了闭包的特性来实现的。</p>
-<h4 id="2-通用柯里化函数"><a href="#2-通用柯里化函数" class="headerlink" title="2.通用柯里化函数"></a>2.通用柯里化函数</h4><p>上面的柯里化函数只是最基本最简单的函数，并没有涉及到高阶函数，也没有通用性，面对形参个数不定或者不知道的函数时就束手无策了，那么下面我们就用<code>ES6</code>来封装一个通用的柯里化转换函数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function curry (func)&#123;</span><br><span class="line">    return function curriedFn(...args)&#123;</span><br><span class="line">        if( args.length &lt; func.length )&#123;</span><br><span class="line">            return function()&#123;</span><br><span class="line">                return curriedFn(...args.concat.(Array.from(arguments)))</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return func(...args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h4><p>1.函数的柯里化可以让我们给一个函数传递较少的参数得到一个已经记住的某些固定参数的新函数<br>2.这是一种对函数参数的’缓存’<br>3.让函数变的更灵活，让函数的粒度更小<br>可以把多元函数转换为一元函数，可以组合使用函数产生强大的功能</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
     <title>防抖节流</title>
     <url>/2020/04/06/javascript/debounce/</url>
     <content><![CDATA[<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>原理：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。<br>适用场景：<br>按钮提交场景：防止多次提交按钮，只执行最后提交的一次<br>搜索框联想场景：防止联想发送请求，只发送最后一次输入</p>
@@ -102,6 +91,17 @@
 <h4 id="时间戳版本"><a href="#时间戳版本" class="headerlink" title="时间戳版本"></a>时间戳版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let div &#x3D; document.querySelector(&#39;div&#39;);</span><br><span class="line">var count &#x3D; 0;</span><br><span class="line">function myEvent() &#123;</span><br><span class="line">    div.innerText &#x3D; count++;</span><br><span class="line">&#125;</span><br><span class="line">div.onclick &#x3D; throttle(myEvent,2000);</span><br><span class="line">function throttle(func, wait) &#123;</span><br><span class="line">    let pre &#x3D; 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        let now &#x3D; new Date().getTime();</span><br><span class="line">        if (now - pre &gt; wait) &#123;</span><br><span class="line">            pre &#x3D; now;</span><br><span class="line">            func.apply(this);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Redux</title>
+    <url>/2020/04/13/react/redux/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
+<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
+<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
+]]></content>
+      <categories>
+        <category>react</category>
       </categories>
   </entry>
   <entry>
