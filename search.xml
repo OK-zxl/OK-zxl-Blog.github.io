@@ -28,15 +28,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Next.js+koa项目环境搭建</title>
-    <url>/2020/04/08/react/next/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
-]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-  </entry>
-  <entry>
     <title>函数式编程的柯里化</title>
     <url>/2020/04/07/javascript/curry/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> 在聊函数柯里化之前我们要知道一下概念：</p>
@@ -54,6 +45,39 @@
 ]]></content>
       <categories>
         <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>防抖节流</title>
+    <url>/2020/04/06/javascript/debounce/</url>
+    <content><![CDATA[<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>原理：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。<br>适用场景：<br>按钮提交场景：防止多次提交按钮，只执行最后提交的一次<br>搜索框联想场景：防止联想发送请求，只发送最后一次输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function debounce(func, wait) &#123;</span><br><span class="line">    let timeout;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        const context &#x3D; this;</span><br><span class="line">        const args &#x3D; arguments;</span><br><span class="line">        clearTimeout(timeout)</span><br><span class="line">        timeout &#x3D; setTimeout(function()&#123;</span><br><span class="line">            func.apply(context, args)</span><br><span class="line">        &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流 throttle"></a>节流 throttle</h3><p>原理：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。<br>适用场景<br>拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动<br>缩放场景：监控浏览器resize</p>
+<h4 id="定时器版本"><a href="#定时器版本" class="headerlink" title="定时器版本"></a>定时器版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function throttle(fn, delay) &#123;</span><br><span class="line">               let hasRun &#x3D; false;</span><br><span class="line">               return function () &#123;</span><br><span class="line">                   if (hasRun) &#123;</span><br><span class="line">                       return;</span><br><span class="line">                   &#125;</span><br><span class="line">                   hasRun &#x3D; true;</span><br><span class="line">                   setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">                       hasRun &#x3D; false;</span><br><span class="line">                       fn.apply(this, arguments);</span><br><span class="line">                   &#125;, delay);</span><br><span class="line">               &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       var mydiv &#x3D; document.getElementById(&#39;mydiv&#39;);</span><br><span class="line">       let count &#x3D; 0;</span><br><span class="line">       function myEvent()&#123;</span><br><span class="line">           mydiv.innerText &#x3D; count++;</span><br><span class="line">       &#125;        </span><br><span class="line">       mydiv.addEventListener(&#39;click&#39;, throttle(myEvent,2000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="时间戳版本"><a href="#时间戳版本" class="headerlink" title="时间戳版本"></a>时间戳版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let div &#x3D; document.querySelector(&#39;div&#39;);</span><br><span class="line">var count &#x3D; 0;</span><br><span class="line">function myEvent() &#123;</span><br><span class="line">    div.innerText &#x3D; count++;</span><br><span class="line">&#125;</span><br><span class="line">div.onclick &#x3D; throttle(myEvent,2000);</span><br><span class="line">function throttle(func, wait) &#123;</span><br><span class="line">    let pre &#x3D; 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        let now &#x3D; new Date().getTime();</span><br><span class="line">        if (now - pre &gt; wait) &#123;</span><br><span class="line">            pre &#x3D; now;</span><br><span class="line">            func.apply(this);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Next.js+koa项目环境搭建</title>
+    <url>/2020/04/08/react/next/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
+]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Redux</title>
+    <url>/2020/04/13/react/redux/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
+<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
+<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
+]]></content>
+      <categories>
+        <category>react</category>
       </categories>
   </entry>
   <entry>
@@ -75,30 +99,6 @@
 <h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><p> 获取DOM对象<br> 跨组建周期保存数据</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const box &#x3D; useRef()</span><br><span class="line">return &lt;div ref&#x3D;&#123;box&#125;&gt;app&lt;&#x2F;div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p> 持续更新中~</p>
-]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>防抖节流</title>
-    <url>/2020/04/06/javascript/debounce/</url>
-    <content><![CDATA[<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>原理：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。<br>适用场景：<br>按钮提交场景：防止多次提交按钮，只执行最后提交的一次<br>搜索框联想场景：防止联想发送请求，只发送最后一次输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function debounce(func, wait) &#123;</span><br><span class="line">    let timeout;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        const context &#x3D; this;</span><br><span class="line">        const args &#x3D; arguments;</span><br><span class="line">        clearTimeout(timeout)</span><br><span class="line">        timeout &#x3D; setTimeout(function()&#123;</span><br><span class="line">            func.apply(context, args)</span><br><span class="line">        &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流 throttle"></a>节流 throttle</h3><p>原理：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。<br>适用场景<br>拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动<br>缩放场景：监控浏览器resize</p>
-<h4 id="定时器版本"><a href="#定时器版本" class="headerlink" title="定时器版本"></a>定时器版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function throttle(fn, delay) &#123;</span><br><span class="line">               let hasRun &#x3D; false;</span><br><span class="line">               return function () &#123;</span><br><span class="line">                   if (hasRun) &#123;</span><br><span class="line">                       return;</span><br><span class="line">                   &#125;</span><br><span class="line">                   hasRun &#x3D; true;</span><br><span class="line">                   setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">                       hasRun &#x3D; false;</span><br><span class="line">                       fn.apply(this, arguments);</span><br><span class="line">                   &#125;, delay);</span><br><span class="line">               &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       var mydiv &#x3D; document.getElementById(&#39;mydiv&#39;);</span><br><span class="line">       let count &#x3D; 0;</span><br><span class="line">       function myEvent()&#123;</span><br><span class="line">           mydiv.innerText &#x3D; count++;</span><br><span class="line">       &#125;        </span><br><span class="line">       mydiv.addEventListener(&#39;click&#39;, throttle(myEvent,2000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="时间戳版本"><a href="#时间戳版本" class="headerlink" title="时间戳版本"></a>时间戳版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let div &#x3D; document.querySelector(&#39;div&#39;);</span><br><span class="line">var count &#x3D; 0;</span><br><span class="line">function myEvent() &#123;</span><br><span class="line">    div.innerText &#x3D; count++;</span><br><span class="line">&#125;</span><br><span class="line">div.onclick &#x3D; throttle(myEvent,2000);</span><br><span class="line">function throttle(func, wait) &#123;</span><br><span class="line">    let pre &#x3D; 0;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        let now &#x3D; new Date().getTime();</span><br><span class="line">        if (now - pre &gt; wait) &#123;</span><br><span class="line">            pre &#x3D; now;</span><br><span class="line">            func.apply(this);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Redux</title>
-    <url>/2020/04/13/react/redux/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
-<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
-<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
 ]]></content>
       <categories>
         <category>react</category>
