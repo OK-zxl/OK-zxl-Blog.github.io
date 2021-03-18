@@ -22,7 +22,7 @@
 
   
 
-  <title>数据的类型 | Soliton&#39;s Blog</title>
+  <title>深浅拷贝 | Soliton&#39;s Blog</title>
 
   
 
@@ -146,7 +146,7 @@
 
     
 <article id="post">
-  <div class="post-title">数据的类型</div>
+  <div class="post-title">深浅拷贝</div>
   
 <div class="post-meta">
     
@@ -155,7 +155,7 @@
         <span title="Created 2020.04.07"><i class="far fa-calendar-alt"></i> 2020.04.07</span>
       </div>
       <div class="post-meta-item updated">
-        <span title="Updated 2021.03.18"><i class="far fa-calendar-check"></i> 2021.03.18</span>
+        <span title="Updated 2021.03.19"><i class="far fa-calendar-check"></i> 2021.03.19</span>
       </div>
      
     
@@ -168,7 +168,7 @@
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">620 words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">530 words</span>
            
         
           <i class="far fa-clock"></i> <span class="post-count">2 min</span>
@@ -180,15 +180,20 @@
 
   
   <div class="content">
-        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
-<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined // 已声明未赋值<br>    null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
-<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><h5 id="基本类型的判断"><a href="#基本类型的判断" class="headerlink" title="基本类型的判断"></a>基本类型的判断</h5><pre><code>    typeof: 返回数据类型的字符串表达 &quot;undefined&quot;/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
-    instanceof: 判断对象的具体类型，判断A是不是构造函数B的实例
-    ===： 可以判断undefined、null
-</code></pre>
-<h4 id="引用数据类型的判断"><a href="#引用数据类型的判断" class="headerlink" title="引用数据类型的判断"></a>引用数据类型的判断</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var b1 &#x3D;&#123;</span><br><span class="line">    b2:[1,&#39;abc&#39;,console.log],</span><br><span class="line">    b3:function ()&#123;</span><br><span class="line">        console.log(&#39;b3)</span><br><span class="line">        return function() &#123;</span><br><span class="line">            return &#39;js&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) &#x2F;&#x2F;true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) &#x2F;&#x2F;true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) &#x2F;&#x2F;true true</span><br><span class="line">console.log(typeof b1.b3 &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#x2F;&#x2F;true</span><br><span class="line">console.log(typeof b1.b[2] &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#x2F;&#x2F;true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) &#x2F;&#x2F;这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) &#x2F;&#x2F;js</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>最后一个题外话：我们如何区分数据类型和变量类型呢？</p>
-</div>
+        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>基本类型：<br>string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
+<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
+<p>所以想要深浅拷贝这里有一个前提就是必须是引用类型</p>
+<h3 id="浅拷贝及简单实现"><a href="#浅拷贝及简单实现" class="headerlink" title="浅拷贝及简单实现"></a>浅拷贝及简单实现</h3><p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    a:1,</span><br><span class="line">    b:2</span><br><span class="line">&#125;</span><br><span class="line">funcion simpClone()&#123;</span><br><span class="line">    var cloneObj &#x3D; &#123;&#125;</span><br><span class="line">    &lt;!-- 常规循环 --&gt;</span><br><span class="line">    for(var i in obj)&#123;</span><br><span class="line">        cloneObj[i] &#x3D; obj[i];</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;!-- Es6循环 --&gt;</span><br><span class="line">    for (var [] of Object.enteies(obj))&#123;</span><br><span class="line">        cloneObj[key] &#x3D; value</span><br><span class="line">    &#125;</span><br><span class="line">    return cloneObj;</span><br><span class="line">&#125;</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="深拷贝及简单实现"><a href="#深拷贝及简单实现" class="headerlink" title="深拷贝及简单实现"></a>深拷贝及简单实现</h3><p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>目前实现深拷贝的方法不多，主要是两种：</p>
+<ol>
+<li>利用 JSON 对象中的 parse 和 stringify</li>
+<li>利用递归来实现每一层都重新创建对象并赋值</li>
+</ol>
+<p>首先我们原生递归使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    a:1,</span><br><span class="line">    b:&#123;</span><br><span class="line">        c:3,</span><br><span class="line">        d:&#123;</span><br><span class="line">            e:5,</span><br><span class="line">            f:[1,2,3,4,5,6]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">funcion deepClone(obj,cloneObj)&#123;</span><br><span class="line">    var cloneObj &#x3D; cloneObj || &#123;&#125;</span><br><span class="line"></span><br><span class="line">    for(var i in obj)&#123;</span><br><span class="line">        if (typeof obj[i] &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; obj[i] !&#x3D;&#x3D; null)&#123;</span><br><span class="line"></span><br><span class="line">           cloneObj[i] &#x3D;Array.isArray(obj[i] </span><br><span class="line">           )?[] : &#123;&#125;</span><br><span class="line">           deepClone(obj[i],cloneObj[i])</span><br><span class="line"></span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            cloneObj[i] &#x3D; obj[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125; </span><br><span class="line">    return cloneObj;</span><br><span class="line">&#125;</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>利用 JSON 对象中的 parse 和 stringify实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj)&#123;</span><br><span class="line"></span><br><span class="line">    return JSON.oarse(JSON.stringify(obj));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
         
   </div>
 
@@ -198,12 +203,12 @@
     <div class="post-nav">
       
         <div class="post-nav-prev post-nav-item">
-            <a href="/2020/04/08/javascript/Promise/" >Promise 原理及实现<i class="fa fa-chevron-left"></i></a>
+            <a href="/2020/04/07/javascript/02/" >数据的类型<i class="fa fa-chevron-left"></i></a>
         </div>
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/07/javascript/copy/" >深浅拷贝<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/04/07/javascript/curry/" >函数式编程的柯里化<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
