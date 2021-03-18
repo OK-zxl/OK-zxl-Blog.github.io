@@ -6,7 +6,13 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>函数式编程的柯里化</title>
+    <title>你好，很荣幸您能来到我的博客！</title>
+    <url>/2021/02/14/hello-world/</url>
+    <content><![CDATA[<p>此博客为本人近期才正式上传，此前一直放在本地(别问为什么，问就是害怕被大佬笑话)，中途因为个人原因和工作繁忙一直未能上线，逢此春节七天留沪过年的时间，经过激烈的思想斗争，最终还是上来了，望大佬轻喷~，有错误的地方还请务必提醒笔者改正，万分感谢！</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>数据的类型</title>
     <url>/2020/04/07/javascript/02/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
 <h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined // 已声明未赋值<br>    null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
@@ -20,12 +26,6 @@
       <categories>
         <category>JavaScript</category>
       </categories>
-  </entry>
-  <entry>
-    <title>你好，很荣幸您能来到我的博客！</title>
-    <url>/2021/02/14/hello-world/</url>
-    <content><![CDATA[<p>此博客为本人近期才正式上传，此前一直放在本地(别问为什么，问就是害怕被大佬笑话)，中途因为个人原因和工作繁忙一直未能上线，逢此春节七天留沪过年的时间，经过激烈的思想斗争，最终还是上来了，望大佬轻喷~，有错误的地方还请务必提醒笔者改正，万分感谢！</p>
-]]></content>
   </entry>
   <entry>
     <title>函数式编程的柯里化</title>
@@ -61,6 +61,57 @@
       </categories>
   </entry>
   <entry>
+    <title>事件轮询(Event Loop)</title>
+    <url>/2020/04/11/javascript/eventloop/</url>
+    <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>例如：script 、setTimeout、setInterval，setImmediate</p>
+<p>微任务是由Promise创建出来的且js中有一个专门的微任务队列来存储微任务。微任务的机制是：当执行完一个任务后，<STRONG>只要有微任务就先执行微任务<STRONG>。宏任务和渲染通通排到后面。<br>例如：Promise.then()或catch()、async函数中的await紧跟函数/语句之后的内容</p>
+<p>所谓事件轮询就是我们将一系列具有异步操作的放入任务队列，等主线程执行的同步任务执行完成以后，再从微任务队列里找未执行的任务，如果有那么就执行，如果没有就再去宏任务中寻找，依次循环，这就是事件轮询。</p>
+<p><strong>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。<strong><br>PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个定时器模块内开始计时，等主线程任务执行完成，如果setTimeout的计时结束那么就会立即执行(这里注意，这里只是计时完成，任务还没有开始执行)</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>this、call、apply、bind</title>
+    <url>/2020/04/08/javascript/this-call-bind-apply/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>小伙伴们，这篇文章的作用不用我多说了吧~~~，直接肝就完了</p>
+<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p>首先我们聊聊this指向的问题，我也不多说啥了，你们只要记住我接下来说的这就话就行了，记住是打死也要记住：<br><strong>this永远指向最后调用它的那个对象<strong><br>就这句啊，打死也要记住咯！！！</p>
+<p>那么，我们接下来就来看几个栗子：</p>
+<h5 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子 1"></a>栗子 1</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &quot;windows&quot;;</span><br><span class="line">function fn() &#123;</span><br><span class="line">    var name &#x3D; &quot;Solition&quot;;</span><br><span class="line"></span><br><span class="line">    console.log(this.name);          &#x2F;&#x2F; windows</span><br><span class="line"></span><br><span class="line">    console.log(&quot;函数内:&quot; + this);    &#x2F;&#x2F; 函数内: Window</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br><span class="line">console.log(&quot;全局:&quot; + this)         &#x2F;&#x2F; 全局: Window</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>就这个，咱们先不说你看不看的懂，咱们直接先把那句<strong>this永远指向最后调用它的那个对象<strong>套进去。<br>先定义了一个fn函数，最后在后面调用了一下，看清楚这个调用是在哪调的？<br>是不是全局啊，我们都知道JS的全局对象是window。<br>所以在全局调用的fn()函数我们就可以看作是window.fn()，<br>所以按照规则，是不是this指向的就是window对象啊，而window对象是全局对象，全局我们是不是定义了一个name变量。<br>所以，函数fn()中打印的name是不是就是windows啊。<br>那这时候你是不是要问那我函数内部的name什么时候打印呢？别急接下来我们再来说说这个</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vue-Router</title>
+    <url>/2020/04/08/vue/vue-Router/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let _Vue &#x3D; null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter &#123;</span><br><span class="line">  static install(Vue) &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) &#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    VueRouter.install.installed &#x3D; true;</span><br><span class="line">    &#x2F;&#x2F; 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue &#x3D; Vue;</span><br><span class="line">    &#x2F;&#x2F; 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    &#x2F;&#x2F; 混入</span><br><span class="line">    _Vue.mixin(&#123;</span><br><span class="line">      beforeCreate() &#123;</span><br><span class="line">        if (this.$options.router) &#123;</span><br><span class="line">          _Vue.prototype.$router &#x3D; this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  constructor(options) &#123;</span><br><span class="line">    this.options &#x3D; options;</span><br><span class="line">    this.routeMap &#x3D; &#123;&#125;;</span><br><span class="line">    this.data &#x3D; _Vue.observable(&#123;</span><br><span class="line">      current: &quot;&#x2F;&quot;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  init() &#123;</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initRouterMap() &#123;</span><br><span class="line">    &#x2F;&#x2F; 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) &#x3D;&gt; &#123;</span><br><span class="line">      this.routeMap[route.path] &#x3D; route.component;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) &#123;</span><br><span class="line">    Vue.component(&quot;router-link&quot;, &#123;</span><br><span class="line">      props: &#123;</span><br><span class="line">        to: String,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#x2F;&#x2F; template: &#96;</span><br><span class="line">      &#x2F;&#x2F;   &lt;a :href&#x3D;&quot;to&quot;&gt;</span><br><span class="line">      &#x2F;&#x2F;     &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">      &#x2F;&#x2F;   &lt;&#x2F;a&gt;</span><br><span class="line">      &#x2F;&#x2F; &#96;,</span><br><span class="line">      render(h) &#123;</span><br><span class="line">        return h(</span><br><span class="line">          &quot;a&quot;,</span><br><span class="line">          &#123;</span><br><span class="line">            attrs: &#123;</span><br><span class="line">              href: this.to,</span><br><span class="line">            &#125;,</span><br><span class="line">            on: &#123;</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      &#125;,</span><br><span class="line">      methods: &#123;</span><br><span class="line">        clickHandler(e) &#123;</span><br><span class="line">          history.pushState(&#123;&#125;, &quot;&quot;, this.to);</span><br><span class="line">          this.$router.data.current &#x3D; this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    const self &#x3D; this;</span><br><span class="line">    Vue.component(&quot;router-view&quot;, &#123;</span><br><span class="line">      render(h) &#123;</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component &#x3D; self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initEvent() &#123;</span><br><span class="line">    window.addEventListener(&quot;popstate&quot;, () &#x3D;&gt; &#123;</span><br><span class="line">      this.data.current &#x3D; window.location.pathname;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vuex</title>
+    <url>/2020/04/14/vue/vuex/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢<del>(大佬轻喷</del>)</p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>state：驱动应用的数据源<br>view：以声明的方式将state映射到视图<br>actions，响应在view上的用户输入导致的状态变化</p>
+<p>store中主要有一下几个api<br>state: 主要用来存储数据<br>getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>mutation: 主要对数据进行同步操作的处理<br>action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>module:可以生成多个store类</p>
+<p>接下来我们就来简单实现下store类</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let _Vue &#x3D; null</span><br><span class="line"></span><br><span class="line">class Store&#123;</span><br><span class="line">    cinstructor (options) &#123;</span><br><span class="line">        const &#123;</span><br><span class="line">            state &#x3D; &#123;&#125;,</span><br><span class="line">            getters &#x3D; &#123;&#125;</span><br><span class="line">            mutations &#x3D; &#123;&#125;</span><br><span class="line">            actions &#x3D; &#123;&#125;</span><br><span class="line">        &#125; &#x3D; optinos</span><br><span class="line">        this.state &#x3D; _Vue.observable(state)</span><br><span class="line">        this.getters &#x3D; Object.create(null)</span><br><span class="line">        Object.keys(getters).forEach(key &#x3D;&gt; &#123;</span><br><span class="line">            Object.defineProperty(this.getters, key, &#123;</span><br><span class="line">                get: ()&#x3D;&gt; getters[key](state)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        this._mutations &#x3D; mutations</span><br><span class="line">        this._actions &#x3D; actions</span><br><span class="line"></span><br><span class="line">        commit ( type,payload ) &#123;</span><br><span class="line">            this._mutations[type](this.state, payload)</span><br><span class="line">        &#125;</span><br><span class="line">        dispatch (type, payload) &#123;</span><br><span class="line">            this._actions[type]( this , payload)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果要使用的话我们就把创建Vue实例的时候传入的store对象注入到Vue原型上的$store,<br>在所有组件中可以通过this.$store。来获取到vuex中的仓库，从而可以在所有组件中共享状态，<br>在install中我们获取不到Vue的实例，所以这里通过beforeCreate来获取vue实例，从而拿到选项中的store对象<br>还得模拟一下挂载的install方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function install (Vue) &#123;</span><br><span class="line">    _Vue &#x3D; Vue</span><br><span class="line">    _Vue.mixin(&#123;</span><br><span class="line">        beforeCreate () &#123;</span><br><span class="line">            if (this.$options.store) &#123;</span><br><span class="line">               &#x2F;&#x2F;  判断当前vue实例的$options中是否存在store,如果是组件实例那就没有这个store选项，就不需要做这件事情</span><br><span class="line">                _Vue.prototype.$store &#x3D; this.$options.store</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后我们导出一下就可以了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    Store,</span><br><span class="line">    install</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>另外需要注意的是：<br>vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+  </entry>
+  <entry>
     <title>web前端性能优化</title>
     <url>/2020/04/10/xingneng/web/</url>
     <content><![CDATA[<h4 id="1-打包公共代码"><a href="#1-打包公共代码" class="headerlink" title="1.打包公共代码"></a>1.打包公共代码</h4><p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
@@ -75,35 +126,12 @@
       </categories>
   </entry>
   <entry>
-    <title>Redux</title>
-    <url>/2020/04/13/react/redux/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
-<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
-<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
-]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Next.js+koa项目环境搭建</title>
     <url>/2020/04/08/react/next/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
 ]]></content>
       <categories>
         <category>react</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>事件轮询(Event Loop)</title>
-    <url>/2020/04/11/javascript/eventloop/</url>
-    <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>例如：script 、setTimeout、setInterval，setImmediate</p>
-<p>微任务是由Promise创建出来的且js中有一个专门的微任务队列来存储微任务。微任务的机制是：当执行完一个任务后，<STRONG>只要有微任务就先执行微任务<STRONG>。宏任务和渲染通通排到后面。<br>例如：Promise.then()或catch()、async函数中的await紧跟函数/语句之后的内容</p>
-<p>所谓事件轮询就是我们将一系列具有异步操作的放入任务队列，等主线程执行的同步任务执行完成以后，再从微任务队列里找未执行的任务，如果有那么就执行，如果没有就再去宏任务中寻找，依次循环，这就是事件轮询。</p>
-<p><strong>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。<strong><br>PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个定时器模块内开始计时，等主线程任务执行完成，如果setTimeout的计时结束那么就会立即执行(这里注意，这里只是计时完成，任务还没有开始执行)</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
       </categories>
   </entry>
   <entry>
@@ -128,14 +156,6 @@
 ]]></content>
       <categories>
         <category>react</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vue-Router</title>
-    <url>/2020/04/08/vue/vue-Router/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let _Vue &#x3D; null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter &#123;</span><br><span class="line">  static install(Vue) &#123;</span><br><span class="line">    &#x2F;&#x2F; 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) &#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    VueRouter.install.installed &#x3D; true;</span><br><span class="line">    &#x2F;&#x2F; 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue &#x3D; Vue;</span><br><span class="line">    &#x2F;&#x2F; 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    &#x2F;&#x2F; 混入</span><br><span class="line">    _Vue.mixin(&#123;</span><br><span class="line">      beforeCreate() &#123;</span><br><span class="line">        if (this.$options.router) &#123;</span><br><span class="line">          _Vue.prototype.$router &#x3D; this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  constructor(options) &#123;</span><br><span class="line">    this.options &#x3D; options;</span><br><span class="line">    this.routeMap &#x3D; &#123;&#125;;</span><br><span class="line">    this.data &#x3D; _Vue.observable(&#123;</span><br><span class="line">      current: &quot;&#x2F;&quot;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  init() &#123;</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initRouterMap() &#123;</span><br><span class="line">    &#x2F;&#x2F; 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) &#x3D;&gt; &#123;</span><br><span class="line">      this.routeMap[route.path] &#x3D; route.component;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) &#123;</span><br><span class="line">    Vue.component(&quot;router-link&quot;, &#123;</span><br><span class="line">      props: &#123;</span><br><span class="line">        to: String,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#x2F;&#x2F; template: &#96;</span><br><span class="line">      &#x2F;&#x2F;   &lt;a :href&#x3D;&quot;to&quot;&gt;</span><br><span class="line">      &#x2F;&#x2F;     &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">      &#x2F;&#x2F;   &lt;&#x2F;a&gt;</span><br><span class="line">      &#x2F;&#x2F; &#96;,</span><br><span class="line">      render(h) &#123;</span><br><span class="line">        return h(</span><br><span class="line">          &quot;a&quot;,</span><br><span class="line">          &#123;</span><br><span class="line">            attrs: &#123;</span><br><span class="line">              href: this.to,</span><br><span class="line">            &#125;,</span><br><span class="line">            on: &#123;</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      &#125;,</span><br><span class="line">      methods: &#123;</span><br><span class="line">        clickHandler(e) &#123;</span><br><span class="line">          history.pushState(&#123;&#125;, &quot;&quot;, this.to);</span><br><span class="line">          this.$router.data.current &#x3D; this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    const self &#x3D; this;</span><br><span class="line">    Vue.component(&quot;router-view&quot;, &#123;</span><br><span class="line">      render(h) &#123;</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component &#x3D; self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  initEvent() &#123;</span><br><span class="line">    window.addEventListener(&quot;popstate&quot;, () &#x3D;&gt; &#123;</span><br><span class="line">      this.data.current &#x3D; window.location.pathname;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>vue</category>
       </categories>
   </entry>
   <entry>
@@ -166,21 +186,14 @@
       </categories>
   </entry>
   <entry>
-    <title>vuex</title>
-    <url>/2020/04/14/vue/vuex/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢<del>(大佬轻喷</del>)</p>
-<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>state：驱动应用的数据源<br>view：以声明的方式将state映射到视图<br>actions，响应在view上的用户输入导致的状态变化</p>
-<p>store中主要有一下几个api<br>state: 主要用来存储数据<br>getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>mutation: 主要对数据进行同步操作的处理<br>action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>module:可以生成多个store类</p>
-<p>接下来我们就来简单实现下store类</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let _Vue &#x3D; null</span><br><span class="line"></span><br><span class="line">class Store&#123;</span><br><span class="line">    cinstructor (options) &#123;</span><br><span class="line">        const &#123;</span><br><span class="line">            state &#x3D; &#123;&#125;,</span><br><span class="line">            getters &#x3D; &#123;&#125;</span><br><span class="line">            mutations &#x3D; &#123;&#125;</span><br><span class="line">            actions &#x3D; &#123;&#125;</span><br><span class="line">        &#125; &#x3D; optinos</span><br><span class="line">        this.state &#x3D; _Vue.observable(state)</span><br><span class="line">        this.getters &#x3D; Object.create(null)</span><br><span class="line">        Object.keys(getters).forEach(key &#x3D;&gt; &#123;</span><br><span class="line">            Object.defineProperty(this.getters, key, &#123;</span><br><span class="line">                get: ()&#x3D;&gt; getters[key](state)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        this._mutations &#x3D; mutations</span><br><span class="line">        this._actions &#x3D; actions</span><br><span class="line"></span><br><span class="line">        commit ( type,payload ) &#123;</span><br><span class="line">            this._mutations[type](this.state, payload)</span><br><span class="line">        &#125;</span><br><span class="line">        dispatch (type, payload) &#123;</span><br><span class="line">            this._actions[type]( this , payload)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>如果要使用的话我们就把创建Vue实例的时候传入的store对象注入到Vue原型上的$store,<br>在所有组件中可以通过this.$store。来获取到vuex中的仓库，从而可以在所有组件中共享状态，<br>在install中我们获取不到Vue的实例，所以这里通过beforeCreate来获取vue实例，从而拿到选项中的store对象<br>还得模拟一下挂载的install方法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function install (Vue) &#123;</span><br><span class="line">    _Vue &#x3D; Vue</span><br><span class="line">    _Vue.mixin(&#123;</span><br><span class="line">        beforeCreate () &#123;</span><br><span class="line">            if (this.$options.store) &#123;</span><br><span class="line">               &#x2F;&#x2F;  判断当前vue实例的$options中是否存在store,如果是组件实例那就没有这个store选项，就不需要做这件事情</span><br><span class="line">                _Vue.prototype.$store &#x3D; this.$options.store</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后我们导出一下就可以了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    Store,</span><br><span class="line">    install</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>另外需要注意的是：<br>vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
+    <title>Redux</title>
+    <url>/2020/04/13/react/redux/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
+<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
+<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
 ]]></content>
       <categories>
-        <category>vue</category>
+        <category>react</category>
       </categories>
   </entry>
 </search>

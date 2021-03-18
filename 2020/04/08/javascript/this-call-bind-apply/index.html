@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives | Soliton&#39;s Blog</title>
+  <title>this、call、apply、bind | Soliton&#39;s Blog</title>
 
   
 
@@ -145,106 +145,71 @@
 </header>
 
     
-<div class="post-wrap archive">
+<article id="post">
+  <div class="post-title">this、call、apply、bind</div>
+  
+<div class="post-meta">
     
     
-        
-        
-        <div class="yearzodiac">
-                <div class="years">
-                  <h1>2021  <i class="symbolic-animals icon-ox"></i></h1>
-                </div>
-        </div>
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2021/03/11/javascript/1/"></a>
-            <span class="archive-item-date">2021-03-11</span>
-        </li>
+      <div class="post-meta-item date">
+        <span title="Created 2020.04.08"><i class="far fa-calendar-alt"></i> 2020.04.08</span>
+      </div>
+      <div class="post-meta-item updated">
+        <span title="Updated 2021.03.18"><i class="far fa-calendar-check"></i> 2021.03.18</span>
+      </div>
+     
     
+      <div class="post-meta-item categories">
         
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/JavaScript/">JavaScript</a>
         
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2021/02/14/hello-world/">你好，很荣幸您能来到我的博客！</a>
-            <span class="archive-item-date">2021-02-14</span>
-        </li>
+      </div>
+     
     
+     <div class="post-meta-item wordcount">
         
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">372 words</span>
+           
         
-        <div class="yearzodiac">
-                <div class="years">
-                  <h1>2020  <i class="symbolic-animals icon-rat"></i></h1>
-                </div>
-        </div>
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/04/14/vue/vuex/">vuex</a>
-            <span class="archive-item-date">2020-04-14</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/04/13/react/redux/">Redux</a>
-            <span class="archive-item-date">2020-04-13</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/04/12/react/reactHooks/">react Hooks</a>
-            <span class="archive-item-date">2020-04-12</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/04/11/javascript/eventloop/">事件轮询(Event Loop)</a>
-            <span class="archive-item-date">2020-04-11</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/04/10/xingneng/web/">web前端性能优化</a>
-            <span class="archive-item-date">2020-04-10</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/04/08/javascript/this-call-bind-apply/">this、call、apply、bind</a>
-            <span class="archive-item-date">2020-04-08</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/04/08/vue/vue-Router/">vue-Router</a>
-            <span class="archive-item-date">2020-04-08</span>
-        </li>
-    
-        
-        
-        <li class="archive-item">
-            <a class="archive-item-link" href="/2020/04/08/react/next/">Next.js+koa项目环境搭建</a>
-            <span class="archive-item-date">2020-04-08</span>
-        </li>
-    
-    <div class="arc_pag">
-       <nav class="paginator">
-      
-            
-            <a class="next" href="/archives/page/2/">Next ></a>
-            
-</nav>
-
-     </div>
+          <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                               
+      </div>
+     
 </div>
 
 
+  
+  <div class="content">
+        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>小伙伴们，这篇文章的作用不用我多说了吧~~~，直接肝就完了</p>
+<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p>首先我们聊聊this指向的问题，我也不多说啥了，你们只要记住我接下来说的这就话就行了，记住是打死也要记住：<br><strong>this永远指向最后调用它的那个对象<strong><br>就这句啊，打死也要记住咯！！！</p>
+<p>那么，我们接下来就来看几个栗子：</p>
+<h5 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子 1"></a>栗子 1</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; &quot;windows&quot;;</span><br><span class="line">function fn() &#123;</span><br><span class="line">    var name &#x3D; &quot;Solition&quot;;</span><br><span class="line"></span><br><span class="line">    console.log(this.name);          &#x2F;&#x2F; windows</span><br><span class="line"></span><br><span class="line">    console.log(&quot;函数内:&quot; + this);    &#x2F;&#x2F; 函数内: Window</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br><span class="line">console.log(&quot;全局:&quot; + this)         &#x2F;&#x2F; 全局: Window</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>就这个，咱们先不说你看不看的懂，咱们直接先把那句<strong>this永远指向最后调用它的那个对象<strong>套进去。<br>先定义了一个fn函数，最后在后面调用了一下，看清楚这个调用是在哪调的？<br>是不是全局啊，我们都知道JS的全局对象是window。<br>所以在全局调用的fn()函数我们就可以看作是window.fn()，<br>所以按照规则，是不是this指向的就是window对象啊，而window对象是全局对象，全局我们是不是定义了一个name变量。<br>所以，函数fn()中打印的name是不是就是windows啊。<br>那这时候你是不是要问那我函数内部的name什么时候打印呢？别急接下来我们再来说说这个</p>
+</div>
+        
+  </div>
+
+    <div class="post_tags">
+      
+    </div>
+    <div class="post-nav">
+      
+        <div class="post-nav-prev post-nav-item">
+            <a href="/2020/04/10/xingneng/web/" >web前端性能优化<i class="fa fa-chevron-left"></i></a>
+        </div>
+      
+      
+        <div class="post-nav-next post-nav-item">
+            <a href="/2020/04/08/vue/vue-Router/" >vue-Router<i class="fa fa-chevron-right"></i></a>
+        </div>
+      
+    </div>
+      
 
 
 
+
+</article>
 
     
 <a id="gotop" href="javascript:" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
