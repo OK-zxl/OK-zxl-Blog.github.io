@@ -52,7 +52,9 @@
   
     <script src="/js/todark.js"></script>
     
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 </html>
     
 <div class="nav index" style="height: 60px;">
@@ -168,7 +170,7 @@
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">656 words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">632 words</span>
            
         
           <i class="far fa-clock"></i> <span class="post-count">2 min</span>
@@ -187,10 +189,10 @@
 </ol>
 <hr>
 <h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>上面我们了解了什么是函数式编程，那么函数柯里化其实就是函数式编程的一个重要思想，也是高阶函数的一个重要应用。就是给函数分步骤传递参数，每次传递部分参数，并返回一个更具体的函数接收剩下的参数，这期间可嵌套多层这样的接收部分参数的函数，直至返回最后的结果。</p>
-<h4 id="1-简单的柯里化"><a href="#1-简单的柯里化" class="headerlink" title="1.简单的柯里化"></a>1.简单的柯里化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 原函数</span><br><span class="line">function sum(a,b,c)&#123;</span><br><span class="line">    return a+b+c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 调用原函数</span><br><span class="line">sum(1,2,3)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 柯里化函数</span><br><span class="line">function sumCurry(a)&#123;</span><br><span class="line"> return function(b)&#123;</span><br><span class="line">     return function(c)&#123;</span><br><span class="line">         return a+b+c</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 调用柯里化函数</span><br><span class="line">sumCurry(1)(2)(3)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="1-简单的柯里化"><a href="#1-简单的柯里化" class="headerlink" title="1.简单的柯里化"></a>1.简单的柯里化</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 原函数</span><br><span class="line">function sum(a,b,c){</span><br><span class="line">    return a+b+c</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 调用原函数</span><br><span class="line">sum(1,2,3)</span><br><span class="line"></span><br><span class="line">// 柯里化函数</span><br><span class="line">function sumCurry(a){</span><br><span class="line"> return function(b){</span><br><span class="line">     return function(c){</span><br><span class="line">         return a+b+c</span><br><span class="line">     }</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">// 调用柯里化函数</span><br><span class="line">sumCurry(1)(2)(3)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>这就是一个最基本的柯里化拆分， 柯里化后的函数<code>sumCurry</code>每次的返回值都为一个函数，并使用下一个参数作为形参，直到三个参数都被传入后，在返回的最后一个函数内部执行求和操作，这其实利用了闭包的特性来实现的。</p>
 <h4 id="2-通用柯里化函数"><a href="#2-通用柯里化函数" class="headerlink" title="2.通用柯里化函数"></a>2.通用柯里化函数</h4><p>上面的柯里化函数只是最基本最简单的函数，并没有涉及到高阶函数，也没有通用性，面对形参个数不定或者不知道的函数时就束手无策了，那么下面我们就用<code>ES6</code>来封装一个通用的柯里化转换函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function curry (func)&#123;</span><br><span class="line">    return function curriedFn(...args)&#123;</span><br><span class="line">        if( args.length &lt; func.length )&#123;</span><br><span class="line">            return function()&#123;</span><br><span class="line">                return curriedFn(...args.concat.(Array.from(arguments)))</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return func(...args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function curry (func){</span><br><span class="line">    return function curriedFn(...args){</span><br><span class="line">        if( args.length &lt; func.length ){</span><br><span class="line">            return function(){</span><br><span class="line">                return curriedFn(...args.concat.(Array.from(arguments)))</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        return func(...args)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <h4 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h4><p>1.函数的柯里化可以让我们给一个函数传递较少的参数得到一个已经记住的某些固定参数的新函数<br>2.这是一种对函数参数的’缓存’<br>3.让函数变的更灵活，让函数的粒度更小<br>可以把多元函数转换为一元函数，可以组合使用函数产生强大的功能</p>
 </div>
         
@@ -202,12 +204,12 @@
     <div class="post-nav">
       
         <div class="post-nav-prev post-nav-item">
-            <a href="/2020/04/08/javascript/Promise/" >Promise 原理及实现<i class="fa fa-chevron-left"></i></a>
+            <a href="/2020/04/07/javascript/copy/" >深浅拷贝<i class="fa fa-chevron-left"></i></a>
         </div>
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/07/javascript/02/" >数据的类型<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/04/06/javascript/debounce/" >防抖节流<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
