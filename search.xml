@@ -12,6 +12,62 @@
 ]]></content>
   </entry>
   <entry>
+    <title>多浏览器兼容问题</title>
+    <url>/2020/04/07/browser/browser1/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>PM   ： 技术，你这个网页能在别的浏览器上看么？<br>开发 ： 可以啊，我做过浏览器兼容了。<br>PM   ： 但是我看到的样式好像怎么各个浏览器都有不同的样子啊，跟我想要的东西有点出入啊<br>设计  ：……<br>开发  ：……<br>技术  ：不应该啊，还有不一样的地方嘛？我看看<br>PM    ：你看，在360浏览器、在火狐、谷歌、IE浏览器上都不一样啊<br>技术  ：…….</p>
+<p>我相信大家很多都碰到过这种场景，是不是有点绝望，哈哈哈，那么我们接下来就好好捋一捋这些浏览器及其兼容问题</p>
+<h3 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h3><p>市面上现在各式各样的浏览器层出不穷，不同的浏览器的内核也不一样，我们都知道页面渲染是在不同的浏览器内核的支持下或多或少会有点差异（求求了，别跟我说IE6<span class="github-emoji"><span>😱</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">IE浏览器：Trident</span><br><span class="line">🐧浏览器：Trident + Webkit   </span><br><span class="line">谷歌浏览器（Chrome）：Webkit -&gt; Blink</span><br><span class="line">🦊浏览器（Firefox）：Gecko</span><br><span class="line">🍎浏览器（Safari）：Webkit</span><br><span class="line">Opera浏览器：Presto -&gt; Webkit -&gt; Blink；</span><br><span class="line">360浏览器：Trident + Chrome</span><br><span class="line">猎豹浏览器：Trident + Chrome</span><br><span class="line">百度浏览器：Trident</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>大概主要的就这么些吧（话说应该没漏吧？）另外，传说中的牛逼哄哄的双核浏览器，懂得都懂<span class="github-emoji"><span>😏</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<h3 id="常见的兼容性问题"><a href="#常见的兼容性问题" class="headerlink" title="常见的兼容性问题"></a>常见的兼容性问题</h3><h4 id="CSS篇"><a href="#CSS篇" class="headerlink" title="CSS篇"></a>CSS篇</h4><ol>
+<li><p><strong>问题：不同浏览器的标签默认的 margin 和 padding 不同</strong><br>解决方案：css里增加通配符*{margin：0；padding：0}，但是尽量少写通配符*还是用根节点比较好</p>
+</li>
+<li><p><strong>图片默认有间距</strong><br>解决方案：使用float为img布局</p>
+</li>
+<li><p><strong>FF和IEBOX模型解释不一致导致相差2px</strong><br>box.style{width:100;border1px;}<br>IE浏览器下编译为box.width =100<br>火狐下编译为box.width =100 + 1*2 = 102 //加上边框2px<br>解决方法：div{margin:30px!important;margin:28px;}</p>
+</li>
+<li><p><strong>IE不识别页面的min的最小宽度</strong><br>解决方案：通过Javascript来判断实现最小宽度<br>min-width: 600px;width:expression(document.body.clientWidth＜ 600? “600px”: “auto” );</p>
+</li>
+<li><p><strong>DIV浮动IE文本产生3像素的bug</strong><br>左边对象浮动，右边采用margin的左边距来定位，右边对象内的文本会离左边有3px的间距.<br>解决方案：*html #left{ margin-right:-3px;}</p>
+</li>
+<li><p><strong>web标准中IE无法设置滚动条颜色</strong><br>解决方案：<br>html {</p>
+<pre><code>scrollbar-track-color:#fff;
+scrollbar-darkshadow-color:#fff;
+scrollbar-highlight-color:#fff;
+scrollbar-3dlight-color:#eeeeee;
+scrollbar-arrow-color:#000;
+scrollbar-face-color:#f6f6f6;
+scrollbar-shadow-color:#eeeeee;
+}
+</code></pre>
+</li>
+<li><p><strong>两个块级元素，父元素设置了overflow:auto；子元素设置了position:relative ;且高度大于父元素，在IE6、IE7会被隐藏而不是溢出；</strong><br>解决方案：父级元素设置position:relative</p>
+</li>
+</ol>
+<h4 id="js篇"><a href="#js篇" class="headerlink" title="js篇"></a>js篇</h4><ol>
+<li><p><strong>HTML对象获取问题</strong><br>Firefox：document.getElementById(“idName”);<br>ie:document.idname或者document.getElementById(“idName”).<br>解决办法：统一使用document.getElementById(“idName”);</p>
+</li>
+<li><p><strong>IE下,event对象有x,y属性,但是没有pageX,pageY属性;Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.</strong><br>解决方法：使用mX(mX = event.x ? event.x : event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX.</p>
+</li>
+<li><p><strong>Firefox与IE的父元素(parentElement)的区别</strong><br>IE：obj.parentElement<br>Firefox：obj.parentNode<br>解决方法: obj.parentNode两者兼容</p>
+</li>
+<li><p><strong>IE下，even对象有srcElement属性，但是没有target属性；Firefox下，even对象有target属性，但是没有srcElement属性。</strong><br>解决方法：使用srcObj = event.srcElement ?event.srcElement : event.target;</p>
+</li>
+<li><p><strong>event事件问题</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">document.onclick=function(ev){//谷歌火狐的写法，IE9以上支持，往下不支持；</span><br><span class="line">    var e=ev;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(){//谷歌和IE支持，火狐不支持；</span><br><span class="line">    var e=event;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(ev){//兼容写法；</span><br><span class="line">    var e=ev||window.event;</span><br><span class="line">    var mouseX=e.clientX;//鼠标X轴的坐标</span><br><span class="line">    var mouseY=e.clientY;//鼠标Y轴的坐标</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p><strong>页面可是区域大小</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line">function client() {</span><br><span class="line">    if(window.innerWidth != null)  // ie9 +  最新浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: window.innerWidth,</span><br><span class="line">            height: window.innerHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    else if(document.compatMode === "CSS1Compat")  // 标准浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: document.documentElement.clientWidth,</span><br><span class="line">            height: document.documentElement.clientHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    return {   // 怪异浏览器</span><br><span class="line">        width: document.body.clientWidth,</span><br><span class="line">        height: document.body.clientHeight</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">document.write(client().width);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p><strong>判断浏览器</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let browser = {</span><br><span class="line">versions: (function () {</span><br><span class="line">    let u = navigator.userAgent</span><br><span class="line">    return { // 移动终端浏览器版本信息</span><br><span class="line">    trident: u.indexOf('Trident') &gt; -1, // IE内核</span><br><span class="line">    presto: u.indexOf('Presto') &gt; -1, // opera内核</span><br><span class="line">    webKit: u.indexOf('AppleWebKit') &gt; -1, // 苹果、谷歌内核</span><br><span class="line">    gecko: u.indexOf('Gecko') &gt; -1 &amp;&amp; u.indexOf('KHTML') === -1, // 火狐内核</span><br><span class="line">    mobile: !!u.match(/AppleWebKit.*Mobile.*/), // 是否为移动终端</span><br><span class="line">    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端</span><br><span class="line">    android: u.indexOf('Android') &gt; -1 || u.indexOf('Linux') &gt; -1 || u.indexOf('Adr') &gt; -1, // android终端或uc浏览器</span><br><span class="line">    iPhone: u.indexOf('iPhone') &gt; -1, // 是否为iPhone或者QQHD浏览器</span><br><span class="line">    iPad: u.indexOf('iPad') &gt; -1, // 是否iPad</span><br><span class="line">    webApp: u.indexOf('Safari') === -1,</span><br><span class="line">    weixin: u.indexOf('MicroMessenger') &gt; -1, // 是否微信 （2015-01-22新增）</span><br><span class="line">    qq: u.indexOf(' QQ') &gt; -1 // 是否QQ</span><br><span class="line">    // 是否web应该程序，没有头部与底部</span><br><span class="line">    }</span><br><span class="line">}()),</span><br><span class="line">language: (navigator.browserLanguage || navigator.language)</span><br><span class="line">.toLowerCase()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(browser.versions.weixin) // 判断是否为微信浏览器 return true or false</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p><strong>ios无法解析日期格式问题</strong><br>解决方案：安卓都支持 2019-01-01 或 2019/09/09，ios只支持2019/09/09 。可用replace(/-/g,’/‘)方式替换</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>浏览器</category>
+      </categories>
+  </entry>
+  <entry>
     <title>HTTP协议详解</title>
     <url>/2020/04/12/http/https/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在学习HTTP之前我们得先了解计算机网络的分层基本上分为两种</p>
@@ -121,62 +177,6 @@
       </categories>
   </entry>
   <entry>
-    <title>多浏览器兼容问题</title>
-    <url>/2020/04/07/browser/browser1/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>PM   ： 技术，你这个网页能在别的浏览器上看么？<br>开发 ： 可以啊，我做过浏览器兼容了。<br>PM   ： 但是我看到的样式好像怎么各个浏览器都有不同的样子啊，跟我想要的东西有点出入啊<br>设计  ：……<br>开发  ：……<br>技术  ：不应该啊，还有不一样的地方嘛？我看看<br>PM    ：你看，在360浏览器、在火狐、谷歌、IE浏览器上都不一样啊<br>技术  ：…….</p>
-<p>我相信大家很多都碰到过这种场景，是不是有点绝望，哈哈哈，那么我们接下来就好好捋一捋这些浏览器及其兼容问题</p>
-<h3 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h3><p>市面上现在各式各样的浏览器层出不穷，不同的浏览器的内核也不一样，我们都知道页面渲染是在不同的浏览器内核的支持下或多或少会有点差异（求求了，别跟我说IE6<span class="github-emoji"><span>😱</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">IE浏览器：Trident</span><br><span class="line">🐧浏览器：Trident + Webkit   </span><br><span class="line">谷歌浏览器（Chrome）：Webkit -&gt; Blink</span><br><span class="line">🦊浏览器（Firefox）：Gecko</span><br><span class="line">🍎浏览器（Safari）：Webkit</span><br><span class="line">Opera浏览器：Presto -&gt; Webkit -&gt; Blink；</span><br><span class="line">360浏览器：Trident + Chrome</span><br><span class="line">猎豹浏览器：Trident + Chrome</span><br><span class="line">百度浏览器：Trident</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>大概主要的就这么些吧（话说应该没漏吧？）另外，传说中的牛逼哄哄的双核浏览器，懂得都懂<span class="github-emoji"><span>😏</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<h3 id="常见的兼容性问题"><a href="#常见的兼容性问题" class="headerlink" title="常见的兼容性问题"></a>常见的兼容性问题</h3><h4 id="CSS篇"><a href="#CSS篇" class="headerlink" title="CSS篇"></a>CSS篇</h4><ol>
-<li><p><strong>问题：不同浏览器的标签默认的 margin 和 padding 不同</strong><br>解决方案：css里增加通配符*{margin：0；padding：0}，但是尽量少写通配符*还是用根节点比较好</p>
-</li>
-<li><p><strong>图片默认有间距</strong><br>解决方案：使用float为img布局</p>
-</li>
-<li><p><strong>FF和IEBOX模型解释不一致导致相差2px</strong><br>box.style{width:100;border1px;}<br>IE浏览器下编译为box.width =100<br>火狐下编译为box.width =100 + 1*2 = 102 //加上边框2px<br>解决方法：div{margin:30px!important;margin:28px;}</p>
-</li>
-<li><p><strong>IE不识别页面的min的最小宽度</strong><br>解决方案：通过Javascript来判断实现最小宽度<br>min-width: 600px;width:expression(document.body.clientWidth＜ 600? “600px”: “auto” );</p>
-</li>
-<li><p><strong>DIV浮动IE文本产生3像素的bug</strong><br>左边对象浮动，右边采用margin的左边距来定位，右边对象内的文本会离左边有3px的间距.<br>解决方案：*html #left{ margin-right:-3px;}</p>
-</li>
-<li><p><strong>web标准中IE无法设置滚动条颜色</strong><br>解决方案：<br>html {</p>
-<pre><code>scrollbar-track-color:#fff;
-scrollbar-darkshadow-color:#fff;
-scrollbar-highlight-color:#fff;
-scrollbar-3dlight-color:#eeeeee;
-scrollbar-arrow-color:#000;
-scrollbar-face-color:#f6f6f6;
-scrollbar-shadow-color:#eeeeee;
-}
-</code></pre>
-</li>
-<li><p><strong>两个块级元素，父元素设置了overflow:auto；子元素设置了position:relative ;且高度大于父元素，在IE6、IE7会被隐藏而不是溢出；</strong><br>解决方案：父级元素设置position:relative</p>
-</li>
-</ol>
-<h4 id="js篇"><a href="#js篇" class="headerlink" title="js篇"></a>js篇</h4><ol>
-<li><p><strong>HTML对象获取问题</strong><br>Firefox：document.getElementById(“idName”);<br>ie:document.idname或者document.getElementById(“idName”).<br>解决办法：统一使用document.getElementById(“idName”);</p>
-</li>
-<li><p><strong>IE下,event对象有x,y属性,但是没有pageX,pageY属性;Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.</strong><br>解决方法：使用mX(mX = event.x ? event.x : event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX.</p>
-</li>
-<li><p><strong>Firefox与IE的父元素(parentElement)的区别</strong><br>IE：obj.parentElement<br>Firefox：obj.parentNode<br>解决方法: obj.parentNode两者兼容</p>
-</li>
-<li><p><strong>IE下，even对象有srcElement属性，但是没有target属性；Firefox下，even对象有target属性，但是没有srcElement属性。</strong><br>解决方法：使用srcObj = event.srcElement ?event.srcElement : event.target;</p>
-</li>
-<li><p><strong>event事件问题</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">document.onclick=function(ev){//谷歌火狐的写法，IE9以上支持，往下不支持；</span><br><span class="line">    var e=ev;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(){//谷歌和IE支持，火狐不支持；</span><br><span class="line">    var e=event;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(ev){//兼容写法；</span><br><span class="line">    var e=ev||window.event;</span><br><span class="line">    var mouseX=e.clientX;//鼠标X轴的坐标</span><br><span class="line">    var mouseY=e.clientY;//鼠标Y轴的坐标</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>页面可是区域大小</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line">function client() {</span><br><span class="line">    if(window.innerWidth != null)  // ie9 +  最新浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: window.innerWidth,</span><br><span class="line">            height: window.innerHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    else if(document.compatMode === "CSS1Compat")  // 标准浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: document.documentElement.clientWidth,</span><br><span class="line">            height: document.documentElement.clientHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    return {   // 怪异浏览器</span><br><span class="line">        width: document.body.clientWidth,</span><br><span class="line">        height: document.body.clientHeight</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">document.write(client().width);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>判断浏览器</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let browser = {</span><br><span class="line">versions: (function () {</span><br><span class="line">    let u = navigator.userAgent</span><br><span class="line">    return { // 移动终端浏览器版本信息</span><br><span class="line">    trident: u.indexOf('Trident') &gt; -1, // IE内核</span><br><span class="line">    presto: u.indexOf('Presto') &gt; -1, // opera内核</span><br><span class="line">    webKit: u.indexOf('AppleWebKit') &gt; -1, // 苹果、谷歌内核</span><br><span class="line">    gecko: u.indexOf('Gecko') &gt; -1 &amp;&amp; u.indexOf('KHTML') === -1, // 火狐内核</span><br><span class="line">    mobile: !!u.match(/AppleWebKit.*Mobile.*/), // 是否为移动终端</span><br><span class="line">    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端</span><br><span class="line">    android: u.indexOf('Android') &gt; -1 || u.indexOf('Linux') &gt; -1 || u.indexOf('Adr') &gt; -1, // android终端或uc浏览器</span><br><span class="line">    iPhone: u.indexOf('iPhone') &gt; -1, // 是否为iPhone或者QQHD浏览器</span><br><span class="line">    iPad: u.indexOf('iPad') &gt; -1, // 是否iPad</span><br><span class="line">    webApp: u.indexOf('Safari') === -1,</span><br><span class="line">    weixin: u.indexOf('MicroMessenger') &gt; -1, // 是否微信 （2015-01-22新增）</span><br><span class="line">    qq: u.indexOf(' QQ') &gt; -1 // 是否QQ</span><br><span class="line">    // 是否web应该程序，没有头部与底部</span><br><span class="line">    }</span><br><span class="line">}()),</span><br><span class="line">language: (navigator.browserLanguage || navigator.language)</span><br><span class="line">.toLowerCase()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(browser.versions.weixin) // 判断是否为微信浏览器 return true or false</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>ios无法解析日期格式问题</strong><br>解决方案：安卓都支持 2019-01-01 或 2019/09/09，ios只支持2019/09/09 。可用replace(/-/g,’/‘)方式替换</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>浏览器</category>
-      </categories>
-  </entry>
-  <entry>
     <title>数据的类型</title>
     <url>/2020/04/07/javascript/02/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
@@ -236,18 +236,6 @@ scrollbar-shadow-color:#eeeeee;
       </categories>
   </entry>
   <entry>
-    <title>事件轮询(Event Loop)</title>
-    <url>/2020/04/11/javascript/eventloop/</url>
-    <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>例如：script 、setTimeout、setInterval，setImmediate</p>
-<p>微任务是由Promise创建出来的且js中有一个专门的微任务队列来存储微任务。微任务的机制是：当执行完一个任务后，<strong>只要有微任务就先执行微任务</strong>。宏任务和渲染通通排到后面。<br>例如：Promise.then()或catch()、async函数中的await紧跟函数/语句之后的内容</p>
-<p>所谓事件轮询就是我们将一系列具有异步操作的放入任务队列，等主线程执行的同步任务执行完成以后，再从微任务队列里找未执行的任务，如果有那么就执行，如果没有就再去宏任务中寻找，依次循环，这就是事件轮询。</p>
-<p><strong>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。</strong><br>PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个定时器模块内开始计时，等主线程任务执行完成，如果setTimeout的计时结束那么就会立即执行(这里注意，这里只是计时完成，任务还没有开始执行)</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
     <title>防抖节流</title>
     <url>/2020/04/06/javascript/debounce/</url>
     <content><![CDATA[<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>原理：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。<br>适用场景：<br>按钮提交场景：防止多次提交按钮，只执行最后提交的一次<br>搜索框联想场景：防止联想发送请求，只发送最后一次输入</p>
@@ -256,6 +244,18 @@ scrollbar-shadow-color:#eeeeee;
 <h3 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流 throttle"></a>节流 throttle</h3><p>原理：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。<br>适用场景<br>拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动<br>缩放场景：监控浏览器resize</p>
 <h4 id="定时器版本"><a href="#定时器版本" class="headerlink" title="定时器版本"></a>定时器版本</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function throttle(fn, delay) {</span><br><span class="line">               let hasRun = false;</span><br><span class="line">               return function () {</span><br><span class="line">                   if (hasRun) {</span><br><span class="line">                       return;</span><br><span class="line">                   }</span><br><span class="line">                   hasRun = true;</span><br><span class="line">                   setTimeout(() =&gt; {</span><br><span class="line">                       hasRun = false;</span><br><span class="line">                       fn.apply(this, arguments);</span><br><span class="line">                   }, delay);</span><br><span class="line">               }</span><br><span class="line">       }</span><br><span class="line">       var mydiv = document.getElementById('mydiv');</span><br><span class="line">       let count = 0;</span><br><span class="line">       function myEvent(){</span><br><span class="line">           mydiv.innerText = count++;</span><br><span class="line">       }        </span><br><span class="line">       mydiv.addEventListener('click', throttle(myEvent,2000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <h4 id="时间戳版本"><a href="#时间戳版本" class="headerlink" title="时间戳版本"></a>时间戳版本</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let div = document.querySelector('div');</span><br><span class="line">var count = 0;</span><br><span class="line">function myEvent() {</span><br><span class="line">    div.innerText = count++;</span><br><span class="line">}</span><br><span class="line">div.onclick = throttle(myEvent,2000);</span><br><span class="line">function throttle(func, wait) {</span><br><span class="line">    let pre = 0;</span><br><span class="line">    return function () {</span><br><span class="line">        let now = new Date().getTime();</span><br><span class="line">        if (now - pre &gt; wait) {</span><br><span class="line">            pre = now;</span><br><span class="line">            func.apply(this);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>事件轮询(Event Loop)</title>
+    <url>/2020/04/11/javascript/eventloop/</url>
+    <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>例如：script 、setTimeout、setInterval，setImmediate</p>
+<p>微任务是由Promise创建出来的且js中有一个专门的微任务队列来存储微任务。微任务的机制是：当执行完一个任务后，<strong>只要有微任务就先执行微任务</strong>。宏任务和渲染通通排到后面。<br>例如：Promise.then()或catch()、async函数中的await紧跟函数/语句之后的内容</p>
+<p>所谓事件轮询就是我们将一系列具有异步操作的放入任务队列，等主线程执行的同步任务执行完成以后，再从微任务队列里找未执行的任务，如果有那么就执行，如果没有就再去宏任务中寻找，依次循环，这就是事件轮询。</p>
+<p><strong>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。</strong><br>PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个定时器模块内开始计时，等主线程任务执行完成，如果setTimeout的计时结束那么就会立即执行(这里注意，这里只是计时完成，任务还没有开始执行)</p>
+]]></content>
       <categories>
         <category>JavaScript</category>
       </categories>
@@ -313,52 +313,12 @@ scrollbar-shadow-color:#eeeeee;
       </categories>
   </entry>
   <entry>
-    <title>vue-Router</title>
-    <url>/2020/04/08/vue/vue-Router/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter {</span><br><span class="line">  static install(Vue) {</span><br><span class="line">    // 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) {</span><br><span class="line">      return;</span><br><span class="line">    }</span><br><span class="line">    VueRouter.install.installed = true;</span><br><span class="line">    // 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue = Vue;</span><br><span class="line">    // 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    // 混入</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">      beforeCreate() {</span><br><span class="line">        if (this.$options.router) {</span><br><span class="line">          _Vue.prototype.$router = this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  constructor(options) {</span><br><span class="line">    this.options = options;</span><br><span class="line">    this.routeMap = {};</span><br><span class="line">    this.data = _Vue.observable({</span><br><span class="line">      current: "/",</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  init() {</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initRouterMap() {</span><br><span class="line">    // 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) =&gt; {</span><br><span class="line">      this.routeMap[route.path] = route.component;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) {</span><br><span class="line">    Vue.component("router-link", {</span><br><span class="line">      props: {</span><br><span class="line">        to: String,</span><br><span class="line">      },</span><br><span class="line">      // template: `</span><br><span class="line">      //   &lt;a :href="to"&gt;</span><br><span class="line">      //     &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      //   &lt;/a&gt;</span><br><span class="line">      // `,</span><br><span class="line">      render(h) {</span><br><span class="line">        return h(</span><br><span class="line">          "a",</span><br><span class="line">          {</span><br><span class="line">            attrs: {</span><br><span class="line">              href: this.to,</span><br><span class="line">            },</span><br><span class="line">            on: {</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            },</span><br><span class="line">          },</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      },</span><br><span class="line">      methods: {</span><br><span class="line">        clickHandler(e) {</span><br><span class="line">          history.pushState({}, "", this.to);</span><br><span class="line">          this.$router.data.current = this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    const self = this;</span><br><span class="line">    Vue.component("router-view", {</span><br><span class="line">      render(h) {</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component = self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initEvent() {</span><br><span class="line">    window.addEventListener("popstate", () =&gt; {</span><br><span class="line">      this.data.current = window.location.pathname;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vuex</title>
-    <url>/2020/04/14/vue/vuex/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢<del>(大佬轻喷</del>)</p>
-<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>state：驱动应用的数据源<br>view：以声明的方式将state映射到视图<br>actions，响应在view上的用户输入导致的状态变化</p>
-<p>store中主要有一下几个api<br>state: 主要用来存储数据<br>getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>mutation: 主要对数据进行同步操作的处理<br>action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>module:可以生成多个store类</p>
-<p>接下来我们就来简单实现下store类</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null</span><br><span class="line"></span><br><span class="line">class Store{</span><br><span class="line">    cinstructor (options) {</span><br><span class="line">        const {</span><br><span class="line">            state = {},</span><br><span class="line">            getters = {}</span><br><span class="line">            mutations = {}</span><br><span class="line">            actions = {}</span><br><span class="line">        } = optinos</span><br><span class="line">        this.state = _Vue.observable(state)</span><br><span class="line">        this.getters = Object.create(null)</span><br><span class="line">        Object.keys(getters).forEach(key =&gt; {</span><br><span class="line">            Object.defineProperty(this.getters, key, {</span><br><span class="line">                get: ()=&gt; getters[key](state)</span><br><span class="line">            })</span><br><span class="line">        })</span><br><span class="line">        this._mutations = mutations</span><br><span class="line">        this._actions = actions</span><br><span class="line"></span><br><span class="line">        commit ( type,payload ) {</span><br><span class="line">            this._mutations[type](this.state, payload)</span><br><span class="line">        }</span><br><span class="line">        dispatch (type, payload) {</span><br><span class="line">            this._actions[type]( this , payload)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>如果要使用的话我们就把创建Vue实例的时候传入的store对象注入到Vue原型上的$store,<br>在所有组件中可以通过this.$store。来获取到vuex中的仓库，从而可以在所有组件中共享状态，<br>在install中我们获取不到Vue的实例，所以这里通过beforeCreate来获取vue实例，从而拿到选项中的store对象<br>还得模拟一下挂载的install方法</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function install (Vue) {</span><br><span class="line">    _Vue = Vue</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">        beforeCreate () {</span><br><span class="line">            if (this.$options.store) {</span><br><span class="line">               //  判断当前vue实例的$options中是否存在store,如果是组件实例那就没有这个store选项，就不需要做这件事情</span><br><span class="line">                _Vue.prototype.$store = this.$options.store</span><br><span class="line">            }</span><br><span class="line">        } </span><br><span class="line">    })</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>最后我们导出一下就可以了</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">export default {</span><br><span class="line">    Store,</span><br><span class="line">    install</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>另外需要注意的是：<br>vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Next.js+koa项目环境搭建</title>
     <url>/2020/04/08/react/next/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
 ]]></content>
       <categories>
         <category>react</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>web前端性能优化</title>
-    <url>/2020/04/10/xingneng/web/</url>
-    <content><![CDATA[<h4 id="1-打包公共代码"><a href="#1-打包公共代码" class="headerlink" title="1.打包公共代码"></a>1.打包公共代码</h4><p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
-<h4 id="2-按需加载"><a href="#2-按需加载" class="headerlink" title="2.按需加载"></a>2.按需加载</h4><p>在单页面中，有多个路由，使用webpack的按需加载就能达到单独访问某个页面的时候单独某个的页面代码，如import(/<em>webpackChunkName: ‘xx’</em> ‘yourpath’/)</p>
-<h4 id="3-使用CDN"><a href="#3-使用CDN" class="headerlink" title="3.使用CDN"></a>3.使用CDN</h4><p>CDN全称是Content Delivery Network，即内容分发网络，它能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度</p>
-<h4 id="4-使用静态资源分域存放来增加下载并行数"><a href="#4-使用静态资源分域存放来增加下载并行数" class="headerlink" title="4.使用静态资源分域存放来增加下载并行数"></a>4.使用静态资源分域存放来增加下载并行数</h4><p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
-<h3 id="5-减少js、css阻塞"><a href="#5-减少js、css阻塞" class="headerlink" title="5.减少js、css阻塞"></a>5.减少js、css阻塞</h3><h4 id="1-js组塞"><a href="#1-js组塞" class="headerlink" title="1. js组塞"></a>1. js组塞</h4><p>当html解析遇到js会先下载和执行js文件，这是为了防止js操作了dom等情况的发生。但我们作为操作者，可以人为的指定，那些元素可以延迟加载。<br>为script标签指定 async 或 defer来延迟脚本。<br>async表示js不会阻塞，但会在下载完成后立刻执行<br>defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事件被触发前开始执行</p>
-<h4 id="2-css组塞"><a href="#2-css组塞" class="headerlink" title="2.css组塞"></a>2.css组塞</h4><p>css会阻塞html进行渲染，但是为了界面没有任何样式的展现在用户面前，因此我们需要将css提前</p>
-<h3 id="6-避免回流和重绘"><a href="#6-避免回流和重绘" class="headerlink" title="6.避免回流和重绘"></a>6.避免回流和重绘</h3><h3 id="7-懒加载"><a href="#7-懒加载" class="headerlink" title="7.懒加载"></a>7.懒加载</h3><h3 id="8-减少DOM操作"><a href="#8-减少DOM操作" class="headerlink" title="8.减少DOM操作"></a>8.减少DOM操作</h3>]]></content>
-      <categories>
-        <category>vue</category>
       </categories>
   </entry>
   <entry>
@@ -394,6 +354,46 @@ scrollbar-shadow-color:#eeeeee;
 ]]></content>
       <categories>
         <category>react</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>web前端性能优化</title>
+    <url>/2020/04/10/xingneng/web/</url>
+    <content><![CDATA[<h4 id="1-打包公共代码"><a href="#1-打包公共代码" class="headerlink" title="1.打包公共代码"></a>1.打包公共代码</h4><p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
+<h4 id="2-按需加载"><a href="#2-按需加载" class="headerlink" title="2.按需加载"></a>2.按需加载</h4><p>在单页面中，有多个路由，使用webpack的按需加载就能达到单独访问某个页面的时候单独某个的页面代码，如import(/<em>webpackChunkName: ‘xx’</em> ‘yourpath’/)</p>
+<h4 id="3-使用CDN"><a href="#3-使用CDN" class="headerlink" title="3.使用CDN"></a>3.使用CDN</h4><p>CDN全称是Content Delivery Network，即内容分发网络，它能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度</p>
+<h4 id="4-使用静态资源分域存放来增加下载并行数"><a href="#4-使用静态资源分域存放来增加下载并行数" class="headerlink" title="4.使用静态资源分域存放来增加下载并行数"></a>4.使用静态资源分域存放来增加下载并行数</h4><p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
+<h3 id="5-减少js、css阻塞"><a href="#5-减少js、css阻塞" class="headerlink" title="5.减少js、css阻塞"></a>5.减少js、css阻塞</h3><h4 id="1-js组塞"><a href="#1-js组塞" class="headerlink" title="1. js组塞"></a>1. js组塞</h4><p>当html解析遇到js会先下载和执行js文件，这是为了防止js操作了dom等情况的发生。但我们作为操作者，可以人为的指定，那些元素可以延迟加载。<br>为script标签指定 async 或 defer来延迟脚本。<br>async表示js不会阻塞，但会在下载完成后立刻执行<br>defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事件被触发前开始执行</p>
+<h4 id="2-css组塞"><a href="#2-css组塞" class="headerlink" title="2.css组塞"></a>2.css组塞</h4><p>css会阻塞html进行渲染，但是为了界面没有任何样式的展现在用户面前，因此我们需要将css提前</p>
+<h3 id="6-避免回流和重绘"><a href="#6-避免回流和重绘" class="headerlink" title="6.避免回流和重绘"></a>6.避免回流和重绘</h3><h3 id="7-懒加载"><a href="#7-懒加载" class="headerlink" title="7.懒加载"></a>7.懒加载</h3><h3 id="8-减少DOM操作"><a href="#8-减少DOM操作" class="headerlink" title="8.减少DOM操作"></a>8.减少DOM操作</h3>]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vuex</title>
+    <url>/2020/04/14/vue/vuex/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢<del>(大佬轻喷</del>)</p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>state：驱动应用的数据源<br>view：以声明的方式将state映射到视图<br>actions，响应在view上的用户输入导致的状态变化</p>
+<p>store中主要有一下几个api<br>state: 主要用来存储数据<br>getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>mutation: 主要对数据进行同步操作的处理<br>action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>module:可以生成多个store类</p>
+<p>接下来我们就来简单实现下store类</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null</span><br><span class="line"></span><br><span class="line">class Store{</span><br><span class="line">    cinstructor (options) {</span><br><span class="line">        const {</span><br><span class="line">            state = {},</span><br><span class="line">            getters = {}</span><br><span class="line">            mutations = {}</span><br><span class="line">            actions = {}</span><br><span class="line">        } = optinos</span><br><span class="line">        this.state = _Vue.observable(state)</span><br><span class="line">        this.getters = Object.create(null)</span><br><span class="line">        Object.keys(getters).forEach(key =&gt; {</span><br><span class="line">            Object.defineProperty(this.getters, key, {</span><br><span class="line">                get: ()=&gt; getters[key](state)</span><br><span class="line">            })</span><br><span class="line">        })</span><br><span class="line">        this._mutations = mutations</span><br><span class="line">        this._actions = actions</span><br><span class="line"></span><br><span class="line">        commit ( type,payload ) {</span><br><span class="line">            this._mutations[type](this.state, payload)</span><br><span class="line">        }</span><br><span class="line">        dispatch (type, payload) {</span><br><span class="line">            this._actions[type]( this , payload)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>如果要使用的话我们就把创建Vue实例的时候传入的store对象注入到Vue原型上的$store,<br>在所有组件中可以通过this.$store。来获取到vuex中的仓库，从而可以在所有组件中共享状态，<br>在install中我们获取不到Vue的实例，所以这里通过beforeCreate来获取vue实例，从而拿到选项中的store对象<br>还得模拟一下挂载的install方法</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function install (Vue) {</span><br><span class="line">    _Vue = Vue</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">        beforeCreate () {</span><br><span class="line">            if (this.$options.store) {</span><br><span class="line">               //  判断当前vue实例的$options中是否存在store,如果是组件实例那就没有这个store选项，就不需要做这件事情</span><br><span class="line">                _Vue.prototype.$store = this.$options.store</span><br><span class="line">            }</span><br><span class="line">        } </span><br><span class="line">    })</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>最后我们导出一下就可以了</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">export default {</span><br><span class="line">    Store,</span><br><span class="line">    install</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>另外需要注意的是：<br>vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vue-Router</title>
+    <url>/2020/04/08/vue/vue-Router/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter {</span><br><span class="line">  static install(Vue) {</span><br><span class="line">    // 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) {</span><br><span class="line">      return;</span><br><span class="line">    }</span><br><span class="line">    VueRouter.install.installed = true;</span><br><span class="line">    // 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue = Vue;</span><br><span class="line">    // 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    // 混入</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">      beforeCreate() {</span><br><span class="line">        if (this.$options.router) {</span><br><span class="line">          _Vue.prototype.$router = this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  constructor(options) {</span><br><span class="line">    this.options = options;</span><br><span class="line">    this.routeMap = {};</span><br><span class="line">    this.data = _Vue.observable({</span><br><span class="line">      current: "/",</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  init() {</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initRouterMap() {</span><br><span class="line">    // 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) =&gt; {</span><br><span class="line">      this.routeMap[route.path] = route.component;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) {</span><br><span class="line">    Vue.component("router-link", {</span><br><span class="line">      props: {</span><br><span class="line">        to: String,</span><br><span class="line">      },</span><br><span class="line">      // template: `</span><br><span class="line">      //   &lt;a :href="to"&gt;</span><br><span class="line">      //     &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      //   &lt;/a&gt;</span><br><span class="line">      // `,</span><br><span class="line">      render(h) {</span><br><span class="line">        return h(</span><br><span class="line">          "a",</span><br><span class="line">          {</span><br><span class="line">            attrs: {</span><br><span class="line">              href: this.to,</span><br><span class="line">            },</span><br><span class="line">            on: {</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            },</span><br><span class="line">          },</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      },</span><br><span class="line">      methods: {</span><br><span class="line">        clickHandler(e) {</span><br><span class="line">          history.pushState({}, "", this.to);</span><br><span class="line">          this.$router.data.current = this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    const self = this;</span><br><span class="line">    Vue.component("router-view", {</span><br><span class="line">      render(h) {</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component = self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initEvent() {</span><br><span class="line">    window.addEventListener("popstate", () =&gt; {</span><br><span class="line">      this.data.current = window.location.pathname;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
+      <categories>
+        <category>vue</category>
       </categories>
   </entry>
   <entry>
