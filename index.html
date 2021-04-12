@@ -247,7 +247,7 @@
             
              <div class="post-meta-item wordcount">
                 
-                  <i class="fas fa-pencil-alt"></i> <span class="post-count">681 words</span>
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">676 words</span>
                    
                 
                   <i class="far fa-clock"></i> <span class="post-count">2 min</span>
@@ -257,30 +257,16 @@
         </div>
           <div class="content">
             
-                  <h3 id="前言">前言</h3>
-<p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢~(大佬轻喷~)</p>
-<h3 id="核心概念">核心概念</h3>
-<p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>
-state：驱动应用的数据源<br>
-view：以声明的方式将state映射到视图<br>
-actions，响应在view上的用户输入导致的状态变化</p>
-<p>store中主要有一下几个api<br>
-state: 主要用来存储数据<br>
-getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>
-mutation: 主要对数据进行同步操作的处理<br>
-action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>
-module:可以生成多个store类</p>
+                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢<del>(大佬轻喷</del>)</p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>state：驱动应用的数据源<br>view：以声明的方式将state映射到视图<br>actions，响应在view上的用户输入导致的状态变化</p>
+<p>store中主要有一下几个api<br>state: 主要用来存储数据<br>getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>mutation: 主要对数据进行同步操作的处理<br>action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>module:可以生成多个store类</p>
 <p>接下来我们就来简单实现下store类</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">let _Vue = null</span><br><span class="line"></span><br><span class="line">class Store{</span><br><span class="line">    cinstructor (options) {</span><br><span class="line">        const {</span><br><span class="line">            state = {},</span><br><span class="line">            getters = {}</span><br><span class="line">            mutations = {}</span><br><span class="line">            actions = {}</span><br><span class="line">        } = optinos</span><br><span class="line">        this.state = _Vue.observable(state)</span><br><span class="line">        this.getters = Object.create(null)</span><br><span class="line">        Object.keys(getters).forEach(key =&gt; {</span><br><span class="line">            Object.defineProperty(this.getters, key, {</span><br><span class="line">                get: ()=&gt; getters[key](state)</span><br><span class="line">            })</span><br><span class="line">        })</span><br><span class="line">        this._mutations = mutations</span><br><span class="line">        this._actions = actions</span><br><span class="line"></span><br><span class="line">        commit ( type,payload ) {</span><br><span class="line">            this._mutations[type](this.state, payload)</span><br><span class="line">        }</span><br><span class="line">        dispatch (type, payload) {</span><br><span class="line">            this._actions[type]( this , payload)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>如果要使用的话我们就把创建Vue实例的时候传入的store对象注入到Vue原型上的$store,<br>
-在所有组件中可以通过this.$store。来获取到vuex中的仓库，从而可以在所有组件中共享状态，<br>
-在install中我们获取不到Vue的实例，所以这里通过beforeCreate来获取vue实例，从而拿到选项中的store对象<br>
-还得模拟一下挂载的install方法</p>
+<p>如果要使用的话我们就把创建Vue实例的时候传入的store对象注入到Vue原型上的$store,<br>在所有组件中可以通过this.$store。来获取到vuex中的仓库，从而可以在所有组件中共享状态，<br>在install中我们获取不到Vue的实例，所以这里通过beforeCreate来获取vue实例，从而拿到选项中的store对象<br>还得模拟一下挂载的install方法</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function install (Vue) {</span><br><span class="line">    _Vue = Vue</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">        beforeCreate () {</span><br><span class="line">            if (this.$options.store) {</span><br><span class="line">               //  判断当前vue实例的$options中是否存在store,如果是组件实例那就没有这个store选项，就不需要做这件事情</span><br><span class="line">                _Vue.prototype.$store = this.$options.store</span><br><span class="line">            }</span><br><span class="line">        } </span><br><span class="line">    })</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>最后我们导出一下就可以了</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export default {</span><br><span class="line">    Store,</span><br><span class="line">    install</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>另外需要注意的是：<br>
-vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
+<p>另外需要注意的是：<br>vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
 
              
           </div>
@@ -323,14 +309,9 @@ vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行�
         </div>
           <div class="content">
             
-                  <h3 id="前言">前言</h3>
-<p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
-<h3 id="核心概念及流程">核心概念及流程</h3>
-<p>view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
-<p>Store: 存储状态的容器，Js对象<br>
-View：视图 HTML页面<br>
-Actions：对象，描述对状态进行怎样的操作<br>
-Reducers: 函数，操作状态并返回新函数</p>
+                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
+<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
+<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
 
              
           </div>
@@ -373,14 +354,12 @@ Reducers: 函数，操作状态并返回新函数</p>
         </div>
           <div class="content">
             
-                  <h3 id="前言">前言</h3>
-<p>在学习HTTP之前我们得先了解计算机网络的分层基本上分为两种</p>
+                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在学习HTTP之前我们得先了解计算机网络的分层基本上分为两种</p>
 <ol>
 <li>OSI(Open System Interconnection Reference Mode)：开放系统互联参考模型（international standard orgnization国际标准组织，简称ISO提出）</li>
 <li>TCP/IP：因为在OSI模型出台之前，TCP/IP模型已经成为了行业主流参考模型。所以导致两种模型并存。而且，目前，我们主要用的也是TCP/IP模型。</li>
 </ol>
-<h4 id="OSI七层模型">OSI七层模型</h4>
-<p>ISO为了更好的使用网络应用更为普及，推出了OSI参考模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，就能互联。</p>
+<h4 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h4><p>ISO为了更好的使用网络应用更为普及，推出了OSI参考模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，就能互联。</p>
 <p><strong> OSI七层参考模型由上到下分为如下</strong></p>
 <ol>
 <li>应用层： 为应用提供服务</li>
@@ -400,18 +379,13 @@ Reducers: 函数，操作状态并返回新函数</p>
 <li>物理层： 机器硬件之前的链接物理层(光纤、双绞线电缆、无线设备)</li>
 </ol>
 <p>那么为什么<code>TCP/IP</code>会比<code>OSI</code>网络模型少两层呢？那是因为TCP/IP的协议栈认为绘画整个表示层应该都交由程序本身去处理，如果单独拿出来会非常复杂</p>
-<h3 id="一个HTTP请求的分层解析">一个HTTP请求的分层解析</h3>
-<h4 id="1-DNS域名解析">1. DNS域名解析</h4>
-<p>在网络世界，你肯定记得住网站的名称，但是很难记住网站的 IP 地址，因而也需要一个地址簿，就是 DNS 服务器。DNS 服务器是高可用、高并发和分布式的，它是树状结构。主要分为三层，环环相扣</p>
+<h3 id="一个HTTP请求的分层解析"><a href="#一个HTTP请求的分层解析" class="headerlink" title="一个HTTP请求的分层解析"></a>一个HTTP请求的分层解析</h3><h4 id="1-DNS域名解析"><a href="#1-DNS域名解析" class="headerlink" title="1. DNS域名解析"></a>1. DNS域名解析</h4><p>在网络世界，你肯定记得住网站的名称，但是很难记住网站的 IP 地址，因而也需要一个地址簿，就是 DNS 服务器。DNS 服务器是高可用、高并发和分布式的，它是树状结构。主要分为三层，环环相扣</p>
 <ul>
-<li>
-<p>顶层：根 DNS 服务器：返回顶级域 DNS 服务器的 IP 地址</p>
+<li><p>顶层：根 DNS 服务器：返回顶级域 DNS 服务器的 IP 地址</p>
 </li>
-<li>
-<p>中间层：顶级域 DNS 服务器：返回权威 DNS 服务器的 IP 地址</p>
+<li><p>中间层：顶级域 DNS 服务器：返回权威 DNS 服务器的 IP 地址</p>
 </li>
-<li>
-<p>下层：权威 DNS 服务器 ：返回相应主机的 IP 地址</p>
+<li><p>下层：权威 DNS 服务器 ：返回相应主机的 IP 地址</p>
 <p>DNS的域名查找，在客户端和浏览器，本地DNS之间的查询方式是递归查询；在本地DNS服务器与根域及其子域之间的查询方式是迭代查询；从输入URL开始过程如下：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">客户端 -&gt; 浏览器缓存 -&gt; 本地hosts文件 -&gt; 本地DNS解析器缓存 -&gt; 本地DNS服务器</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>这个过程中任何一步找到了都会结束查找流程。</p>
@@ -423,72 +397,56 @@ Reducers: 函数，操作状态并返回新函数</p>
 </ol>
 </li>
 </ul>
-<h4 id="2-建立TCP链接">2. 建立TCP链接</h4>
-<p>首先，判断是不是<code>https</code>的，如果是，则<code>HTTPS</code>其实是<code>HTTP + SSL / TLS </code>两部分组成，也就是在<code>HTTP</code>上又加了一层<code>处理加密信息</code>的模块。服务端和客户端的信息传输都会<code>通过TLS进行加密</code>，所以传输的数据都是加密后的数据。</p>
+<h4 id="2-建立TCP链接"><a href="#2-建立TCP链接" class="headerlink" title="2. 建立TCP链接"></a>2. 建立TCP链接</h4><p>首先，判断是不是<code>https</code>的，如果是，则<code>HTTPS</code>其实是<code>HTTP + SSL / TLS </code>两部分组成，也就是在<code>HTTP</code>上又加了一层<code>处理加密信息</code>的模块。服务端和客户端的信息传输都会<code>通过TLS进行加密</code>，所以传输的数据都是加密后的数据。</p>
 <p><strong>进行三次握手，建立TCP连接。</strong></p>
 <ol>
-<li>
-<p>第一次握手：建立连接。客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x；然后，客户端进入SYN_SEND状态，等待服务器的确认；</p>
+<li><p>第一次握手：建立连接。客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x；然后，客户端进入SYN_SEND状态，等待服务器的确认；</p>
 </li>
-<li>
-<p>二次握手：服务器收到SYN报文段。服务器收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledgment Number为x+1(Sequence Number+1)；同时，自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y；服务器端将上述所有信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务器进入SYN_RECV状态；</p>
+<li><p>二次握手：服务器收到SYN报文段。服务器收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledgment Number为x+1(Sequence Number+1)；同时，自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y；服务器端将上述所有信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务器进入SYN_RECV状态；</p>
 </li>
-<li>
-<p>第三次握手：客户端收到服务器的SYN+ACK报文段。然后将Acknowledgment Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕以后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手。</p>
+<li><p>第三次握手：客户端收到服务器的SYN+ACK报文段。然后将Acknowledgment Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕以后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手。</p>
 <p><strong>SSL握手过程 </strong></p>
 </li>
-<li>
-<p>第一阶段 建立安全能力 包括协议版本 会话Id 密码构件 压缩方法和初始随机数</p>
+<li><p>第一阶段 建立安全能力 包括协议版本 会话Id 密码构件 压缩方法和初始随机数</p>
 </li>
-<li>
-<p>第二阶段 服务器发送证书 密钥交换数据和证书请求，最后发送请求-相应阶段的结束信号</p>
+<li><p>第二阶段 服务器发送证书 密钥交换数据和证书请求，最后发送请求-相应阶段的结束信号</p>
 </li>
-<li>
-<p>第三阶段 如果有证书请求客户端发送此证书 之后客户端发送密钥交换数据 也可以发送证书验证消息</p>
+<li><p>第三阶段 如果有证书请求客户端发送此证书 之后客户端发送密钥交换数据 也可以发送证书验证消息</p>
 </li>
-<li>
-<p>第四阶段 变更密码构件和结束握手协议</p>
+<li><p>第四阶段 变更密码构件和结束握手协议</p>
+<p>完成了之后，客户端和服务器端就可以开始传送数据</p>
 </li>
 </ol>
-<p>完成了之后，客户端和服务器端就可以开始传送数据</p>
 <p><code>&lt;STRONG&gt;名词解释&lt;/STRONG&gt; </code>ACK`：此标志表示应答域有效，就是说前面所说的TCP应答号将会包含在TCP数据包中；有两个取值：0和1，为1的时候表示应答域有效，反之为0。TCP协议规定，只有ACK=1时有效，也规定连接建立后所有发送的报文的ACK必须为1。</p>
 <p><code>SYN(SYNchronization)</code>：在连接建立时用来同步序号。当SYN=1而ACK=0时，表明这是一个连接请求报文。对方若同意建立连接，则应在响应报文中使SYN=1和ACK=1. 因此, SYN置1就表示这是一个连接请求或连接接受报文。</p>
 <p><code>FIN(finis）</code>即完，终结的意思， 用来释放一个连接。当 FIN = 1 时，表明此报文段的发送方的数据已经发送完毕，并要求释放连接。</p>
-<h4 id="3-发送HTTP请求，服务器处理请求，返回响应结果">3.发送HTTP请求，服务器处理请求，返回响应结果</h4>
-<p>TCP连接建立后，浏览器就可以利用HTTP／HTTPS协议向服务器发送请求了。服务器接受到请求，就解析请求头，如果头部有缓存相关信息如if-none-match与if-modified-since，则验证缓存是否有效，若有效则返回状态码为304，若无效则重新返回资源，状态码为200.</p>
-<h4 id="4-关闭TCP连接">4.关闭TCP连接</h4>
-<p>返回相应结果之后就真的要关闭吗？ 答案肯定是不一定的因为<strong>如果浏览器或者服务器头信息有上面的字段的话，TCP连接会仍然保持，保持TCP连接可以节省下次请求需要建立TCP连接的时间,提升资源加载进度</strong>。如果是要关闭这时候就需要四次挥手了</p>
+<h4 id="3-发送HTTP请求，服务器处理请求，返回响应结果"><a href="#3-发送HTTP请求，服务器处理请求，返回响应结果" class="headerlink" title="3.发送HTTP请求，服务器处理请求，返回响应结果"></a>3.发送HTTP请求，服务器处理请求，返回响应结果</h4><p>TCP连接建立后，浏览器就可以利用HTTP／HTTPS协议向服务器发送请求了。服务器接受到请求，就解析请求头，如果头部有缓存相关信息如if-none-match与if-modified-since，则验证缓存是否有效，若有效则返回状态码为304，若无效则重新返回资源，状态码为200.</p>
+<h4 id="4-关闭TCP连接"><a href="#4-关闭TCP连接" class="headerlink" title="4.关闭TCP连接"></a>4.关闭TCP连接</h4><p>返回相应结果之后就真的要关闭吗？ 答案肯定是不一定的因为<strong>如果浏览器或者服务器头信息有上面的字段的话，TCP连接会仍然保持，保持TCP连接可以节省下次请求需要建立TCP连接的时间,提升资源加载进度</strong>。如果是要关闭这时候就需要四次挥手了</p>
 <ol>
 <li>第一阶段 客户端发送FIN报文给服务端 (兄弟,我这边已经没有数据要传了,关闭吧关闭吧)</li>
 <li>第二阶段 服务端发送ACK报文给客户端 (收到了收到了! 我看看我还有没有数据要传)</li>
 <li>第三阶段 服务端发送FIN报文给客户端 (兄弟,我这边也没有数据要传了,关闭吧关闭吧)</li>
 <li>第四阶段 客户端发送ACK报文给服务端 (收到了收到了!)</li>
 </ol>
-<h4 id="5-浏览器根据返回的结果进行渲染">5.浏览器根据返回的结果进行渲染</h4>
-<ol>
+<h4 id="5-浏览器根据返回的结果进行渲染"><a href="#5-浏览器根据返回的结果进行渲染" class="headerlink" title="5.浏览器根据返回的结果进行渲染"></a>5.浏览器根据返回的结果进行渲染</h4><ol>
 <li>渲染进程将 HTML 内容转换为能够读懂DOM 树结构。</li>
 <li>渲染引擎将 CSS 样式表转化为浏览器可以理解的styleSheets，计算出 DOM 节点的样式</li>
 <li>创建布局树，并计算元素的布局信息。</li>
 <li>对布局树进行分层，并生成分层树。</li>
 <li>为每个图层生成绘制列表，并将其提交到合成线程。合成线程将图层分图块，并栅格化将图块转换成位图。</li>
-<li>合成线程发送绘制图块命令给浏览器进程。浏览器进程根据指令生成页面，并显示到显示器上。<br>
-好了到这里就结束了，不过接下来我还有东西得给大家说一下，那就是第一个就是浏览器缓存，然后是get和post区别</li>
+<li>合成线程发送绘制图块命令给浏览器进程。浏览器进程根据指令生成页面，并显示到显示器上。<br>好了到这里就结束了，不过接下来我还有东西得给大家说一下，那就是第一个就是浏览器缓存，然后是get和post区别</li>
 </ol>
-<h4 id="浏览器缓存">浏览器缓存</h4>
-<p><code>浏览器缓存</code>：是浏览器将用户请求过的静态资料(html, css, js),存储到电脑本地磁盘中, 当浏览器再次访问时, 就可以直接从本地加载了, 不需要再去请求服务端了。<br>
-而缓存呢又分为<code>强缓存</code>和<code>协商缓存</code><br>
-<code>强缓存</code>:无需与服务端发生交互。<br>
-<code>协商缓存</code>：需要与服务端发生交互，判断是否使用本地缓存的文件。<br>
-关于他俩的区别呢，还请各位看官自行查找了</p>
-<h5 id="优点">优点</h5>
-<ol>
-<li>减少了冗余的数据传输</li>
-<li>减少服务器的负担, 提升网站性能</li>
-<li>加快了客户端加载网页的速度</li>
-</ol>
+<h4 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h4><p><code>浏览器缓存</code>：是浏览器将用户请求过的静态资料(html, css, js),存储到电脑本地磁盘中, 当浏览器再次访问时, 就可以直接从本地加载了, 不需要再去请求服务端了。<br>而缓存呢又分为<code>强缓存</code>和<code>协商缓存</code><br><code>强缓存</code>:无需与服务端发生交互。<br><code>协商缓存</code>：需要与服务端发生交互，判断是否使用本地缓存的文件。<br>关于他俩的区别呢，还请各位看官自行查找了</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
+<li><p>减少了冗余的数据传输</p>
+</li>
+<li><p>减少服务器的负担, 提升网站性能</p>
+</li>
+<li><p>加快了客户端加载网页的速度</p>
 <p>一般情况下,在浏览器中,浏览器会在js和图片等文件解析执行后直接存入内存缓存中,那么当刷洗页面时只需要从内存缓存中读取(from memory cache); 而css文件则会存入硬盘中, 渲染页面从硬盘读取缓存(from disk cache)</p>
-<h4 id="get和post区别">get和post区别</h4>
-<ol>
+</li>
+</ol>
+<h4 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a>get和post区别</h4><ol>
 <li><code>GET</code> 请求的请求参数是添加到 head 中，可以在 url 中可以看到；<code>POST</code> 请求的请求参数是添加到BODY中,在url 中不可见。</li>
 <li><code>GET</code> 请求参数需要使用 encodeURIComponent 进行编码，必须用 &amp; 符号隔开。</li>
 <li>请求的url有长度限制，这个限制由浏览器和 web 服务器决定和设置的。例如IE浏览器对 URL的最大限制为2083个字符，如果超过这个数字，提交按钮没有任何反应。因为<code>GET</code>请求的参数是添加到URL中，所以<code>GET</code>请求的URL的长度限制需要将请求参数长度也考虑进去。而<code>POST</code>请求不用考虑请求参数的长度。</li>
@@ -497,8 +455,7 @@ Reducers: 函数，操作状态并返回新函数</p>
 <li><code>GET</code> 请求会被浏览器主动缓存下来，留下历史记录，而 POST 默认不会。</li>
 <li><code>GET</code>是幂等的，而<code>POST</code>不是。(幂等表示执行相同的操作，结果也是相同的)</li>
 </ol>
-<h3 id="未完待续">未完待续 !!!~~~</h3>
-
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续 !!!~~~"></a>未完待续 !!!~~~</h3>
              
           </div>
         </div>
@@ -530,7 +487,7 @@ Reducers: 函数，操作状态并返回新函数</p>
             
              <div class="post-meta-item wordcount">
                 
-                  <i class="fas fa-pencil-alt"></i> <span class="post-count">923 words</span>
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">920 words</span>
                    
                 
                   <i class="far fa-clock"></i> <span class="post-count">3 min</span>
@@ -540,54 +497,22 @@ Reducers: 函数，操作状态并返回新函数</p>
         </div>
           <div class="content">
             
-                  <h3 id="前言">前言</h3>
-<p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
-<h5 id="1-缺少逻辑复用机制">1.缺少逻辑复用机制</h5>
-<p>为了服用逻辑增加无实际渲染效果的组件，<br>
-增加了组件层级显得十分臃肿，<br>
-增加了调试的难度以及运行效率的降低。</p>
-<h5 id="2-类组件经常会变得很复杂难以维护">2.类组件经常会变得很复杂难以维护</h5>
-<p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>
-在一个生命周期函数内存在多个不相干的业务逻辑</p>
-<h5 id="3-类成员方法不能保证this指向的正确性">3.类成员方法不能保证this指向的正确性</h5>
-<p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
-<h3 id="useState">useState</h3>
-<p>此hook是可以让函数式组件保存状态</p>
- <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure>
-<p><strong>useState细节:<strong><br>
-1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br>
-2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br>
-3.方法可以被多次调用，用以保存不同状态值<br>
-4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br>
-注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部</strong></strong></p><strong><strong>
-<h3 id="useReducer">useReducer</h3>
-<p>此hook是另一种让函数组件保存状态的方式，和redux极其相似</p>
-  <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="useContext">useContext</h3>
-<p>用于简化跨组件通信createContext函数代码</p>
-<h3 id="useEffect">useEffect()</h3>
-<p>让函数组件拥有处理副作用的能力。类似于生命周期<br>
-我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
-<p>useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br>
-useEffect(() =&gt; {}, [])      ===   componentDidMount<br>
-useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br>
-注意：如果是要在此hook中请求数据，那么请求函数得要自执行</p>
-<h3 id="useMemo">useMemo</h3>
-<p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>
-同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
-<h3 id="memo">memo</h3>
-<p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>
-如果本组件中的数据没有发生变化，阻止更新<br>
-和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新</p>
-<h3 id="useCallback">useCallback</h3>
-<p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>
-理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
+                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
+<h5 id="1-缺少逻辑复用机制"><a href="#1-缺少逻辑复用机制" class="headerlink" title="1.缺少逻辑复用机制"></a>1.缺少逻辑复用机制</h5><p>为了服用逻辑增加无实际渲染效果的组件，<br>增加了组件层级显得十分臃肿，<br>增加了调试的难度以及运行效率的降低。</p>
+<h5 id="2-类组件经常会变得很复杂难以维护"><a href="#2-类组件经常会变得很复杂难以维护" class="headerlink" title="2.类组件经常会变得很复杂难以维护"></a>2.类组件经常会变得很复杂难以维护</h5><p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>在一个生命周期函数内存在多个不相干的业务逻辑</p>
+<h5 id="3-类成员方法不能保证this指向的正确性"><a href="#3-类成员方法不能保证this指向的正确性" class="headerlink" title="3.类成员方法不能保证this指向的正确性"></a>3.类成员方法不能保证this指向的正确性</h5><p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
+<h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><p> 此hook是可以让函数式组件保存状态<br> </p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure><br> <strong>useState细节:<strong><br> 1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br> 2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br> 3.方法可以被多次调用，用以保存不同状态值<br> 4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br> 注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部<p></p>
+<h3 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h3><p> 此hook是另一种让函数组件保存状态的方式，和redux极其相似<br>  </p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h3><p>用于简化跨组件通信createContext函数代码</p>
+<h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect()"></a>useEffect()</h3><p> 让函数组件拥有处理副作用的能力。类似于生命周期<br> 我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
+<p> useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br> useEffect(() =&gt; {}, [])      ===   componentDidMount<br> useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br> 注意：如果是要在此hook中请求数据，那么请求函数得要自执行</p>
+<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
+<h3 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h3><p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>如果本组件中的数据没有发生变化，阻止更新<br>和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新</p>
+<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const resetCount = useCallback(()=&gt;setCount(0),[setCount])</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="useRef">useRef</h3>
-<p>获取DOM对象<br>
-跨组建周期保存数据</p>
+<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><p> 获取DOM对象<br> 跨组建周期保存数据</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const box = useRef()</span><br><span class="line">return &lt;div ref={box}&gt;app&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>持续更新中~</p>
+<p> 持续更新中~</p>
 </strong></strong>
              
           </div>
@@ -630,15 +555,10 @@ useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br>
         </div>
           <div class="content">
             
-                  <h3 id="概念">概念</h3>
-<p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>
-先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>
-例如：script 、setTimeout、setInterval，setImmediate</p>
-<p>微任务是由Promise创建出来的且js中有一个专门的微任务队列来存储微任务。微任务的机制是：当执行完一个任务后，<strong>只要有微任务就先执行微任务</strong>。宏任务和渲染通通排到后面。<br>
-例如：Promise.then()或catch()、async函数中的await紧跟函数/语句之后的内容</p>
+                  <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>例如：script 、setTimeout、setInterval，setImmediate</p>
+<p>微任务是由Promise创建出来的且js中有一个专门的微任务队列来存储微任务。微任务的机制是：当执行完一个任务后，<strong>只要有微任务就先执行微任务</strong>。宏任务和渲染通通排到后面。<br>例如：Promise.then()或catch()、async函数中的await紧跟函数/语句之后的内容</p>
 <p>所谓事件轮询就是我们将一系列具有异步操作的放入任务队列，等主线程执行的同步任务执行完成以后，再从微任务队列里找未执行的任务，如果有那么就执行，如果没有就再去宏任务中寻找，依次循环，这就是事件轮询。</p>
-<p><strong>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。</strong><br>
-PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个定时器模块内开始计时，等主线程任务执行完成，如果setTimeout的计时结束那么就会立即执行(这里注意，这里只是计时完成，任务还没有开始执行)</p>
+<p><strong>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。</strong><br>PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个定时器模块内开始计时，等主线程任务执行完成，如果setTimeout的计时结束那么就会立即执行(这里注意，这里只是计时完成，任务还没有开始执行)</p>
 
              
           </div>
@@ -671,7 +591,7 @@ PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个�
             
              <div class="post-meta-item wordcount">
                 
-                  <i class="fas fa-pencil-alt"></i> <span class="post-count">602 words</span>
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">598 words</span>
                    
                 
                   <i class="far fa-clock"></i> <span class="post-count">2 min</span>
@@ -681,26 +601,13 @@ PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个�
         </div>
           <div class="content">
             
-                  <h4 id="1-打包公共代码">1.打包公共代码</h4>
-<p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
-<h4 id="2-按需加载">2.按需加载</h4>
-<p>在单页面中，有多个路由，使用webpack的按需加载就能达到单独访问某个页面的时候单独某个的页面代码，如import(/<em>webpackChunkName: ‘xx’</em> ‘yourpath’/)</p>
-<h4 id="3-使用CDN">3.使用CDN</h4>
-<p>CDN全称是Content Delivery Network，即内容分发网络，它能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度</p>
-<h4 id="4-使用静态资源分域存放来增加下载并行数">4.使用静态资源分域存放来增加下载并行数</h4>
-<p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
-<h3 id="5-减少js、css阻塞">5.减少js、css阻塞</h3>
-<h4 id="1-js组塞">1. js组塞</h4>
-<p>当html解析遇到js会先下载和执行js文件，这是为了防止js操作了dom等情况的发生。但我们作为操作者，可以人为的指定，那些元素可以延迟加载。<br>
-为script标签指定 async 或 defer来延迟脚本。<br>
-async表示js不会阻塞，但会在下载完成后立刻执行<br>
-defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事件被触发前开始执行</p>
-<h4 id="2-css组塞">2.css组塞</h4>
-<p>css会阻塞html进行渲染，但是为了界面没有任何样式的展现在用户面前，因此我们需要将css提前</p>
-<h3 id="6-避免回流和重绘">6.避免回流和重绘</h3>
-<h3 id="7-懒加载">7.懒加载</h3>
-<h3 id="8-减少DOM操作">8.减少DOM操作</h3>
-
+                  <h4 id="1-打包公共代码"><a href="#1-打包公共代码" class="headerlink" title="1.打包公共代码"></a>1.打包公共代码</h4><p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
+<h4 id="2-按需加载"><a href="#2-按需加载" class="headerlink" title="2.按需加载"></a>2.按需加载</h4><p>在单页面中，有多个路由，使用webpack的按需加载就能达到单独访问某个页面的时候单独某个的页面代码，如import(/<em>webpackChunkName: ‘xx’</em> ‘yourpath’/)</p>
+<h4 id="3-使用CDN"><a href="#3-使用CDN" class="headerlink" title="3.使用CDN"></a>3.使用CDN</h4><p>CDN全称是Content Delivery Network，即内容分发网络，它能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度</p>
+<h4 id="4-使用静态资源分域存放来增加下载并行数"><a href="#4-使用静态资源分域存放来增加下载并行数" class="headerlink" title="4.使用静态资源分域存放来增加下载并行数"></a>4.使用静态资源分域存放来增加下载并行数</h4><p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
+<h3 id="5-减少js、css阻塞"><a href="#5-减少js、css阻塞" class="headerlink" title="5.减少js、css阻塞"></a>5.减少js、css阻塞</h3><h4 id="1-js组塞"><a href="#1-js组塞" class="headerlink" title="1. js组塞"></a>1. js组塞</h4><p>当html解析遇到js会先下载和执行js文件，这是为了防止js操作了dom等情况的发生。但我们作为操作者，可以人为的指定，那些元素可以延迟加载。<br>为script标签指定 async 或 defer来延迟脚本。<br>async表示js不会阻塞，但会在下载完成后立刻执行<br>defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事件被触发前开始执行</p>
+<h4 id="2-css组塞"><a href="#2-css组塞" class="headerlink" title="2.css组塞"></a>2.css组塞</h4><p>css会阻塞html进行渲染，但是为了界面没有任何样式的展现在用户面前，因此我们需要将css提前</p>
+<h3 id="6-避免回流和重绘"><a href="#6-避免回流和重绘" class="headerlink" title="6.避免回流和重绘"></a>6.避免回流和重绘</h3><h3 id="7-懒加载"><a href="#7-懒加载" class="headerlink" title="7.懒加载"></a>7.懒加载</h3><h3 id="8-减少DOM操作"><a href="#8-减少DOM操作" class="headerlink" title="8.减少DOM操作"></a>8.减少DOM操作</h3>
              
           </div>
         </div>
@@ -742,8 +649,7 @@ defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事�
         </div>
           <div class="content">
             
-                  <h3 id="前言">前言</h3>
-<p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
+                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
 
              
           </div>
