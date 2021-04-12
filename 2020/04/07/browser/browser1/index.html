@@ -182,52 +182,103 @@
 
   
   <div class="content">
-        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>PM   ： 技术，你这个网页能在别的浏览器上看么？<br>开发 ： 可以啊，我做过浏览器兼容了。<br>PM   ： 但是我看到的样式好像怎么各个浏览器都有不同的样子啊，跟我想要的东西有点出入啊<br>设计  ：……<br>开发  ：……<br>技术  ：不应该啊，还有不一样的地方嘛？我看看<br>PM    ：你看，在360浏览器、在火狐、谷歌、IE浏览器上都不一样啊<br>技术  ：…….</p>
+        <div><h3 id="前言">前言</h3>
+<p>PM   ： 技术，你这个网页能在别的浏览器上看么？<br>
+开发 ： 可以啊，我做过浏览器兼容了。<br>
+PM   ： 但是我看到的样式好像怎么各个浏览器都有不同的样子啊，跟我想要的东西有点出入啊<br>
+设计  ：…<br>
+开发  ：…<br>
+技术  ：不应该啊，还有不一样的地方嘛？我看看<br>
+PM    ：你看，在360浏览器、在火狐、谷歌、IE浏览器上都不一样啊<br>
+技术  ：…</p>
 <p>我相信大家很多都碰到过这种场景，是不是有点绝望，哈哈哈，那么我们接下来就好好捋一捋这些浏览器及其兼容问题</p>
-<h3 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h3><p>市面上现在各式各样的浏览器层出不穷，不同的浏览器的内核也不一样，我们都知道页面渲染是在不同的浏览器内核的支持下或多或少会有点差异（求求了，别跟我说IE6<span class="github-emoji"><span>😱</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
+<h3 id="浏览器内核">浏览器内核</h3>
+<p>市面上现在各式各样的浏览器层出不穷，不同的浏览器的内核也不一样，我们都知道页面渲染是在不同的浏览器内核的支持下或多或少会有点差异（求求了，别跟我说IE6<span class="github-emoji"><span>😱</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">IE浏览器：Trident</span><br><span class="line">🐧浏览器：Trident + Webkit   </span><br><span class="line">谷歌浏览器（Chrome）：Webkit -&gt; Blink</span><br><span class="line">🦊浏览器（Firefox）：Gecko</span><br><span class="line">🍎浏览器（Safari）：Webkit</span><br><span class="line">Opera浏览器：Presto -&gt; Webkit -&gt; Blink；</span><br><span class="line">360浏览器：Trident + Chrome</span><br><span class="line">猎豹浏览器：Trident + Chrome</span><br><span class="line">百度浏览器：Trident</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>大概主要的就这么些吧（话说应该没漏吧？）另外，传说中的牛逼哄哄的双核浏览器，懂得都懂<span class="github-emoji"><span>😏</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<h3 id="常见的兼容性问题"><a href="#常见的兼容性问题" class="headerlink" title="常见的兼容性问题"></a>常见的兼容性问题</h3><h4 id="CSS篇"><a href="#CSS篇" class="headerlink" title="CSS篇"></a>CSS篇</h4><ol>
-<li><p><strong>问题：不同浏览器的标签默认的 margin 和 padding 不同</strong><br>解决方案：css里增加通配符*{margin：0；padding：0}，但是尽量少写通配符*还是用根节点比较好</p>
+<h3 id="常见的兼容性问题">常见的兼容性问题</h3>
+<h4 id="CSS篇">CSS篇</h4>
+<ol>
+<li>
+<p><strong>问题：不同浏览器的标签默认的 margin 和 padding 不同</strong><br>
+解决方案：css里增加通配符*{margin：0；padding：0}，但是尽量少写通配符*还是用根节点比较好</p>
 </li>
-<li><p><strong>图片默认有间距</strong><br>解决方案：使用float为img布局</p>
+<li>
+<p><strong>图片默认有间距</strong><br>
+解决方案：使用float为img布局</p>
 </li>
-<li><p><strong>FF和IEBOX模型解释不一致导致相差2px</strong><br>box.style{width:100;border1px;}<br>IE浏览器下编译为box.width =100<br>火狐下编译为box.width =100 + 1*2 = 102 //加上边框2px<br>解决方法：div{margin:30px!important;margin:28px;}</p>
+<li>
+<p><strong>FF和IEBOX模型解释不一致导致相差2px</strong><br>
+box.style{width:100;border1px;}<br>
+IE浏览器下编译为box.width =100<br>
+火狐下编译为box.width =100 + 1*2 = 102 //加上边框2px<br>
+解决方法：div{margin:30px!important;margin:28px;}</p>
 </li>
-<li><p><strong>IE不识别页面的min的最小宽度</strong><br>解决方案：通过Javascript来判断实现最小宽度<br>min-width: 600px;width:expression(document.body.clientWidth＜ 600? “600px”: “auto” );</p>
+<li>
+<p><strong>IE不识别页面的min的最小宽度</strong><br>
+解决方案：通过Javascript来判断实现最小宽度<br>
+min-width: 600px;width:expression(document.body.clientWidth＜ 600? “600px”: “auto” );</p>
 </li>
-<li><p><strong>DIV浮动IE文本产生3像素的bug</strong><br>左边对象浮动，右边采用margin的左边距来定位，右边对象内的文本会离左边有3px的间距.<br>解决方案：*html #left{ margin-right:-3px;}</p>
+<li>
+<p><strong>DIV浮动IE文本产生3像素的bug</strong><br>
+左边对象浮动，右边采用margin的左边距来定位，右边对象内的文本会离左边有3px的间距.<br>
+解决方案：*html #left{ margin-right:-3px;}</p>
 </li>
-<li><p><strong>web标准中IE无法设置滚动条颜色</strong><br>解决方案：<br>html {</p>
-<pre><code>scrollbar-track-color:#fff;
-scrollbar-darkshadow-color:#fff;
-scrollbar-highlight-color:#fff;
-scrollbar-3dlight-color:#eeeeee;
-scrollbar-arrow-color:#000;
-scrollbar-face-color:#f6f6f6;
-scrollbar-shadow-color:#eeeeee;
-}
-</code></pre>
+<li>
+<p><strong>web标准中IE无法设置滚动条颜色</strong><br>
+解决方案：<br>
+html {<br>
+scrollbar-track-color:#fff;<br>
+scrollbar-darkshadow-color:#fff;<br>
+scrollbar-highlight-color:#fff;<br>
+scrollbar-3dlight-color:#eeeeee;<br>
+scrollbar-arrow-color:#000;<br>
+scrollbar-face-color:#f6f6f6;<br>
+scrollbar-shadow-color:#eeeeee;<br>
+}</p>
 </li>
-<li><p><strong>两个块级元素，父元素设置了overflow:auto；子元素设置了position:relative ;且高度大于父元素，在IE6、IE7会被隐藏而不是溢出；</strong><br>解决方案：父级元素设置position:relative</p>
+<li>
+<p><strong>两个块级元素，父元素设置了overflow:auto；子元素设置了position:relative ;且高度大于父元素，在IE6、IE7会被隐藏而不是溢出；</strong><br>
+解决方案：父级元素设置position:relative</p>
 </li>
 </ol>
-<h4 id="js篇"><a href="#js篇" class="headerlink" title="js篇"></a>js篇</h4><ol>
-<li><p><strong>HTML对象获取问题</strong><br>Firefox：document.getElementById(“idName”);<br>ie:document.idname或者document.getElementById(“idName”).<br>解决办法：统一使用document.getElementById(“idName”);</p>
+<h4 id="js篇">js篇</h4>
+<ol>
+<li>
+<p><strong>HTML对象获取问题</strong><br>
+Firefox：document.getElementById(“idName”);<br>
+ie:document.idname或者document.getElementById(“idName”).<br>
+解决办法：统一使用document.getElementById(“idName”);</p>
 </li>
-<li><p><strong>IE下,event对象有x,y属性,但是没有pageX,pageY属性;Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.</strong><br>解决方法：使用mX(mX = event.x ? event.x : event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX.</p>
+<li>
+<p><strong>IE下,event对象有x,y属性,但是没有pageX,pageY属性;Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.</strong><br>
+解决方法：使用mX(mX = event.x ? event.x : event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX.</p>
 </li>
-<li><p><strong>Firefox与IE的父元素(parentElement)的区别</strong><br>IE：obj.parentElement<br>Firefox：obj.parentNode<br>解决方法: obj.parentNode两者兼容</p>
+<li>
+<p><strong>Firefox与IE的父元素(parentElement)的区别</strong><br>
+IE：obj.parentElement<br>
+Firefox：obj.parentNode<br>
+解决方法: obj.parentNode两者兼容</p>
 </li>
-<li><p><strong>IE下，even对象有srcElement属性，但是没有target属性；Firefox下，even对象有target属性，但是没有srcElement属性。</strong><br>解决方法：使用srcObj = event.srcElement ?event.srcElement : event.target;</p>
+<li>
+<p><strong>IE下，even对象有srcElement属性，但是没有target属性；Firefox下，even对象有target属性，但是没有srcElement属性。</strong><br>
+解决方法：使用srcObj = event.srcElement ?event.srcElement : event.target;</p>
 </li>
-<li><p><strong>event事件问题</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">document.onclick=function(ev){//谷歌火狐的写法，IE9以上支持，往下不支持；</span><br><span class="line">    var e=ev;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(){//谷歌和IE支持，火狐不支持；</span><br><span class="line">    var e=event;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(ev){//兼容写法；</span><br><span class="line">    var e=ev||window.event;</span><br><span class="line">    var mouseX=e.clientX;//鼠标X轴的坐标</span><br><span class="line">    var mouseY=e.clientY;//鼠标Y轴的坐标</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>页面可是区域大小</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function client() {</span><br><span class="line">    if(window.innerWidth != null)  // ie9 +  最新浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: window.innerWidth,</span><br><span class="line">            height: window.innerHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    else if(document.compatMode === "CSS1Compat")  // 标准浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: document.documentElement.clientWidth,</span><br><span class="line">            height: document.documentElement.clientHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    return {   // 怪异浏览器</span><br><span class="line">        width: document.body.clientWidth,</span><br><span class="line">        height: document.body.clientHeight</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">document.write(client().width);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>判断浏览器</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">let browser = {</span><br><span class="line">versions: (function () {</span><br><span class="line">    let u = navigator.userAgent</span><br><span class="line">    return { // 移动终端浏览器版本信息</span><br><span class="line">    trident: u.indexOf('Trident') &gt; -1, // IE内核</span><br><span class="line">    presto: u.indexOf('Presto') &gt; -1, // opera内核</span><br><span class="line">    webKit: u.indexOf('AppleWebKit') &gt; -1, // 苹果、谷歌内核</span><br><span class="line">    gecko: u.indexOf('Gecko') &gt; -1 &amp;&amp; u.indexOf('KHTML') === -1, // 火狐内核</span><br><span class="line">    mobile: !!u.match(/AppleWebKit.*Mobile.*/), // 是否为移动终端</span><br><span class="line">    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端</span><br><span class="line">    android: u.indexOf('Android') &gt; -1 || u.indexOf('Linux') &gt; -1 || u.indexOf('Adr') &gt; -1, // android终端或uc浏览器</span><br><span class="line">    iPhone: u.indexOf('iPhone') &gt; -1, // 是否为iPhone或者QQHD浏览器</span><br><span class="line">    iPad: u.indexOf('iPad') &gt; -1, // 是否iPad</span><br><span class="line">    webApp: u.indexOf('Safari') === -1,</span><br><span class="line">    weixin: u.indexOf('MicroMessenger') &gt; -1, // 是否微信 （2015-01-22新增）</span><br><span class="line">    qq: u.indexOf(' QQ') &gt; -1 // 是否QQ</span><br><span class="line">    // 是否web应该程序，没有头部与底部</span><br><span class="line">    }</span><br><span class="line">}()),</span><br><span class="line">language: (navigator.browserLanguage || navigator.language)</span><br><span class="line">.toLowerCase()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(browser.versions.weixin) // 判断是否为微信浏览器 return true or false</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>ios无法解析日期格式问题</strong><br>解决方案：安卓都支持 2019-01-01 或 2019/09/09，ios只支持2019/09/09 。可用replace(/-/g,’/‘)方式替换</p>
+<li>
+<p><strong>event事件问题</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">document.onclick=function(ev){//谷歌火狐的写法，IE9以上支持，往下不支持；</span><br><span class="line">    var e=ev;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(){//谷歌和IE支持，火狐不支持；</span><br><span class="line">    var e=event;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(ev){//兼容写法；</span><br><span class="line">    var e=ev||window.event;</span><br><span class="line">    var mouseX=e.clientX;//鼠标X轴的坐标</span><br><span class="line">    var mouseY=e.clientY;//鼠标Y轴的坐标</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p><strong>页面可是区域大小</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function client() {</span><br><span class="line">    if(window.innerWidth != null)  // ie9 +  最新浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: window.innerWidth,</span><br><span class="line">            height: window.innerHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    else if(document.compatMode === "CSS1Compat")  // 标准浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: document.documentElement.clientWidth,</span><br><span class="line">            height: document.documentElement.clientHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    return {   // 怪异浏览器</span><br><span class="line">        width: document.body.clientWidth,</span><br><span class="line">        height: document.body.clientHeight</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">document.write(client().width);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p><strong>判断浏览器</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">let browser = {</span><br><span class="line">versions: (function () {</span><br><span class="line">    let u = navigator.userAgent</span><br><span class="line">    return { // 移动终端浏览器版本信息</span><br><span class="line">    trident: u.indexOf('Trident') &gt; -1, // IE内核</span><br><span class="line">    presto: u.indexOf('Presto') &gt; -1, // opera内核</span><br><span class="line">    webKit: u.indexOf('AppleWebKit') &gt; -1, // 苹果、谷歌内核</span><br><span class="line">    gecko: u.indexOf('Gecko') &gt; -1 &amp;&amp; u.indexOf('KHTML') === -1, // 火狐内核</span><br><span class="line">    mobile: !!u.match(/AppleWebKit.*Mobile.*/), // 是否为移动终端</span><br><span class="line">    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端</span><br><span class="line">    android: u.indexOf('Android') &gt; -1 || u.indexOf('Linux') &gt; -1 || u.indexOf('Adr') &gt; -1, // android终端或uc浏览器</span><br><span class="line">    iPhone: u.indexOf('iPhone') &gt; -1, // 是否为iPhone或者QQHD浏览器</span><br><span class="line">    iPad: u.indexOf('iPad') &gt; -1, // 是否iPad</span><br><span class="line">    webApp: u.indexOf('Safari') === -1,</span><br><span class="line">    weixin: u.indexOf('MicroMessenger') &gt; -1, // 是否微信 （2015-01-22新增）</span><br><span class="line">    qq: u.indexOf(' QQ') &gt; -1 // 是否QQ</span><br><span class="line">    // 是否web应该程序，没有头部与底部</span><br><span class="line">    }</span><br><span class="line">}()),</span><br><span class="line">language: (navigator.browserLanguage || navigator.language)</span><br><span class="line">.toLowerCase()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(browser.versions.weixin) // 判断是否为微信浏览器 return true or false</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p><strong>ios无法解析日期格式问题</strong><br>
+解决方案：安卓都支持 2019-01-01 或 2019/09/09，ios只支持2019/09/09 。可用replace(/-/g,‘/’)方式替换</p>
 </li>
 </ol>
 </div>
@@ -245,7 +296,7 @@ scrollbar-shadow-color:#eeeeee;
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/07/javascript/02/" >数据的类型<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/04/07/golang/golangDay-01/" >golang 入门笔记<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>

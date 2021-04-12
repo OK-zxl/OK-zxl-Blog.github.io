@@ -173,7 +173,7 @@
           <i class="fas fa-pencil-alt"></i> <span class="post-count">1.3k words</span>
            
         
-          <i class="far fa-clock"></i> <span class="post-count">4 min</span>
+          <i class="far fa-clock"></i> <span class="post-count">5 min</span>
                                
       </div>
      
@@ -182,43 +182,67 @@
 
   
   <div class="content">
-        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>小伙伴们，这篇文章的作用不用我多说了吧~~~，直接肝就完了</p>
-<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p>首先我们聊聊this指向的问题，我也不多说啥了，你们只要记住我接下来说的这就话就行了，记住是打死也要记住：<br><strong>this永远指向最后调用它的那个对象</strong></p>
+        <div><h3 id="前言">前言</h3>
+<p>小伙伴们，这篇文章的作用不用我多说了吧~~~，直接肝就完了</p>
+<h3 id="this指向">this指向</h3>
+<p>首先我们聊聊this指向的问题，我也不多说啥了，你们只要记住我接下来说的这就话就行了，记住是打死也要记住：<br>
+<strong>this永远指向最后调用它的那个对象</strong></p>
 <p>就这句啊，打死也要记住咯！！！</p>
 <p>那么，我们接下来就来看几个栗子：</p>
-<h5 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子 1"></a>栗子 1</h5><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">function fn() {</span><br><span class="line">    var name = "Soliton";</span><br><span class="line"></span><br><span class="line">    console.log(this.name);          // windows</span><br><span class="line"></span><br><span class="line">    console.log("函数内:" + this);    // 函数内: Window</span><br><span class="line">}</span><br><span class="line">fn();</span><br><span class="line">console.log("全局:" + this)         // 全局: Window</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>就这个，咱们先不说你看不看的懂，咱们直接先把那句<strong>this永远指向最后调用它的那个对象</strong>套进去。<br>先定义了一个fn函数，最后在后面调用了一下，看清楚这个调用是在哪调的？<br>是不是全局啊，我们都知道JS的全局对象是window。<br>所以在全局调用的fn()函数我们就可以看作是window.fn()，<br>所以按照规则，是不是this指向的就是window对象啊，而window对象是全局对象，全局我们是不是定义了一个name变量。<br>所以，函数fn()中打印的name是不是就是windows啊。<br>那这时候你是不是要问那我函数内部的name什么时候打印呢？别急接下来我们再来说说这个</p>
-<h5 id="栗子-2"><a href="#栗子-2" class="headerlink" title="栗子 2"></a>栗子 2</h5><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // Soliton</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">fn.fn2();</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>来，咱们继续套，这里最后调用的时候是不是fn.fn2(),照老规矩，<br>全局调用咱们是不是可以看成window.fn.fn2(),再把之前的那个规则套进来，<br>咱们会发现最后调用它的最后的对象是不是fn啊，<br>而fn2函数是不是在fn这个对象的局部变量之中？，<br>所以它取到的this.name最后是不是fn2这个局部对象中的name变量值？那就是Soliton了吧</p>
+<h5 id="栗子-1">栗子 1</h5>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">function fn() {</span><br><span class="line">    var name = "Soliton";</span><br><span class="line"></span><br><span class="line">    console.log(this.name);          // windows</span><br><span class="line"></span><br><span class="line">    console.log("函数内:" + this);    // 函数内: Window</span><br><span class="line">}</span><br><span class="line">fn();</span><br><span class="line">console.log("全局:" + this)         // 全局: Window</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>就这个，咱们先不说你看不看的懂，咱们直接先把那句<strong>this永远指向最后调用它的那个对象</strong>套进去。<br>
+先定义了一个fn函数，最后在后面调用了一下，看清楚这个调用是在哪调的？<br>
+是不是全局啊，我们都知道JS的全局对象是window。<br>
+所以在全局调用的fn()函数我们就可以看作是window.fn()，<br>
+所以按照规则，是不是this指向的就是window对象啊，而window对象是全局对象，全局我们是不是定义了一个name变量。<br>
+所以，函数fn()中打印的name是不是就是windows啊。<br>
+那这时候你是不是要问那我函数内部的name什么时候打印呢？别急接下来我们再来说说这个</p>
+<h5 id="栗子-2">栗子 2</h5>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // Soliton</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">fn.fn2();</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>来，咱们继续套，这里最后调用的时候是不是fn.fn2(),照老规矩，<br>
+全局调用咱们是不是可以看成window.fn.fn2(),再把之前的那个规则套进来，<br>
+咱们会发现最后调用它的最后的对象是不是fn啊，<br>
+而fn2函数是不是在fn这个对象的局部变量之中？，<br>
+所以它取到的this.name最后是不是fn2这个局部对象中的name变量值？那就是Soliton了吧</p>
 <p>照这个规律那下面两个结果是怎么样呢？各位不妨自行操作一下</p>
 <p>题 1</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    // name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // undefined</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">window.fn.fn2();</span><br></pre></td></tr></tbody></table></figure>
-
 <p>题 2</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name : null,</span><br><span class="line">    // name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // windows</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">var f = fn.fn2;</span><br><span class="line">f();</span><br></pre></td></tr></tbody></table></figure>
 <p>那么我们再思考下一个问题，如果我们要改变this指向呢</p>
-<h3 id="改变this的指向"><a href="#改变this的指向" class="headerlink" title="改变this的指向"></a>改变this的指向</h3><ol>
+<h3 id="改变this的指向">改变this的指向</h3>
+<ol>
 <li>使用ES6的箭头函数</li>
 <li>在函数内部使用_this = this</li>
 <li>使用 apply、call、bind</li>
 <li>new实例化一个对象</li>
 </ol>
-<h4 id="1-箭头函数"><a href="#1-箭头函数" class="headerlink" title="1. 箭头函数"></a>1. 箭头函数</h4><p>我们都知道ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。<strong>箭头函数的 this 始终指向函数定义时的 this，而非执行时</strong>。箭头函数需要记着这句话：“<strong>箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined</strong>”。</p>
-<h4 id="2-使用-this-this"><a href="#2-使用-this-this" class="headerlink" title="2. 使用 _this=this"></a>2. 使用 _this=this</h4><p>此方法的原理就是将调用此函数的对象保存在新定一的一个_this变量之中，然后在函数的内部都是用这已经保存对象的_this就好了</p>
-<h4 id="3-new实例化一个对象"><a href="#3-new实例化一个对象" class="headerlink" title="3. new实例化一个对象"></a>3. new实例化一个对象</h4><p>我们前面说到<strong>this永远指向最后调用它的那个对象</strong>，这时候它的this指向就指向最后调用它的那个对象了<br>例如：</p>
+<h4 id="1-箭头函数">1. 箭头函数</h4>
+<p>我们都知道ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。<strong>箭头函数的 this 始终指向函数定义时的 this，而非执行时</strong>。箭头函数需要记着这句话：“<strong>箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined</strong>”。</p>
+<h4 id="2-使用-this-this">2. 使用 _this=this</h4>
+<p>此方法的原理就是将调用此函数的对象保存在新定一的一个_this变量之中，然后在函数的内部都是用这已经保存对象的_this就好了</p>
+<h4 id="3-new实例化一个对象">3. new实例化一个对象</h4>
+<p>我们前面说到<strong>this永远指向最后调用它的那个对象</strong>，这时候它的this指向就指向最后调用它的那个对象了<br>
+例如：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 构造函数:</span><br><span class="line">function myFunction(arg1, arg2) {</span><br><span class="line">    this.firstName = arg1;</span><br><span class="line">    this.lastName  = arg2;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// This    creates a new object</span><br><span class="line">var a = new myFunction("xzl","Soliton");</span><br><span class="line">a.lastName;                             // 返回 "Soliton"</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>那么肯定有人问new?，我怎new？new是过程是啥？好家伙，我直接给你安排了</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = new myFunction("xzl","Soliton");</span><br><span class="line"></span><br><span class="line">new myFunction{</span><br><span class="line">    var obj = {};                                             // 创建一个空对象 obj;</span><br><span class="line">    obj.__proto__ = myFunction.prototype;                     // 将新创建的空对象的隐式原型指向其构造函数的显示原型。 </span><br><span class="line">    var result = myFunction.call(obj,"xzl","Soliton");        //使用 call 改变 this 的指向</span><br><span class="line">    return typeof result === 'obj'? result : obj;             //如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="4-使用-apply、call、bind"><a href="#4-使用-apply、call、bind" class="headerlink" title="4. 使用 apply、call、bind"></a>4. 使用 apply、call、bind</h4><h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><ol>
-<li>apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；</li>
+<h4 id="4-使用-apply、call、bind">4. 使用 apply、call、bind</h4>
+<h4 id="相同点">相同点</h4>
+<ol>
+<li>
+<p>apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；</p>
+</li>
+<li>
+<p>apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；</p>
+</li>
+<li>
+<p>apply 、 call 、bind 三者都可以利用后续参数传参；</p>
+</li>
 </ol>
-<ol start="2">
-<li>apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；</li>
-</ol>
-<ol start="3">
-<li>apply 、 call 、bind 三者都可以利用后续参数传参；</li>
-</ol>
-<h4 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h4><ol>
+<h4 id="不同点">不同点</h4>
+<ol>
 <li>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列,所以bind 是创建一个新的函数，我们必须要手动去调用；apply、call则是立即调用 。</li>
 <li></li>
 </ol>
@@ -236,12 +260,12 @@
     <div class="post-nav">
       
         <div class="post-nav-prev post-nav-item">
-            <a href="/2020/04/10/xingneng/web/" >web前端性能优化<i class="fa fa-chevron-left"></i></a>
+            <a href="/2020/04/08/vue/vue-Router/" >vue-Router<i class="fa fa-chevron-left"></i></a>
         </div>
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/08/react/next/" >Next.js+koa项目环境搭建<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/04/08/javascript/Promise/" >Promise 原理及实现<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
