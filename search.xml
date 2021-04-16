@@ -14,9 +14,14 @@
   <entry>
     <title>golang 入门笔记(一)-基础语法</title>
     <url>/2020/04/07/golang/golangDay-01/</url>
-    <content><![CDATA[<h3 id="前言：什么是GO"><a href="#前言：什么是GO" class="headerlink" title="前言：什么是GO"></a>前言：什么是GO</h3><p>Go即为Golang,是Google公司2009年11月正式对外公开的一门编程语言。<br>Go语言不仅拥有静态编译语言的安全和高性能，而且又达到了动态语言开发速度和维护性。有人形容Go语言:Go=C+Python（暗自窃喜，说明我选对了<span class="github-emoji"><span>😆</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f606.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）,说明Go既有C语言的运行速度，又能达到Python语言的快速开发。<br>主要服务场景：Web开发、区块链开发、游戏服务端开发、分布式/云计算开发</p>
-<h4 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import "fmt"</span><br><span class="line"></span><br><span class="line">func main(){</span><br><span class="line">    fmt.PrintIn('hello word')</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>在终端输入<code>go run [文件名]</code>就好啦<br>好了，接下来我们就进入主题吧~</p>
+    <content><![CDATA[<h3 id="前言：什么是GO">前言：什么是GO</h3>
+<p>Go即为Golang,是Google公司2009年11月正式对外公开的一门编程语言。<br>
+Go语言不仅拥有静态编译语言的安全和高性能，而且又达到了动态语言开发速度和维护性。有人形容Go语言:Go=C+Python（暗自窃喜，说明我选对了<span class="github-emoji"><span>😆</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f606.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）,说明Go既有C语言的运行速度，又能达到Python语言的快速开发。<br>
+主要服务场景：Web开发、区块链开发、游戏服务端开发、分布式/云计算开发</p>
+<h4 id="栗子">栗子</h4>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import "fmt"</span><br><span class="line"></span><br><span class="line">func main(){</span><br><span class="line">    fmt.PrintIn('hello word')</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>在终端输入<code>go run [文件名]</code>就好啦<br>
+好了，接下来我们就进入主题吧~！！</p>
 ]]></content>
       <categories>
         <category>golang</category>
@@ -25,52 +30,103 @@
   <entry>
     <title>多浏览器兼容问题</title>
     <url>/2020/04/07/browser/browser1/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>PM   ： 技术，你这个网页能在别的浏览器上看么？<br>开发 ： 可以啊，我做过浏览器兼容了。<br>PM   ： 但是我看到的样式好像怎么各个浏览器都有不同的样子啊，跟我想要的东西有点出入啊<br>设计  ：……<br>开发  ：……<br>技术  ：不应该啊，还有不一样的地方嘛？我看看<br>PM    ：你看，在360浏览器、在火狐、谷歌、IE浏览器上都不一样啊<br>技术  ：…….</p>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>PM   ： 技术，你这个网页能在别的浏览器上看么？<br>
+开发 ： 可以啊，我做过浏览器兼容了。<br>
+PM   ： 但是我看到的样式好像怎么各个浏览器都有不同的样子啊，跟我想要的东西有点出入啊<br>
+设计  ：…<br>
+开发  ：…<br>
+技术  ：不应该啊，还有不一样的地方嘛？我看看<br>
+PM    ：你看，在360浏览器、在火狐、谷歌、IE浏览器上都不一样啊<br>
+技术  ：…</p>
 <p>我相信大家很多都碰到过这种场景，是不是有点绝望，哈哈哈，那么我们接下来就好好捋一捋这些浏览器及其兼容问题</p>
-<h3 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h3><p>市面上现在各式各样的浏览器层出不穷，不同的浏览器的内核也不一样，我们都知道页面渲染是在不同的浏览器内核的支持下或多或少会有点差异（求求了，别跟我说IE6<span class="github-emoji"><span>😱</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
+<h3 id="浏览器内核">浏览器内核</h3>
+<p>市面上现在各式各样的浏览器层出不穷，不同的浏览器的内核也不一样，我们都知道页面渲染是在不同的浏览器内核的支持下或多或少会有点差异（求求了，别跟我说IE6<span class="github-emoji"><span>😱</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">IE浏览器：Trident</span><br><span class="line">🐧浏览器：Trident + Webkit   </span><br><span class="line">谷歌浏览器（Chrome）：Webkit -&gt; Blink</span><br><span class="line">🦊浏览器（Firefox）：Gecko</span><br><span class="line">🍎浏览器（Safari）：Webkit</span><br><span class="line">Opera浏览器：Presto -&gt; Webkit -&gt; Blink；</span><br><span class="line">360浏览器：Trident + Chrome</span><br><span class="line">猎豹浏览器：Trident + Chrome</span><br><span class="line">百度浏览器：Trident</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>大概主要的就这么些吧（话说应该没漏吧？）另外，传说中的牛逼哄哄的双核浏览器，懂得都懂<span class="github-emoji"><span>😏</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<h3 id="常见的兼容性问题"><a href="#常见的兼容性问题" class="headerlink" title="常见的兼容性问题"></a>常见的兼容性问题</h3><h4 id="CSS篇"><a href="#CSS篇" class="headerlink" title="CSS篇"></a>CSS篇</h4><ol>
-<li><p><strong>问题：不同浏览器的标签默认的 margin 和 padding 不同</strong><br>解决方案：css里增加通配符*{margin：0；padding：0}，但是尽量少写通配符*还是用根节点比较好</p>
+<h3 id="常见的兼容性问题">常见的兼容性问题</h3>
+<h4 id="CSS篇">CSS篇</h4>
+<ol>
+<li>
+<p><strong>问题：不同浏览器的标签默认的 margin 和 padding 不同</strong><br>
+解决方案：css里增加通配符*{margin：0；padding：0}，但是尽量少写通配符*还是用根节点比较好</p>
 </li>
-<li><p><strong>图片默认有间距</strong><br>解决方案：使用float为img布局</p>
+<li>
+<p><strong>图片默认有间距</strong><br>
+解决方案：使用float为img布局</p>
 </li>
-<li><p><strong>FF和IEBOX模型解释不一致导致相差2px</strong><br>box.style{width:100;border1px;}<br>IE浏览器下编译为box.width =100<br>火狐下编译为box.width =100 + 1*2 = 102 //加上边框2px<br>解决方法：div{margin:30px!important;margin:28px;}</p>
+<li>
+<p><strong>FF和IEBOX模型解释不一致导致相差2px</strong><br>
+box.style{width:100;border1px;}<br>
+IE浏览器下编译为box.width =100<br>
+火狐下编译为box.width =100 + 1*2 = 102 //加上边框2px<br>
+解决方法：div{margin:30px!important;margin:28px;}</p>
 </li>
-<li><p><strong>IE不识别页面的min的最小宽度</strong><br>解决方案：通过Javascript来判断实现最小宽度<br>min-width: 600px;width:expression(document.body.clientWidth＜ 600? “600px”: “auto” );</p>
+<li>
+<p><strong>IE不识别页面的min的最小宽度</strong><br>
+解决方案：通过Javascript来判断实现最小宽度<br>
+min-width: 600px;width:expression(document.body.clientWidth＜ 600? “600px”: “auto” );</p>
 </li>
-<li><p><strong>DIV浮动IE文本产生3像素的bug</strong><br>左边对象浮动，右边采用margin的左边距来定位，右边对象内的文本会离左边有3px的间距.<br>解决方案：*html #left{ margin-right:-3px;}</p>
+<li>
+<p><strong>DIV浮动IE文本产生3像素的bug</strong><br>
+左边对象浮动，右边采用margin的左边距来定位，右边对象内的文本会离左边有3px的间距.<br>
+解决方案：*html #left{ margin-right:-3px;}</p>
 </li>
-<li><p><strong>web标准中IE无法设置滚动条颜色</strong><br>解决方案：<br>html {</p>
-<pre><code>scrollbar-track-color:#fff;
-scrollbar-darkshadow-color:#fff;
-scrollbar-highlight-color:#fff;
-scrollbar-3dlight-color:#eeeeee;
-scrollbar-arrow-color:#000;
-scrollbar-face-color:#f6f6f6;
-scrollbar-shadow-color:#eeeeee;
-}
-</code></pre>
+<li>
+<p><strong>web标准中IE无法设置滚动条颜色</strong><br>
+解决方案：<br>
+html {<br>
+scrollbar-track-color:#fff;<br>
+scrollbar-darkshadow-color:#fff;<br>
+scrollbar-highlight-color:#fff;<br>
+scrollbar-3dlight-color:#eeeeee;<br>
+scrollbar-arrow-color:#000;<br>
+scrollbar-face-color:#f6f6f6;<br>
+scrollbar-shadow-color:#eeeeee;<br>
+}</p>
 </li>
-<li><p><strong>两个块级元素，父元素设置了overflow:auto；子元素设置了position:relative ;且高度大于父元素，在IE6、IE7会被隐藏而不是溢出；</strong><br>解决方案：父级元素设置position:relative</p>
+<li>
+<p><strong>两个块级元素，父元素设置了overflow:auto；子元素设置了position:relative ;且高度大于父元素，在IE6、IE7会被隐藏而不是溢出；</strong><br>
+解决方案：父级元素设置position:relative</p>
 </li>
 </ol>
-<h4 id="js篇"><a href="#js篇" class="headerlink" title="js篇"></a>js篇</h4><ol>
-<li><p><strong>HTML对象获取问题</strong><br>Firefox：document.getElementById(“idName”);<br>ie:document.idname或者document.getElementById(“idName”).<br>解决办法：统一使用document.getElementById(“idName”);</p>
+<h4 id="js篇">js篇</h4>
+<ol>
+<li>
+<p><strong>HTML对象获取问题</strong><br>
+Firefox：document.getElementById(“idName”);<br>
+ie:document.idname或者document.getElementById(“idName”).<br>
+解决办法：统一使用document.getElementById(“idName”);</p>
 </li>
-<li><p><strong>IE下,event对象有x,y属性,但是没有pageX,pageY属性;Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.</strong><br>解决方法：使用mX(mX = event.x ? event.x : event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX.</p>
+<li>
+<p><strong>IE下,event对象有x,y属性,但是没有pageX,pageY属性;Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.</strong><br>
+解决方法：使用mX(mX = event.x ? event.x : event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX.</p>
 </li>
-<li><p><strong>Firefox与IE的父元素(parentElement)的区别</strong><br>IE：obj.parentElement<br>Firefox：obj.parentNode<br>解决方法: obj.parentNode两者兼容</p>
+<li>
+<p><strong>Firefox与IE的父元素(parentElement)的区别</strong><br>
+IE：obj.parentElement<br>
+Firefox：obj.parentNode<br>
+解决方法: obj.parentNode两者兼容</p>
 </li>
-<li><p><strong>IE下，even对象有srcElement属性，但是没有target属性；Firefox下，even对象有target属性，但是没有srcElement属性。</strong><br>解决方法：使用srcObj = event.srcElement ?event.srcElement : event.target;</p>
+<li>
+<p><strong>IE下，even对象有srcElement属性，但是没有target属性；Firefox下，even对象有target属性，但是没有srcElement属性。</strong><br>
+解决方法：使用srcObj = event.srcElement ?event.srcElement : event.target;</p>
 </li>
-<li><p><strong>event事件问题</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">document.onclick=function(ev){//谷歌火狐的写法，IE9以上支持，往下不支持；</span><br><span class="line">    var e=ev;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(){//谷歌和IE支持，火狐不支持；</span><br><span class="line">    var e=event;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(ev){//兼容写法；</span><br><span class="line">    var e=ev||window.event;</span><br><span class="line">    var mouseX=e.clientX;//鼠标X轴的坐标</span><br><span class="line">    var mouseY=e.clientY;//鼠标Y轴的坐标</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>页面可是区域大小</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line">function client() {</span><br><span class="line">    if(window.innerWidth != null)  // ie9 +  最新浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: window.innerWidth,</span><br><span class="line">            height: window.innerHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    else if(document.compatMode === "CSS1Compat")  // 标准浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: document.documentElement.clientWidth,</span><br><span class="line">            height: document.documentElement.clientHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    return {   // 怪异浏览器</span><br><span class="line">        width: document.body.clientWidth,</span><br><span class="line">        height: document.body.clientHeight</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">document.write(client().width);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>判断浏览器</strong></p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let browser = {</span><br><span class="line">versions: (function () {</span><br><span class="line">    let u = navigator.userAgent</span><br><span class="line">    return { // 移动终端浏览器版本信息</span><br><span class="line">    trident: u.indexOf('Trident') &gt; -1, // IE内核</span><br><span class="line">    presto: u.indexOf('Presto') &gt; -1, // opera内核</span><br><span class="line">    webKit: u.indexOf('AppleWebKit') &gt; -1, // 苹果、谷歌内核</span><br><span class="line">    gecko: u.indexOf('Gecko') &gt; -1 &amp;&amp; u.indexOf('KHTML') === -1, // 火狐内核</span><br><span class="line">    mobile: !!u.match(/AppleWebKit.*Mobile.*/), // 是否为移动终端</span><br><span class="line">    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端</span><br><span class="line">    android: u.indexOf('Android') &gt; -1 || u.indexOf('Linux') &gt; -1 || u.indexOf('Adr') &gt; -1, // android终端或uc浏览器</span><br><span class="line">    iPhone: u.indexOf('iPhone') &gt; -1, // 是否为iPhone或者QQHD浏览器</span><br><span class="line">    iPad: u.indexOf('iPad') &gt; -1, // 是否iPad</span><br><span class="line">    webApp: u.indexOf('Safari') === -1,</span><br><span class="line">    weixin: u.indexOf('MicroMessenger') &gt; -1, // 是否微信 （2015-01-22新增）</span><br><span class="line">    qq: u.indexOf(' QQ') &gt; -1 // 是否QQ</span><br><span class="line">    // 是否web应该程序，没有头部与底部</span><br><span class="line">    }</span><br><span class="line">}()),</span><br><span class="line">language: (navigator.browserLanguage || navigator.language)</span><br><span class="line">.toLowerCase()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(browser.versions.weixin) // 判断是否为微信浏览器 return true or false</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><strong>ios无法解析日期格式问题</strong><br>解决方案：安卓都支持 2019-01-01 或 2019/09/09，ios只支持2019/09/09 。可用replace(/-/g,’/‘)方式替换</p>
+<li>
+<p><strong>event事件问题</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">document.onclick=function(ev){//谷歌火狐的写法，IE9以上支持，往下不支持；</span><br><span class="line">    var e=ev;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(){//谷歌和IE支持，火狐不支持；</span><br><span class="line">    var e=event;</span><br><span class="line">    console.log(e);</span><br><span class="line">}</span><br><span class="line">document.onclick=function(ev){//兼容写法；</span><br><span class="line">    var e=ev||window.event;</span><br><span class="line">    var mouseX=e.clientX;//鼠标X轴的坐标</span><br><span class="line">    var mouseY=e.clientY;//鼠标Y轴的坐标</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p><strong>页面可是区域大小</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line">function client() {</span><br><span class="line">    if(window.innerWidth != null)  // ie9 +  最新浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: window.innerWidth,</span><br><span class="line">            height: window.innerHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    else if(document.compatMode === "CSS1Compat")  // 标准浏览器</span><br><span class="line">    {</span><br><span class="line">        return {</span><br><span class="line">            width: document.documentElement.clientWidth,</span><br><span class="line">            height: document.documentElement.clientHeight</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    return {   // 怪异浏览器</span><br><span class="line">        width: document.body.clientWidth,</span><br><span class="line">        height: document.body.clientHeight</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">document.write(client().width);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p><strong>判断浏览器</strong></p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let browser = {</span><br><span class="line">versions: (function () {</span><br><span class="line">    let u = navigator.userAgent</span><br><span class="line">    return { // 移动终端浏览器版本信息</span><br><span class="line">    trident: u.indexOf('Trident') &gt; -1, // IE内核</span><br><span class="line">    presto: u.indexOf('Presto') &gt; -1, // opera内核</span><br><span class="line">    webKit: u.indexOf('AppleWebKit') &gt; -1, // 苹果、谷歌内核</span><br><span class="line">    gecko: u.indexOf('Gecko') &gt; -1 &amp;&amp; u.indexOf('KHTML') === -1, // 火狐内核</span><br><span class="line">    mobile: !!u.match(/AppleWebKit.*Mobile.*/), // 是否为移动终端</span><br><span class="line">    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端</span><br><span class="line">    android: u.indexOf('Android') &gt; -1 || u.indexOf('Linux') &gt; -1 || u.indexOf('Adr') &gt; -1, // android终端或uc浏览器</span><br><span class="line">    iPhone: u.indexOf('iPhone') &gt; -1, // 是否为iPhone或者QQHD浏览器</span><br><span class="line">    iPad: u.indexOf('iPad') &gt; -1, // 是否iPad</span><br><span class="line">    webApp: u.indexOf('Safari') === -1,</span><br><span class="line">    weixin: u.indexOf('MicroMessenger') &gt; -1, // 是否微信 （2015-01-22新增）</span><br><span class="line">    qq: u.indexOf(' QQ') &gt; -1 // 是否QQ</span><br><span class="line">    // 是否web应该程序，没有头部与底部</span><br><span class="line">    }</span><br><span class="line">}()),</span><br><span class="line">language: (navigator.browserLanguage || navigator.language)</span><br><span class="line">.toLowerCase()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(browser.versions.weixin) // 判断是否为微信浏览器 return true or false</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p><strong>ios无法解析日期格式问题</strong><br>
+解决方案：安卓都支持 2019-01-01 或 2019/09/09，ios只支持2019/09/09 。可用replace(/-/g,‘/’)方式替换</p>
 </li>
 </ol>
 ]]></content>
@@ -81,12 +137,14 @@ scrollbar-shadow-color:#eeeeee;
   <entry>
     <title>HTTP协议详解</title>
     <url>/2020/04/12/http/https/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在学习HTTP之前我们得先了解计算机网络的分层基本上分为两种</p>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>在学习HTTP之前我们得先了解计算机网络的分层基本上分为两种</p>
 <ol>
 <li>OSI(Open System Interconnection Reference Mode)：开放系统互联参考模型（international standard orgnization国际标准组织，简称ISO提出）</li>
 <li>TCP/IP：因为在OSI模型出台之前，TCP/IP模型已经成为了行业主流参考模型。所以导致两种模型并存。而且，目前，我们主要用的也是TCP/IP模型。</li>
 </ol>
-<h4 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h4><p>ISO为了更好的使用网络应用更为普及，推出了OSI参考模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，就能互联。</p>
+<h4 id="OSI七层模型">OSI七层模型</h4>
+<p>ISO为了更好的使用网络应用更为普及，推出了OSI参考模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，就能互联。</p>
 <p><strong> OSI七层参考模型由上到下分为如下</strong></p>
 <ol>
 <li>应用层： 为应用提供服务</li>
@@ -106,13 +164,18 @@ scrollbar-shadow-color:#eeeeee;
 <li>物理层： 机器硬件之前的链接物理层(光纤、双绞线电缆、无线设备)</li>
 </ol>
 <p>那么为什么<code>TCP/IP</code>会比<code>OSI</code>网络模型少两层呢？那是因为TCP/IP的协议栈认为绘画整个表示层应该都交由程序本身去处理，如果单独拿出来会非常复杂</p>
-<h3 id="一个HTTP请求的分层解析"><a href="#一个HTTP请求的分层解析" class="headerlink" title="一个HTTP请求的分层解析"></a>一个HTTP请求的分层解析</h3><h4 id="1-DNS域名解析"><a href="#1-DNS域名解析" class="headerlink" title="1. DNS域名解析"></a>1. DNS域名解析</h4><p>在网络世界，你肯定记得住网站的名称，但是很难记住网站的 IP 地址，因而也需要一个地址簿，就是 DNS 服务器。DNS 服务器是高可用、高并发和分布式的，它是树状结构。主要分为三层，环环相扣</p>
+<h3 id="一个HTTP请求的分层解析">一个HTTP请求的分层解析</h3>
+<h4 id="1-DNS域名解析">1. DNS域名解析</h4>
+<p>在网络世界，你肯定记得住网站的名称，但是很难记住网站的 IP 地址，因而也需要一个地址簿，就是 DNS 服务器。DNS 服务器是高可用、高并发和分布式的，它是树状结构。主要分为三层，环环相扣</p>
 <ul>
-<li><p>顶层：根 DNS 服务器：返回顶级域 DNS 服务器的 IP 地址</p>
+<li>
+<p>顶层：根 DNS 服务器：返回顶级域 DNS 服务器的 IP 地址</p>
 </li>
-<li><p>中间层：顶级域 DNS 服务器：返回权威 DNS 服务器的 IP 地址</p>
+<li>
+<p>中间层：顶级域 DNS 服务器：返回权威 DNS 服务器的 IP 地址</p>
 </li>
-<li><p>下层：权威 DNS 服务器 ：返回相应主机的 IP 地址</p>
+<li>
+<p>下层：权威 DNS 服务器 ：返回相应主机的 IP 地址</p>
 <p>DNS的域名查找，在客户端和浏览器，本地DNS之间的查询方式是递归查询；在本地DNS服务器与根域及其子域之间的查询方式是迭代查询；从输入URL开始过程如下：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">客户端 -&gt; 浏览器缓存 -&gt; 本地hosts文件 -&gt; 本地DNS解析器缓存 -&gt; 本地DNS服务器</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>这个过程中任何一步找到了都会结束查找流程。</p>
@@ -124,56 +187,72 @@ scrollbar-shadow-color:#eeeeee;
 </ol>
 </li>
 </ul>
-<h4 id="2-建立TCP链接"><a href="#2-建立TCP链接" class="headerlink" title="2. 建立TCP链接"></a>2. 建立TCP链接</h4><p>首先，判断是不是<code>https</code>的，如果是，则<code>HTTPS</code>其实是<code>HTTP + SSL / TLS </code>两部分组成，也就是在<code>HTTP</code>上又加了一层<code>处理加密信息</code>的模块。服务端和客户端的信息传输都会<code>通过TLS进行加密</code>，所以传输的数据都是加密后的数据。</p>
+<h4 id="2-建立TCP链接">2. 建立TCP链接</h4>
+<p>首先，判断是不是<code>https</code>的，如果是，则<code>HTTPS</code>其实是<code>HTTP + SSL / TLS </code>两部分组成，也就是在<code>HTTP</code>上又加了一层<code>处理加密信息</code>的模块。服务端和客户端的信息传输都会<code>通过TLS进行加密</code>，所以传输的数据都是加密后的数据。</p>
 <p><strong>进行三次握手，建立TCP连接。</strong></p>
 <ol>
-<li><p>第一次握手：建立连接。客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x；然后，客户端进入SYN_SEND状态，等待服务器的确认；</p>
+<li>
+<p>第一次握手：建立连接。客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x；然后，客户端进入SYN_SEND状态，等待服务器的确认；</p>
 </li>
-<li><p>二次握手：服务器收到SYN报文段。服务器收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledgment Number为x+1(Sequence Number+1)；同时，自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y；服务器端将上述所有信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务器进入SYN_RECV状态；</p>
+<li>
+<p>二次握手：服务器收到SYN报文段。服务器收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledgment Number为x+1(Sequence Number+1)；同时，自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y；服务器端将上述所有信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务器进入SYN_RECV状态；</p>
 </li>
-<li><p>第三次握手：客户端收到服务器的SYN+ACK报文段。然后将Acknowledgment Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕以后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手。</p>
+<li>
+<p>第三次握手：客户端收到服务器的SYN+ACK报文段。然后将Acknowledgment Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕以后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手。</p>
 <p><strong>SSL握手过程 </strong></p>
 </li>
-<li><p>第一阶段 建立安全能力 包括协议版本 会话Id 密码构件 压缩方法和初始随机数</p>
+<li>
+<p>第一阶段 建立安全能力 包括协议版本 会话Id 密码构件 压缩方法和初始随机数</p>
 </li>
-<li><p>第二阶段 服务器发送证书 密钥交换数据和证书请求，最后发送请求-相应阶段的结束信号</p>
+<li>
+<p>第二阶段 服务器发送证书 密钥交换数据和证书请求，最后发送请求-相应阶段的结束信号</p>
 </li>
-<li><p>第三阶段 如果有证书请求客户端发送此证书 之后客户端发送密钥交换数据 也可以发送证书验证消息</p>
+<li>
+<p>第三阶段 如果有证书请求客户端发送此证书 之后客户端发送密钥交换数据 也可以发送证书验证消息</p>
 </li>
-<li><p>第四阶段 变更密码构件和结束握手协议</p>
-<p>完成了之后，客户端和服务器端就可以开始传送数据</p>
+<li>
+<p>第四阶段 变更密码构件和结束握手协议</p>
 </li>
 </ol>
+<p>完成了之后，客户端和服务器端就可以开始传送数据</p>
 <p><code>&lt;STRONG&gt;名词解释&lt;/STRONG&gt; </code>ACK`：此标志表示应答域有效，就是说前面所说的TCP应答号将会包含在TCP数据包中；有两个取值：0和1，为1的时候表示应答域有效，反之为0。TCP协议规定，只有ACK=1时有效，也规定连接建立后所有发送的报文的ACK必须为1。</p>
 <p><code>SYN(SYNchronization)</code>：在连接建立时用来同步序号。当SYN=1而ACK=0时，表明这是一个连接请求报文。对方若同意建立连接，则应在响应报文中使SYN=1和ACK=1. 因此, SYN置1就表示这是一个连接请求或连接接受报文。</p>
 <p><code>FIN(finis）</code>即完，终结的意思， 用来释放一个连接。当 FIN = 1 时，表明此报文段的发送方的数据已经发送完毕，并要求释放连接。</p>
-<h4 id="3-发送HTTP请求，服务器处理请求，返回响应结果"><a href="#3-发送HTTP请求，服务器处理请求，返回响应结果" class="headerlink" title="3.发送HTTP请求，服务器处理请求，返回响应结果"></a>3.发送HTTP请求，服务器处理请求，返回响应结果</h4><p>TCP连接建立后，浏览器就可以利用HTTP／HTTPS协议向服务器发送请求了。服务器接受到请求，就解析请求头，如果头部有缓存相关信息如if-none-match与if-modified-since，则验证缓存是否有效，若有效则返回状态码为304，若无效则重新返回资源，状态码为200.</p>
-<h4 id="4-关闭TCP连接"><a href="#4-关闭TCP连接" class="headerlink" title="4.关闭TCP连接"></a>4.关闭TCP连接</h4><p>返回相应结果之后就真的要关闭吗？ 答案肯定是不一定的因为<strong>如果浏览器或者服务器头信息有上面的字段的话，TCP连接会仍然保持，保持TCP连接可以节省下次请求需要建立TCP连接的时间,提升资源加载进度</strong>。如果是要关闭这时候就需要四次挥手了</p>
+<h4 id="3-发送HTTP请求，服务器处理请求，返回响应结果">3.发送HTTP请求，服务器处理请求，返回响应结果</h4>
+<p>TCP连接建立后，浏览器就可以利用HTTP／HTTPS协议向服务器发送请求了。服务器接受到请求，就解析请求头，如果头部有缓存相关信息如if-none-match与if-modified-since，则验证缓存是否有效，若有效则返回状态码为304，若无效则重新返回资源，状态码为200.</p>
+<h4 id="4-关闭TCP连接">4.关闭TCP连接</h4>
+<p>返回相应结果之后就真的要关闭吗？ 答案肯定是不一定的因为<strong>如果浏览器或者服务器头信息有上面的字段的话，TCP连接会仍然保持，保持TCP连接可以节省下次请求需要建立TCP连接的时间,提升资源加载进度</strong>。如果是要关闭这时候就需要四次挥手了</p>
 <ol>
 <li>第一阶段 客户端发送FIN报文给服务端 (兄弟,我这边已经没有数据要传了,关闭吧关闭吧)</li>
 <li>第二阶段 服务端发送ACK报文给客户端 (收到了收到了! 我看看我还有没有数据要传)</li>
 <li>第三阶段 服务端发送FIN报文给客户端 (兄弟,我这边也没有数据要传了,关闭吧关闭吧)</li>
 <li>第四阶段 客户端发送ACK报文给服务端 (收到了收到了!)</li>
 </ol>
-<h4 id="5-浏览器根据返回的结果进行渲染"><a href="#5-浏览器根据返回的结果进行渲染" class="headerlink" title="5.浏览器根据返回的结果进行渲染"></a>5.浏览器根据返回的结果进行渲染</h4><ol>
+<h4 id="5-浏览器根据返回的结果进行渲染">5.浏览器根据返回的结果进行渲染</h4>
+<ol>
 <li>渲染进程将 HTML 内容转换为能够读懂DOM 树结构。</li>
 <li>渲染引擎将 CSS 样式表转化为浏览器可以理解的styleSheets，计算出 DOM 节点的样式</li>
 <li>创建布局树，并计算元素的布局信息。</li>
 <li>对布局树进行分层，并生成分层树。</li>
 <li>为每个图层生成绘制列表，并将其提交到合成线程。合成线程将图层分图块，并栅格化将图块转换成位图。</li>
-<li>合成线程发送绘制图块命令给浏览器进程。浏览器进程根据指令生成页面，并显示到显示器上。<br>好了到这里就结束了，不过接下来我还有东西得给大家说一下，那就是第一个就是浏览器缓存，然后是get和post区别</li>
+<li>合成线程发送绘制图块命令给浏览器进程。浏览器进程根据指令生成页面，并显示到显示器上。<br>
+好了到这里就结束了，不过接下来我还有东西得给大家说一下，那就是第一个就是浏览器缓存，然后是get和post区别</li>
 </ol>
-<h4 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h4><p><code>浏览器缓存</code>：是浏览器将用户请求过的静态资料(html, css, js),存储到电脑本地磁盘中, 当浏览器再次访问时, 就可以直接从本地加载了, 不需要再去请求服务端了。<br>而缓存呢又分为<code>强缓存</code>和<code>协商缓存</code><br><code>强缓存</code>:无需与服务端发生交互。<br><code>协商缓存</code>：需要与服务端发生交互，判断是否使用本地缓存的文件。<br>关于他俩的区别呢，还请各位看官自行查找了</p>
-<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
-<li><p>减少了冗余的数据传输</p>
-</li>
-<li><p>减少服务器的负担, 提升网站性能</p>
-</li>
-<li><p>加快了客户端加载网页的速度</p>
+<h4 id="浏览器缓存">浏览器缓存</h4>
+<p><code>浏览器缓存</code>：是浏览器将用户请求过的静态资料(html, css, js),存储到电脑本地磁盘中, 当浏览器再次访问时, 就可以直接从本地加载了, 不需要再去请求服务端了。<br>
+而缓存呢又分为<code>强缓存</code>和<code>协商缓存</code><br>
+<code>强缓存</code>:无需与服务端发生交互。<br>
+<code>协商缓存</code>：需要与服务端发生交互，判断是否使用本地缓存的文件。<br>
+关于他俩的区别呢，还请各位看官自行查找了</p>
+<h5 id="优点">优点</h5>
+<ol>
+<li>减少了冗余的数据传输</li>
+<li>减少服务器的负担, 提升网站性能</li>
+<li>加快了客户端加载网页的速度</li>
+</ol>
 <p>一般情况下,在浏览器中,浏览器会在js和图片等文件解析执行后直接存入内存缓存中,那么当刷洗页面时只需要从内存缓存中读取(from memory cache); 而css文件则会存入硬盘中, 渲染页面从硬盘读取缓存(from disk cache)</p>
-</li>
-</ol>
-<h4 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a>get和post区别</h4><ol>
+<h4 id="get和post区别">get和post区别</h4>
+<ol>
 <li><code>GET</code> 请求的请求参数是添加到 head 中，可以在 url 中可以看到；<code>POST</code> 请求的请求参数是添加到BODY中,在url 中不可见。</li>
 <li><code>GET</code> 请求参数需要使用 encodeURIComponent 进行编码，必须用 &amp; 符号隔开。</li>
 <li>请求的url有长度限制，这个限制由浏览器和 web 服务器决定和设置的。例如IE浏览器对 URL的最大限制为2083个字符，如果超过这个数字，提交按钮没有任何反应。因为<code>GET</code>请求的参数是添加到URL中，所以<code>GET</code>请求的URL的长度限制需要将请求参数长度也考虑进去。而<code>POST</code>请求不用考虑请求参数的长度。</li>
@@ -182,7 +261,8 @@ scrollbar-shadow-color:#eeeeee;
 <li><code>GET</code> 请求会被浏览器主动缓存下来，留下历史记录，而 POST 默认不会。</li>
 <li><code>GET</code>是幂等的，而<code>POST</code>不是。(幂等表示执行相同的操作，结果也是相同的)</li>
 </ol>
-<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续 !!!~~~"></a>未完待续 !!!~~~</h3>]]></content>
+<h3 id="未完待续">未完待续 !!!~~~</h3>
+]]></content>
       <categories>
         <category>HTTP</category>
       </categories>
@@ -190,37 +270,30 @@ scrollbar-shadow-color:#eeeeee;
   <entry>
     <title>数据的类型</title>
     <url>/2020/04/07/javascript/02/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
-<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined // 已声明未赋值<br>    null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
-<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><h5 id="基本类型的判断"><a href="#基本类型的判断" class="headerlink" title="基本类型的判断"></a>基本类型的判断</h5><pre><code>    typeof: 返回数据类型的字符串表达 "undefined"/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
+<h3 id="1-数据类型">1.数据类型</h3>
+<p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>
+其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>
+一：基本(值)类型<br>
+String: 任意字符串<br>
+Number: 任意数字<br>
+boolean: true/false<br>
+undefined: undefined // 已声明未赋值<br>
+null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>
+二：引用(对象)类型<br>
+Object：任意对象类型<br>
+Function: 一种特殊的对象(可执行)<br>
+Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
+<h3 id="判断数据类型">判断数据类型</h3>
+<h5 id="基本类型的判断">基本类型的判断</h5>
+<pre><code>    typeof: 返回数据类型的字符串表达 "undefined"/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
     instanceof: 判断对象的具体类型，判断A是不是构造函数B的实例
     ===： 可以判断undefined、null
 </code></pre>
-<h4 id="引用数据类型的判断"><a href="#引用数据类型的判断" class="headerlink" title="引用数据类型的判断"></a>引用数据类型的判断</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var b1 ={</span><br><span class="line">    b2:[1,'abc',console.log],</span><br><span class="line">    b3:function (){</span><br><span class="line">        console.log('b3)</span><br><span class="line">        return function() {</span><br><span class="line">            return 'js'</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) //true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(typeof b1.b3 === 'function') //true</span><br><span class="line">console.log(typeof b1.b[2] === 'function') //true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) //这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) //js</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="引用数据类型的判断">引用数据类型的判断</h4>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var b1 ={</span><br><span class="line">    b2:[1,'abc',console.log],</span><br><span class="line">    b3:function (){</span><br><span class="line">        console.log('b3)</span><br><span class="line">        return function() {</span><br><span class="line">            return 'js'</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) //true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(typeof b1.b3 === 'function') //true</span><br><span class="line">console.log(typeof b1.b[2] === 'function') //true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) //这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) //js</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>最后一个题外话：我们如何区分数据类型和变量类型呢？</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>深浅拷贝</title>
-    <url>/2020/04/07/javascript/copy/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>基本类型：<br>string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
-<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
-<p>所以想要深浅拷贝这里有一个前提就是必须是引用类型</p>
-<h3 id="浅拷贝及简单实现"><a href="#浅拷贝及简单实现" class="headerlink" title="浅拷贝及简单实现"></a>浅拷贝及简单实现</h3><p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:2</span><br><span class="line">}</span><br><span class="line">funcion simpClone(){</span><br><span class="line">    var cloneObj = {}</span><br><span class="line">    &lt;!-- 常规循环 --&gt;</span><br><span class="line">    for(var i in obj){</span><br><span class="line">        cloneObj[i] = obj[i];</span><br><span class="line">    }</span><br><span class="line">    &lt;!-- Es6循环 --&gt;</span><br><span class="line">    for (var [] of Object.enteies(obj)){</span><br><span class="line">        cloneObj[key] = value</span><br><span class="line">    }</span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="深拷贝及简单实现"><a href="#深拷贝及简单实现" class="headerlink" title="深拷贝及简单实现"></a>深拷贝及简单实现</h3><p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>目前实现深拷贝的方法不多，主要是两种：</p>
-<ol>
-<li>利用 JSON 对象中的 parse 和 stringify</li>
-<li>利用递归来实现每一层都重新创建对象并赋值</li>
-</ol>
-<p>首先我们原生递归使用</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:{</span><br><span class="line">        c:3,</span><br><span class="line">        d:{</span><br><span class="line">            e:5,</span><br><span class="line">            f:[1,2,3,4,5,6]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">funcion deepClone(obj,cloneObj){</span><br><span class="line">    var cloneObj = cloneObj || {}</span><br><span class="line"></span><br><span class="line">    for(var i in obj){</span><br><span class="line">        if (typeof obj[i] === 'object' &amp;&amp; obj[i] !== null){</span><br><span class="line"></span><br><span class="line">           cloneObj[i] =Array.isArray(obj[i] </span><br><span class="line">           )?[] : {}</span><br><span class="line">           deepClone(obj[i],cloneObj[i])</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            cloneObj[i] = obj[i];</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    } </span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>利用 JSON 对象中的 parse 和 stringify实现</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function deepClone(obj){</span><br><span class="line"></span><br><span class="line">    return JSON.oarse(JSON.stringify(obj));</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h3><p>Array的slice和concat方法是深拷贝还是浅拷贝呢? 那Object.assign()呢?</p>
 ]]></content>
       <categories>
         <category>JavaScript</category>
@@ -229,18 +302,62 @@ scrollbar-shadow-color:#eeeeee;
   <entry>
     <title>函数式编程的柯里化</title>
     <url>/2020/04/07/javascript/curry/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> 在聊函数柯里化之前我们要知道一下概念：</p>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>在聊函数柯里化之前我们要知道一下概念：</p>
 <ol>
-<li>什么是高阶函数，什么是回调函数？<br>我们都知道函数可以作为参数传递到函数中，那么这个作为参数的函数就叫做回调函数、而使用这个参数的函数就叫做高阶函数</li>
-<li>那什么是函数式编程呢？<br>高阶函数执行的时候,根据回调函数内部的逻辑不同高阶函数的执行结果也会有所不同，这就叫函数式编程</li>
+<li>什么是高阶函数，什么是回调函数？<br>
+我们都知道函数可以作为参数传递到函数中，那么这个作为参数的函数就叫做回调函数、而使用这个参数的函数就叫做高阶函数</li>
+<li>那什么是函数式编程呢？<br>
+高阶函数执行的时候,根据回调函数内部的逻辑不同高阶函数的执行结果也会有所不同，这就叫函数式编程</li>
 </ol>
 <hr>
-<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>上面我们了解了什么是函数式编程，那么函数柯里化其实就是函数式编程的一个重要思想，也是高阶函数的一个重要应用。就是给函数分步骤传递参数，每次传递部分参数，并返回一个更具体的函数接收剩下的参数，这期间可嵌套多层这样的接收部分参数的函数，直至返回最后的结果。</p>
-<h4 id="1-简单的柯里化"><a href="#1-简单的柯里化" class="headerlink" title="1.简单的柯里化"></a>1.简单的柯里化</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">// 原函数</span><br><span class="line">function sum(a,b,c){</span><br><span class="line">    return a+b+c</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 调用原函数</span><br><span class="line">sum(1,2,3)</span><br><span class="line"></span><br><span class="line">// 柯里化函数</span><br><span class="line">function sumCurry(a){</span><br><span class="line"> return function(b){</span><br><span class="line">     return function(c){</span><br><span class="line">         return a+b+c</span><br><span class="line">     }</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">// 调用柯里化函数</span><br><span class="line">sumCurry(1)(2)(3)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="柯里化">柯里化</h3>
+<p>上面我们了解了什么是函数式编程，那么函数柯里化其实就是函数式编程的一个重要思想，也是高阶函数的一个重要应用。就是给函数分步骤传递参数，每次传递部分参数，并返回一个更具体的函数接收剩下的参数，这期间可嵌套多层这样的接收部分参数的函数，直至返回最后的结果。</p>
+<h4 id="1-简单的柯里化">1.简单的柯里化</h4>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">// 原函数</span><br><span class="line">function sum(a,b,c){</span><br><span class="line">    return a+b+c</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 调用原函数</span><br><span class="line">sum(1,2,3)</span><br><span class="line"></span><br><span class="line">// 柯里化函数</span><br><span class="line">function sumCurry(a){</span><br><span class="line"> return function(b){</span><br><span class="line">     return function(c){</span><br><span class="line">         return a+b+c</span><br><span class="line">     }</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">// 调用柯里化函数</span><br><span class="line">sumCurry(1)(2)(3)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>这就是一个最基本的柯里化拆分， 柯里化后的函数<code>sumCurry</code>每次的返回值都为一个函数，并使用下一个参数作为形参，直到三个参数都被传入后，在返回的最后一个函数内部执行求和操作，这其实利用了闭包的特性来实现的。</p>
-<h4 id="2-通用柯里化函数"><a href="#2-通用柯里化函数" class="headerlink" title="2.通用柯里化函数"></a>2.通用柯里化函数</h4><p>上面的柯里化函数只是最基本最简单的函数，并没有涉及到高阶函数，也没有通用性，面对形参个数不定或者不知道的函数时就束手无策了，那么下面我们就用<code>ES6</code>来封装一个通用的柯里化转换函数</p>
+<h4 id="2-通用柯里化函数">2.通用柯里化函数</h4>
+<p>上面的柯里化函数只是最基本最简单的函数，并没有涉及到高阶函数，也没有通用性，面对形参个数不定或者不知道的函数时就束手无策了，那么下面我们就用<code>ES6</code>来封装一个通用的柯里化转换函数</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function curry (func){</span><br><span class="line">    return function curriedFn(...args){</span><br><span class="line">        if( args.length &lt; func.length ){</span><br><span class="line">            return function(){</span><br><span class="line">                return curriedFn(...args.concat.(Array.from(arguments)))</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        return func(...args)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h4><p>1.函数的柯里化可以让我们给一个函数传递较少的参数得到一个已经记住的某些固定参数的新函数<br>2.这是一种对函数参数的’缓存’<br>3.让函数变的更灵活，让函数的粒度更小<br>可以把多元函数转换为一元函数，可以组合使用函数产生强大的功能</p>
+<h4 id="3-总结">3.总结</h4>
+<p>1.函数的柯里化可以让我们给一个函数传递较少的参数得到一个已经记住的某些固定参数的新函数<br>
+2.这是一种对函数参数的’缓存’<br>
+3.让函数变的更灵活，让函数的粒度更小<br>
+可以把多元函数转换为一元函数，可以组合使用函数产生强大的功能</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>深浅拷贝</title>
+    <url>/2020/04/07/javascript/copy/</url>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>
+基本类型：<br>
+string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>
+基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
+<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>
+在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>
+当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
+<p>所以想要深浅拷贝这里有一个前提就是必须是引用类型</p>
+<h3 id="浅拷贝及简单实现">浅拷贝及简单实现</h3>
+<p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:2</span><br><span class="line">}</span><br><span class="line">funcion simpClone(){</span><br><span class="line">    var cloneObj = {}</span><br><span class="line">    &lt;!-- 常规循环 --&gt;</span><br><span class="line">    for(var i in obj){</span><br><span class="line">        cloneObj[i] = obj[i];</span><br><span class="line">    }</span><br><span class="line">    &lt;!-- Es6循环 --&gt;</span><br><span class="line">    for (var [] of Object.enteies(obj)){</span><br><span class="line">        cloneObj[key] = value</span><br><span class="line">    }</span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="深拷贝及简单实现">深拷贝及简单实现</h3>
+<p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>
+只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>
+目前实现深拷贝的方法不多，主要是两种：</p>
+<ol>
+<li>利用 JSON 对象中的 parse 和 stringify</li>
+<li>利用递归来实现每一层都重新创建对象并赋值</li>
+</ol>
+<p>首先我们原生递归使用</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:{</span><br><span class="line">        c:3,</span><br><span class="line">        d:{</span><br><span class="line">            e:5,</span><br><span class="line">            f:[1,2,3,4,5,6]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">funcion deepClone(obj,cloneObj){</span><br><span class="line">    var cloneObj = cloneObj || {}</span><br><span class="line"></span><br><span class="line">    for(var i in obj){</span><br><span class="line">        if (typeof obj[i] === 'object' &amp;&amp; obj[i] !== null){</span><br><span class="line"></span><br><span class="line">           cloneObj[i] =Array.isArray(obj[i] </span><br><span class="line">           )?[] : {}</span><br><span class="line">           deepClone(obj[i],cloneObj[i])</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            cloneObj[i] = obj[i];</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    } </span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>利用 JSON 对象中的 parse 和 stringify实现</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function deepClone(obj){</span><br><span class="line"></span><br><span class="line">    return JSON.oarse(JSON.stringify(obj));</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="提问">提问</h3>
+<p>Array的slice和concat方法是深拷贝还是浅拷贝呢? 那Object.assign()呢?</p>
 ]]></content>
       <categories>
         <category>JavaScript</category>
@@ -249,120 +366,90 @@ scrollbar-shadow-color:#eeeeee;
   <entry>
     <title>防抖节流</title>
     <url>/2020/04/06/javascript/debounce/</url>
-    <content><![CDATA[<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>原理：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。<br>适用场景：<br>按钮提交场景：防止多次提交按钮，只执行最后提交的一次<br>搜索框联想场景：防止联想发送请求，只发送最后一次输入</p>
+    <content><![CDATA[<h3 id="防抖-debounce">防抖 debounce</h3>
+<p>原理：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。<br>
+适用场景：<br>
+按钮提交场景：防止多次提交按钮，只执行最后提交的一次<br>
+搜索框联想场景：防止联想发送请求，只发送最后一次输入</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function debounce(func, wait) {</span><br><span class="line">    let timeout;</span><br><span class="line">    return function () {</span><br><span class="line">        const context = this;</span><br><span class="line">        const args = arguments;</span><br><span class="line">        clearTimeout(timeout)</span><br><span class="line">        timeout = setTimeout(function(){</span><br><span class="line">            func.apply(context, args)</span><br><span class="line">        }, wait);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <hr>
-<h3 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流 throttle"></a>节流 throttle</h3><p>原理：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。<br>适用场景<br>拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动<br>缩放场景：监控浏览器resize</p>
-<h4 id="定时器版本"><a href="#定时器版本" class="headerlink" title="定时器版本"></a>定时器版本</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function throttle(fn, delay) {</span><br><span class="line">               let hasRun = false;</span><br><span class="line">               return function () {</span><br><span class="line">                   if (hasRun) {</span><br><span class="line">                       return;</span><br><span class="line">                   }</span><br><span class="line">                   hasRun = true;</span><br><span class="line">                   setTimeout(() =&gt; {</span><br><span class="line">                       hasRun = false;</span><br><span class="line">                       fn.apply(this, arguments);</span><br><span class="line">                   }, delay);</span><br><span class="line">               }</span><br><span class="line">       }</span><br><span class="line">       var mydiv = document.getElementById('mydiv');</span><br><span class="line">       let count = 0;</span><br><span class="line">       function myEvent(){</span><br><span class="line">           mydiv.innerText = count++;</span><br><span class="line">       }        </span><br><span class="line">       mydiv.addEventListener('click', throttle(myEvent,2000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="时间戳版本"><a href="#时间戳版本" class="headerlink" title="时间戳版本"></a>时间戳版本</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let div = document.querySelector('div');</span><br><span class="line">var count = 0;</span><br><span class="line">function myEvent() {</span><br><span class="line">    div.innerText = count++;</span><br><span class="line">}</span><br><span class="line">div.onclick = throttle(myEvent,2000);</span><br><span class="line">function throttle(func, wait) {</span><br><span class="line">    let pre = 0;</span><br><span class="line">    return function () {</span><br><span class="line">        let now = new Date().getTime();</span><br><span class="line">        if (now - pre &gt; wait) {</span><br><span class="line">            pre = now;</span><br><span class="line">            func.apply(this);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
+<h3 id="节流-throttle">节流 throttle</h3>
+<p>原理：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。<br>
+适用场景<br>
+拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动<br>
+缩放场景：监控浏览器resize</p>
+<h4 id="定时器版本">定时器版本</h4>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function throttle(fn, delay) {</span><br><span class="line">               let hasRun = false;</span><br><span class="line">               return function () {</span><br><span class="line">                   if (hasRun) {</span><br><span class="line">                       return;</span><br><span class="line">                   }</span><br><span class="line">                   hasRun = true;</span><br><span class="line">                   setTimeout(() =&gt; {</span><br><span class="line">                       hasRun = false;</span><br><span class="line">                       fn.apply(this, arguments);</span><br><span class="line">                   }, delay);</span><br><span class="line">               }</span><br><span class="line">       }</span><br><span class="line">       var mydiv = document.getElementById('mydiv');</span><br><span class="line">       let count = 0;</span><br><span class="line">       function myEvent(){</span><br><span class="line">           mydiv.innerText = count++;</span><br><span class="line">       }        </span><br><span class="line">       mydiv.addEventListener('click', throttle(myEvent,2000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="时间戳版本">时间戳版本</h4>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let div = document.querySelector('div');</span><br><span class="line">var count = 0;</span><br><span class="line">function myEvent() {</span><br><span class="line">    div.innerText = count++;</span><br><span class="line">}</span><br><span class="line">div.onclick = throttle(myEvent,2000);</span><br><span class="line">function throttle(func, wait) {</span><br><span class="line">    let pre = 0;</span><br><span class="line">    return function () {</span><br><span class="line">        let now = new Date().getTime();</span><br><span class="line">        if (now - pre &gt; wait) {</span><br><span class="line">            pre = now;</span><br><span class="line">            func.apply(this);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
       <categories>
         <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>事件轮询(Event Loop)</title>
-    <url>/2020/04/11/javascript/eventloop/</url>
-    <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>例如：script 、setTimeout、setInterval，setImmediate</p>
-<p>微任务是由Promise创建出来的且js中有一个专门的微任务队列来存储微任务。微任务的机制是：当执行完一个任务后，<strong>只要有微任务就先执行微任务</strong>。宏任务和渲染通通排到后面。<br>例如：Promise.then()或catch()、async函数中的await紧跟函数/语句之后的内容</p>
-<p>所谓事件轮询就是我们将一系列具有异步操作的放入任务队列，等主线程执行的同步任务执行完成以后，再从微任务队列里找未执行的任务，如果有那么就执行，如果没有就再去宏任务中寻找，依次循环，这就是事件轮询。</p>
-<p><strong>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。</strong><br>PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个定时器模块内开始计时，等主线程任务执行完成，如果setTimeout的计时结束那么就会立即执行(这里注意，这里只是计时完成，任务还没有开始执行)</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>react Hooks</title>
-    <url>/2020/04/12/react/reactHooks/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
-<h5 id="1-缺少逻辑复用机制"><a href="#1-缺少逻辑复用机制" class="headerlink" title="1.缺少逻辑复用机制"></a>1.缺少逻辑复用机制</h5><p>为了服用逻辑增加无实际渲染效果的组件，<br>增加了组件层级显得十分臃肿，<br>增加了调试的难度以及运行效率的降低。</p>
-<h5 id="2-类组件经常会变得很复杂难以维护"><a href="#2-类组件经常会变得很复杂难以维护" class="headerlink" title="2.类组件经常会变得很复杂难以维护"></a>2.类组件经常会变得很复杂难以维护</h5><p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>在一个生命周期函数内存在多个不相干的业务逻辑</p>
-<h5 id="3-类成员方法不能保证this指向的正确性"><a href="#3-类成员方法不能保证this指向的正确性" class="headerlink" title="3.类成员方法不能保证this指向的正确性"></a>3.类成员方法不能保证this指向的正确性</h5><p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
-<h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><p> 此hook是可以让函数式组件保存状态<br> </p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure><br> <strong>useState细节:<strong><br> 1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br> 2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br> 3.方法可以被多次调用，用以保存不同状态值<br> 4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br> 注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部<p></p>
-<h3 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h3><p> 此hook是另一种让函数组件保存状态的方式，和redux极其相似<br>  </p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h3><p>用于简化跨组件通信createContext函数代码</p>
-<h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect()"></a>useEffect()</h3><p> 让函数组件拥有处理副作用的能力。类似于生命周期<br> 我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
-<p> useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br> useEffect(() =&gt; {}, [])      ===   componentDidMount<br> useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br> 注意：如果是要在此hook中请求数据，那么请求函数得要自执行</p>
-<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
-<h3 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h3><p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>如果本组件中的数据没有发生变化，阻止更新<br>和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新</p>
-<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const resetCount = useCallback(()=&gt;setCount(0),[setCount])</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><p> 获取DOM对象<br> 跨组建周期保存数据</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const box = useRef()</span><br><span class="line">return &lt;div ref={box}&gt;app&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p> 持续更新中~</p>
-</strong></strong>]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Next.js+koa项目环境搭建</title>
-    <url>/2020/04/08/react/next/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
-]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vue-Router</title>
-    <url>/2020/04/08/vue/vue-Router/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter {</span><br><span class="line">  static install(Vue) {</span><br><span class="line">    // 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) {</span><br><span class="line">      return;</span><br><span class="line">    }</span><br><span class="line">    VueRouter.install.installed = true;</span><br><span class="line">    // 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue = Vue;</span><br><span class="line">    // 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    // 混入</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">      beforeCreate() {</span><br><span class="line">        if (this.$options.router) {</span><br><span class="line">          _Vue.prototype.$router = this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  constructor(options) {</span><br><span class="line">    this.options = options;</span><br><span class="line">    this.routeMap = {};</span><br><span class="line">    this.data = _Vue.observable({</span><br><span class="line">      current: "/",</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  init() {</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initRouterMap() {</span><br><span class="line">    // 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) =&gt; {</span><br><span class="line">      this.routeMap[route.path] = route.component;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) {</span><br><span class="line">    Vue.component("router-link", {</span><br><span class="line">      props: {</span><br><span class="line">        to: String,</span><br><span class="line">      },</span><br><span class="line">      // template: `</span><br><span class="line">      //   &lt;a :href="to"&gt;</span><br><span class="line">      //     &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      //   &lt;/a&gt;</span><br><span class="line">      // `,</span><br><span class="line">      render(h) {</span><br><span class="line">        return h(</span><br><span class="line">          "a",</span><br><span class="line">          {</span><br><span class="line">            attrs: {</span><br><span class="line">              href: this.to,</span><br><span class="line">            },</span><br><span class="line">            on: {</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            },</span><br><span class="line">          },</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      },</span><br><span class="line">      methods: {</span><br><span class="line">        clickHandler(e) {</span><br><span class="line">          history.pushState({}, "", this.to);</span><br><span class="line">          this.$router.data.current = this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    const self = this;</span><br><span class="line">    Vue.component("router-view", {</span><br><span class="line">      render(h) {</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component = self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initEvent() {</span><br><span class="line">    window.addEventListener("popstate", () =&gt; {</span><br><span class="line">      this.data.current = window.location.pathname;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Redux</title>
-    <url>/2020/04/13/react/redux/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
-<h3 id="核心概念及流程"><a href="#核心概念及流程" class="headerlink" title="核心概念及流程"></a>核心概念及流程</h3><p> view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
-<p> Store: 存储状态的容器，Js对象<br> View：视图 HTML页面<br> Actions：对象，描述对状态进行怎样的操作<br> Reducers: 函数，操作状态并返回新函数</p>
-]]></content>
-      <categories>
-        <category>react</category>
       </categories>
   </entry>
   <entry>
     <title>this、call、apply、bind</title>
     <url>/2020/04/08/javascript/this-call-bind-apply/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>小伙伴们，这篇文章的作用不用我多说了吧~~~，直接肝就完了</p>
-<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p>首先我们聊聊this指向的问题，我也不多说啥了，你们只要记住我接下来说的这就话就行了，记住是打死也要记住：<br><strong>this永远指向最后调用它的那个对象</strong></p>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>小伙伴们，这篇文章的作用不用我多说了吧~~~，直接肝就完了</p>
+<h3 id="this指向">this指向</h3>
+<p>首先我们聊聊this指向的问题，我也不多说啥了，你们只要记住我接下来说的这就话就行了，记住是打死也要记住：<br>
+<strong>this永远指向最后调用它的那个对象</strong></p>
 <p>就这句啊，打死也要记住咯！！！</p>
 <p>那么，我们接下来就来看几个栗子：</p>
-<h5 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子 1"></a>栗子 1</h5><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">function fn() {</span><br><span class="line">    var name = "Soliton";</span><br><span class="line"></span><br><span class="line">    console.log(this.name);          // windows</span><br><span class="line"></span><br><span class="line">    console.log("函数内:" + this);    // 函数内: Window</span><br><span class="line">}</span><br><span class="line">fn();</span><br><span class="line">console.log("全局:" + this)         // 全局: Window</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>就这个，咱们先不说你看不看的懂，咱们直接先把那句<strong>this永远指向最后调用它的那个对象</strong>套进去。<br>先定义了一个fn函数，最后在后面调用了一下，看清楚这个调用是在哪调的？<br>是不是全局啊，我们都知道JS的全局对象是window。<br>所以在全局调用的fn()函数我们就可以看作是window.fn()，<br>所以按照规则，是不是this指向的就是window对象啊，而window对象是全局对象，全局我们是不是定义了一个name变量。<br>所以，函数fn()中打印的name是不是就是windows啊。<br>那这时候你是不是要问那我函数内部的name什么时候打印呢？别急接下来我们再来说说这个</p>
-<h5 id="栗子-2"><a href="#栗子-2" class="headerlink" title="栗子 2"></a>栗子 2</h5><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // Soliton</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">fn.fn2();</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>来，咱们继续套，这里最后调用的时候是不是fn.fn2(),照老规矩，<br>全局调用咱们是不是可以看成window.fn.fn2(),再把之前的那个规则套进来，<br>咱们会发现最后调用它的最后的对象是不是fn啊，<br>而fn2函数是不是在fn这个对象的局部变量之中？，<br>所以它取到的this.name最后是不是fn2这个局部对象中的name变量值？那就是Soliton了吧</p>
+<h5 id="栗子-1">栗子 1</h5>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">function fn() {</span><br><span class="line">    var name = "Soliton";</span><br><span class="line"></span><br><span class="line">    console.log(this.name);          // windows</span><br><span class="line"></span><br><span class="line">    console.log("函数内:" + this);    // 函数内: Window</span><br><span class="line">}</span><br><span class="line">fn();</span><br><span class="line">console.log("全局:" + this)         // 全局: Window</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>就这个，咱们先不说你看不看的懂，咱们直接先把那句<strong>this永远指向最后调用它的那个对象</strong>套进去。<br>
+先定义了一个fn函数，最后在后面调用了一下，看清楚这个调用是在哪调的？<br>
+是不是全局啊，我们都知道JS的全局对象是window。<br>
+所以在全局调用的fn()函数我们就可以看作是window.fn()，<br>
+所以按照规则，是不是this指向的就是window对象啊，而window对象是全局对象，全局我们是不是定义了一个name变量。<br>
+所以，函数fn()中打印的name是不是就是windows啊。<br>
+那这时候你是不是要问那我函数内部的name什么时候打印呢？别急接下来我们再来说说这个</p>
+<h5 id="栗子-2">栗子 2</h5>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // Soliton</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">fn.fn2();</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>来，咱们继续套，这里最后调用的时候是不是fn.fn2(),照老规矩，<br>
+全局调用咱们是不是可以看成window.fn.fn2(),再把之前的那个规则套进来，<br>
+咱们会发现最后调用它的最后的对象是不是fn啊，<br>
+而fn2函数是不是在fn这个对象的局部变量之中？，<br>
+所以它取到的this.name最后是不是fn2这个局部对象中的name变量值？那就是Soliton了吧</p>
 <p>照这个规律那下面两个结果是怎么样呢？各位不妨自行操作一下</p>
 <p>题 1</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    // name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // undefined</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">window.fn.fn2();</span><br></pre></td></tr></tbody></table></figure>
-
 <p>题 2</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name : null,</span><br><span class="line">    // name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // windows</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">var f = fn.fn2;</span><br><span class="line">f();</span><br></pre></td></tr></tbody></table></figure>
 <p>那么我们再思考下一个问题，如果我们要改变this指向呢</p>
-<h3 id="改变this的指向"><a href="#改变this的指向" class="headerlink" title="改变this的指向"></a>改变this的指向</h3><ol>
+<h3 id="改变this的指向">改变this的指向</h3>
+<ol>
 <li>使用ES6的箭头函数</li>
 <li>在函数内部使用_this = this</li>
 <li>使用 apply、call、bind</li>
 <li>new实例化一个对象</li>
 </ol>
-<h4 id="1-箭头函数"><a href="#1-箭头函数" class="headerlink" title="1. 箭头函数"></a>1. 箭头函数</h4><p>我们都知道ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。<strong>箭头函数的 this 始终指向函数定义时的 this，而非执行时</strong>。箭头函数需要记着这句话：“<strong>箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined</strong>”。</p>
-<h4 id="2-使用-this-this"><a href="#2-使用-this-this" class="headerlink" title="2. 使用 _this=this"></a>2. 使用 _this=this</h4><p>此方法的原理就是将调用此函数的对象保存在新定一的一个_this变量之中，然后在函数的内部都是用这已经保存对象的_this就好了</p>
-<h4 id="3-new实例化一个对象"><a href="#3-new实例化一个对象" class="headerlink" title="3. new实例化一个对象"></a>3. new实例化一个对象</h4><p>我们前面说到<strong>this永远指向最后调用它的那个对象</strong>，这时候它的this指向就指向最后调用它的那个对象了<br>例如：</p>
+<h4 id="1-箭头函数">1. 箭头函数</h4>
+<p>我们都知道ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。<strong>箭头函数的 this 始终指向函数定义时的 this，而非执行时</strong>。箭头函数需要记着这句话：“<strong>箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined</strong>”。</p>
+<h4 id="2-使用-this-this">2. 使用 _this=this</h4>
+<p>此方法的原理就是将调用此函数的对象保存在新定一的一个_this变量之中，然后在函数的内部都是用这已经保存对象的_this就好了</p>
+<h4 id="3-new实例化一个对象">3. new实例化一个对象</h4>
+<p>我们前面说到<strong>this永远指向最后调用它的那个对象</strong>，这时候它的this指向就指向最后调用它的那个对象了<br>
+例如：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line">// 构造函数:</span><br><span class="line">function myFunction(arg1, arg2) {</span><br><span class="line">    this.firstName = arg1;</span><br><span class="line">    this.lastName  = arg2;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// This    creates a new object</span><br><span class="line">var a = new myFunction("xzl","Soliton");</span><br><span class="line">a.lastName;                             // 返回 "Soliton"</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>那么肯定有人问new?，我怎new？new是过程是啥？好家伙，我直接给你安排了</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var a = new myFunction("xzl","Soliton");</span><br><span class="line"></span><br><span class="line">new myFunction{</span><br><span class="line">    var obj = {};                                             // 创建一个空对象 obj;</span><br><span class="line">    obj.__proto__ = myFunction.prototype;                     // 将新创建的空对象的隐式原型指向其构造函数的显示原型。 </span><br><span class="line">    var result = myFunction.call(obj,"xzl","Soliton");        //使用 call 改变 this 的指向</span><br><span class="line">    return typeof result === 'obj'? result : obj;             //如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="4-使用-apply、call、bind"><a href="#4-使用-apply、call、bind" class="headerlink" title="4. 使用 apply、call、bind"></a>4. 使用 apply、call、bind</h4><h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><ol>
-<li>apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；</li>
+<h4 id="4-使用-apply、call、bind">4. 使用 apply、call、bind</h4>
+<h4 id="相同点">相同点</h4>
+<ol>
+<li>
+<p>apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；</p>
+</li>
+<li>
+<p>apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；</p>
+</li>
+<li>
+<p>apply 、 call 、bind 三者都可以利用后续参数传参；</p>
+</li>
 </ol>
-<ol start="2">
-<li>apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；</li>
-</ol>
-<ol start="3">
-<li>apply 、 call 、bind 三者都可以利用后续参数传参；</li>
-</ol>
-<h4 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h4><ol>
+<h4 id="不同点">不同点</h4>
+<ol>
 <li>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列,所以bind 是创建一个新的函数，我们必须要手动去调用；apply、call则是立即调用 。</li>
 <li></li>
 </ol>
@@ -376,18 +463,40 @@ scrollbar-shadow-color:#eeeeee;
       </categories>
   </entry>
   <entry>
+    <title>vue-Router</title>
+    <url>/2020/04/08/vue/vue-Router/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter {</span><br><span class="line">  static install(Vue) {</span><br><span class="line">    // 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) {</span><br><span class="line">      return;</span><br><span class="line">    }</span><br><span class="line">    VueRouter.install.installed = true;</span><br><span class="line">    // 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue = Vue;</span><br><span class="line">    // 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    // 混入</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">      beforeCreate() {</span><br><span class="line">        if (this.$options.router) {</span><br><span class="line">          _Vue.prototype.$router = this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  constructor(options) {</span><br><span class="line">    this.options = options;</span><br><span class="line">    this.routeMap = {};</span><br><span class="line">    this.data = _Vue.observable({</span><br><span class="line">      current: "/",</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  init() {</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initRouterMap() {</span><br><span class="line">    // 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) =&gt; {</span><br><span class="line">      this.routeMap[route.path] = route.component;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) {</span><br><span class="line">    Vue.component("router-link", {</span><br><span class="line">      props: {</span><br><span class="line">        to: String,</span><br><span class="line">      },</span><br><span class="line">      // template: `</span><br><span class="line">      //   &lt;a :href="to"&gt;</span><br><span class="line">      //     &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      //   &lt;/a&gt;</span><br><span class="line">      // `,</span><br><span class="line">      render(h) {</span><br><span class="line">        return h(</span><br><span class="line">          "a",</span><br><span class="line">          {</span><br><span class="line">            attrs: {</span><br><span class="line">              href: this.to,</span><br><span class="line">            },</span><br><span class="line">            on: {</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            },</span><br><span class="line">          },</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      },</span><br><span class="line">      methods: {</span><br><span class="line">        clickHandler(e) {</span><br><span class="line">          history.pushState({}, "", this.to);</span><br><span class="line">          this.$router.data.current = this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    const self = this;</span><br><span class="line">    Vue.component("router-view", {</span><br><span class="line">      render(h) {</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component = self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initEvent() {</span><br><span class="line">    window.addEventListener("popstate", () =&gt; {</span><br><span class="line">      this.data.current = window.location.pathname;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+  </entry>
+  <entry>
     <title>vuex</title>
     <url>/2020/04/14/vue/vuex/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢<del>(大佬轻喷</del>)</p>
-<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>state：驱动应用的数据源<br>view：以声明的方式将state映射到视图<br>actions，响应在view上的用户输入导致的状态变化</p>
-<p>store中主要有一下几个api<br>state: 主要用来存储数据<br>getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>mutation: 主要对数据进行同步操作的处理<br>action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>module:可以生成多个store类</p>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>近期为了出去面试看看，总结了下自己学的东西会，突然发现自己有一部分东西只停留在会用的阶段，没有怎么了解过他的实现，所以就有了这篇文章，如有问题还请及时告知，万分感谢~(大佬轻喷~)</p>
+<h3 id="核心概念">核心概念</h3>
+<p>vuex采用集中式的方式存储需要共享的状态，是专门为vue设计的状态管理库<br>
+state：驱动应用的数据源<br>
+view：以声明的方式将state映射到视图<br>
+actions，响应在view上的用户输入导致的状态变化</p>
+<p>store中主要有一下几个api<br>
+state: 主要用来存储数据<br>
+getter: 类似于组件中的计算属性，如果想要对state中的数据做简单的处理，就可以运用此方法<br>
+mutation: 主要对数据进行同步操作的处理<br>
+action: 主要对数据进行异步操作的处理，但是还是会流向mutation，以避免在vuetools中报错<br>
+module:可以生成多个store类</p>
 <p>接下来我们就来简单实现下store类</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null</span><br><span class="line"></span><br><span class="line">class Store{</span><br><span class="line">    cinstructor (options) {</span><br><span class="line">        const {</span><br><span class="line">            state = {},</span><br><span class="line">            getters = {}</span><br><span class="line">            mutations = {}</span><br><span class="line">            actions = {}</span><br><span class="line">        } = optinos</span><br><span class="line">        this.state = _Vue.observable(state)</span><br><span class="line">        this.getters = Object.create(null)</span><br><span class="line">        Object.keys(getters).forEach(key =&gt; {</span><br><span class="line">            Object.defineProperty(this.getters, key, {</span><br><span class="line">                get: ()=&gt; getters[key](state)</span><br><span class="line">            })</span><br><span class="line">        })</span><br><span class="line">        this._mutations = mutations</span><br><span class="line">        this._actions = actions</span><br><span class="line"></span><br><span class="line">        commit ( type,payload ) {</span><br><span class="line">            this._mutations[type](this.state, payload)</span><br><span class="line">        }</span><br><span class="line">        dispatch (type, payload) {</span><br><span class="line">            this._actions[type]( this , payload)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>如果要使用的话我们就把创建Vue实例的时候传入的store对象注入到Vue原型上的$store,<br>在所有组件中可以通过this.$store。来获取到vuex中的仓库，从而可以在所有组件中共享状态，<br>在install中我们获取不到Vue的实例，所以这里通过beforeCreate来获取vue实例，从而拿到选项中的store对象<br>还得模拟一下挂载的install方法</p>
+<p>如果要使用的话我们就把创建Vue实例的时候传入的store对象注入到Vue原型上的$store,<br>
+在所有组件中可以通过this.$store。来获取到vuex中的仓库，从而可以在所有组件中共享状态，<br>
+在install中我们获取不到Vue的实例，所以这里通过beforeCreate来获取vue实例，从而拿到选项中的store对象<br>
+还得模拟一下挂载的install方法</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function install (Vue) {</span><br><span class="line">    _Vue = Vue</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">        beforeCreate () {</span><br><span class="line">            if (this.$options.store) {</span><br><span class="line">               //  判断当前vue实例的$options中是否存在store,如果是组件实例那就没有这个store选项，就不需要做这件事情</span><br><span class="line">                _Vue.prototype.$store = this.$options.store</span><br><span class="line">            }</span><br><span class="line">        } </span><br><span class="line">    })</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>最后我们导出一下就可以了</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">export default {</span><br><span class="line">    Store,</span><br><span class="line">    install</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>另外需要注意的是：<br>vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
+<p>另外需要注意的是：<br>
+vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
 ]]></content>
       <categories>
         <category>vue</category>
@@ -396,39 +505,178 @@ scrollbar-shadow-color:#eeeeee;
   <entry>
     <title>web前端性能优化</title>
     <url>/2020/04/10/xingneng/web/</url>
-    <content><![CDATA[<h4 id="1-打包公共代码"><a href="#1-打包公共代码" class="headerlink" title="1.打包公共代码"></a>1.打包公共代码</h4><p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
-<h4 id="2-按需加载"><a href="#2-按需加载" class="headerlink" title="2.按需加载"></a>2.按需加载</h4><p>在单页面中，有多个路由，使用webpack的按需加载就能达到单独访问某个页面的时候单独某个的页面代码，如import(/<em>webpackChunkName: ‘xx’</em> ‘yourpath’/)</p>
-<h4 id="3-使用CDN"><a href="#3-使用CDN" class="headerlink" title="3.使用CDN"></a>3.使用CDN</h4><p>CDN全称是Content Delivery Network，即内容分发网络，它能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度</p>
-<h4 id="4-使用静态资源分域存放来增加下载并行数"><a href="#4-使用静态资源分域存放来增加下载并行数" class="headerlink" title="4.使用静态资源分域存放来增加下载并行数"></a>4.使用静态资源分域存放来增加下载并行数</h4><p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
-<h3 id="5-减少js、css阻塞"><a href="#5-减少js、css阻塞" class="headerlink" title="5.减少js、css阻塞"></a>5.减少js、css阻塞</h3><h4 id="1-js组塞"><a href="#1-js组塞" class="headerlink" title="1. js组塞"></a>1. js组塞</h4><p>当html解析遇到js会先下载和执行js文件，这是为了防止js操作了dom等情况的发生。但我们作为操作者，可以人为的指定，那些元素可以延迟加载。<br>为script标签指定 async 或 defer来延迟脚本。<br>async表示js不会阻塞，但会在下载完成后立刻执行<br>defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事件被触发前开始执行</p>
-<h4 id="2-css组塞"><a href="#2-css组塞" class="headerlink" title="2.css组塞"></a>2.css组塞</h4><p>css会阻塞html进行渲染，但是为了界面没有任何样式的展现在用户面前，因此我们需要将css提前</p>
-<h3 id="6-避免回流和重绘"><a href="#6-避免回流和重绘" class="headerlink" title="6.避免回流和重绘"></a>6.避免回流和重绘</h3><h3 id="7-懒加载"><a href="#7-懒加载" class="headerlink" title="7.懒加载"></a>7.懒加载</h3><h3 id="8-减少DOM操作"><a href="#8-减少DOM操作" class="headerlink" title="8.减少DOM操作"></a>8.减少DOM操作</h3>]]></content>
+    <content><![CDATA[<h4 id="1-打包公共代码">1.打包公共代码</h4>
+<p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
+<h4 id="2-按需加载">2.按需加载</h4>
+<p>在单页面中，有多个路由，使用webpack的按需加载就能达到单独访问某个页面的时候单独某个的页面代码，如import(/<em>webpackChunkName: ‘xx’</em> ‘yourpath’/)</p>
+<h4 id="3-使用CDN">3.使用CDN</h4>
+<p>CDN全称是Content Delivery Network，即内容分发网络，它能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度</p>
+<h4 id="4-使用静态资源分域存放来增加下载并行数">4.使用静态资源分域存放来增加下载并行数</h4>
+<p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
+<h3 id="5-减少js、css阻塞">5.减少js、css阻塞</h3>
+<h4 id="1-js组塞">1. js组塞</h4>
+<p>当html解析遇到js会先下载和执行js文件，这是为了防止js操作了dom等情况的发生。但我们作为操作者，可以人为的指定，那些元素可以延迟加载。<br>
+为script标签指定 async 或 defer来延迟脚本。<br>
+async表示js不会阻塞，但会在下载完成后立刻执行<br>
+defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事件被触发前开始执行</p>
+<h4 id="2-css组塞">2.css组塞</h4>
+<p>css会阻塞html进行渲染，但是为了界面没有任何样式的展现在用户面前，因此我们需要将css提前</p>
+<h3 id="6-避免回流和重绘">6.避免回流和重绘</h3>
+<h3 id="7-懒加载">7.懒加载</h3>
+<h3 id="8-减少DOM操作">8.减少DOM操作</h3>
+]]></content>
       <categories>
         <category>vue</category>
       </categories>
   </entry>
   <entry>
+    <title>事件轮询(Event Loop)</title>
+    <url>/2020/04/11/javascript/eventloop/</url>
+    <content><![CDATA[<h3 id="概念">概念</h3>
+<p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>
+先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>
+例如：script 、setTimeout、setInterval，setImmediate</p>
+<p>微任务是由Promise创建出来的且js中有一个专门的微任务队列来存储微任务。微任务的机制是：当执行完一个任务后，<strong>只要有微任务就先执行微任务</strong>。宏任务和渲染通通排到后面。<br>
+例如：Promise.then()或catch()、async函数中的await紧跟函数/语句之后的内容</p>
+<p>所谓事件轮询就是我们将一系列具有异步操作的放入任务队列，等主线程执行的同步任务执行完成以后，再从微任务队列里找未执行的任务，如果有那么就执行，如果没有就再去宏任务中寻找，依次循环，这就是事件轮询。</p>
+<p><strong>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。</strong><br>
+PS:定时器函数的setTimeout在主线程在执行时，他依然会在一个定时器模块内开始计时，等主线程任务执行完成，如果setTimeout的计时结束那么就会立即执行(这里注意，这里只是计时完成，任务还没有开始执行)</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>react Hooks</title>
+    <url>/2020/04/12/react/reactHooks/</url>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
+<h5 id="1-缺少逻辑复用机制">1.缺少逻辑复用机制</h5>
+<p>为了服用逻辑增加无实际渲染效果的组件，<br>
+增加了组件层级显得十分臃肿，<br>
+增加了调试的难度以及运行效率的降低。</p>
+<h5 id="2-类组件经常会变得很复杂难以维护">2.类组件经常会变得很复杂难以维护</h5>
+<p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>
+在一个生命周期函数内存在多个不相干的业务逻辑</p>
+<h5 id="3-类成员方法不能保证this指向的正确性">3.类成员方法不能保证this指向的正确性</h5>
+<p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
+<h3 id="useState">useState</h3>
+<p>此hook是可以让函数式组件保存状态</p>
+ <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>useState细节:<strong><br>
+1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br>
+2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br>
+3.方法可以被多次调用，用以保存不同状态值<br>
+4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br>
+注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部</strong></strong></p><strong><strong>
+<h3 id="useReducer">useReducer</h3>
+<p>此hook是另一种让函数组件保存状态的方式，和redux极其相似</p>
+  <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="useContext">useContext</h3>
+<p>用于简化跨组件通信createContext函数代码</p>
+<h3 id="useEffect">useEffect()</h3>
+<p>让函数组件拥有处理副作用的能力。类似于生命周期<br>
+我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
+<p>useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br>
+useEffect(() =&gt; {}, [])      ===   componentDidMount<br>
+useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br>
+注意：如果是要在此hook中请求数据，那么请求函数得要自执行</p>
+<h3 id="useMemo">useMemo</h3>
+<p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>
+同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
+<h3 id="memo">memo</h3>
+<p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>
+如果本组件中的数据没有发生变化，阻止更新<br>
+和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新</p>
+<h3 id="useCallback">useCallback</h3>
+<p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>
+理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const resetCount = useCallback(()=&gt;setCount(0),[setCount])</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="useRef">useRef</h3>
+<p>获取DOM对象<br>
+跨组建周期保存数据</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const box = useRef()</span><br><span class="line">return &lt;div ref={box}&gt;app&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>持续更新中~</p>
+</strong></strong>]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Next.js+koa项目环境搭建</title>
+    <url>/2020/04/08/react/next/</url>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
+]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Redux</title>
+    <url>/2020/04/13/react/redux/</url>
+    <content><![CDATA[<h3 id="前言">前言</h3>
+<p>都知道vue有vuex状态管理工具，那肯定react也有，那么今天我们就来简单的聊一聊redux</p>
+<h3 id="核心概念及流程">核心概念及流程</h3>
+<p>view(视图)——&gt;(dispacth)——&gt;actions(对象)——&gt;reducer(函数)——&gt;store(容器)——&gt;(subscribe)——&gt;view(视图)</p>
+<p>Store: 存储状态的容器，Js对象<br>
+View：视图 HTML页面<br>
+Actions：对象，描述对状态进行怎样的操作<br>
+Reducers: 函数，操作状态并返回新函数</p>
+]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Promise 原理及实现</title>
     <url>/2020/04/08/javascript/Promise/</url>
-    <content><![CDATA[<h4 id="表述"><a href="#表述" class="headerlink" title="表述"></a>表述</h4><p>Promise就是将异步任务队列化，将多个异步任务按照顺序输出，同时用链式调用解决回调地狱的问题。<br>今天我们就来好好剖析下Promise的原理：</p>
-<h4 id="Promise规范"><a href="#Promise规范" class="headerlink" title="Promise规范"></a>Promise规范</h4><p>1.存在三个状态：等待态(<code>pending</code>)，执行态(<code>fulfilled</code>)，失败态(<code>rejected</code>)<br>2.初始态为等待态，可以转化为执行态和失败态<br>3.执行态不可转化为其他状态，且必须有一个不可变的终值(value)<br>4.失败态不可转化为其他状态，且必须有一个不可变的原因(reason)<br>5.必须提供一个<code>then</code>方法，以供访问其当前值，如果状态成功调用成功回调函数、如果状态是失败，调用失败回调函数<br>6.then方法提供两个参数：<code>onFulfilled</code>和<code>onRejected</code><br>7.<code>onFulfilled</code>和<code>onRejected</code>如果不是函数类型，必须忽略其<br>8.如果<code>executor</code>执行报错，直接执行reject<br>9.不同的<code>promise</code>可以相互套用<br>更多详细内容还请自行参考<code>Promise A+</code>规范</p>
-<h3 id="1-不考虑异步的Promise"><a href="#1-不考虑异步的Promise" class="headerlink" title="1.不考虑异步的Promise"></a>1.不考虑异步的Promise</h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        executor(this.resolve, this.reject)</span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line"></span><br><span class="line">        // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line"></span><br><span class="line">            successCallback(this.value)</span><br><span class="line"></span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">            failCallback(this.reason)</span><br><span class="line"></span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+    <content><![CDATA[<h4 id="表述">表述</h4>
+<p>Promise就是将异步任务队列化，将多个异步任务按照顺序输出，同时用链式调用解决回调地狱的问题。<br>
+今天我们就来好好剖析下Promise的原理：</p>
+<h4 id="Promise规范">Promise规范</h4>
+<p>1.存在三个状态：等待态(<code>pending</code>)，执行态(<code>fulfilled</code>)，失败态(<code>rejected</code>)<br>
+2.初始态为等待态，可以转化为执行态和失败态<br>
+3.执行态不可转化为其他状态，且必须有一个不可变的终值(value)<br>
+4.失败态不可转化为其他状态，且必须有一个不可变的原因(reason)<br>
+5.必须提供一个<code>then</code>方法，以供访问其当前值，如果状态成功调用成功回调函数、如果状态是失败，调用失败回调函数<br>
+6.then方法提供两个参数：<code>onFulfilled</code>和<code>onRejected</code><br>
+7.<code>onFulfilled</code>和<code>onRejected</code>如果不是函数类型，必须忽略其<br>
+8.如果<code>executor</code>执行报错，直接执行reject<br>
+9.不同的<code>promise</code>可以相互套用<br>
+更多详细内容还请自行参考<code>Promise A+</code>规范</p>
+<h3 id="1-不考虑异步的Promise">1.不考虑异步的Promise</h3>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        executor(this.resolve, this.reject)</span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line"></span><br><span class="line">        // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line"></span><br><span class="line">            successCallback(this.value)</span><br><span class="line"></span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">            failCallback(this.reason)</span><br><span class="line"></span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>到此，一个不考虑异步情况的简单版Promise就出来了.</p>
-<h3 id="2-加入异步逻辑和then方法的多次调用"><a href="#2-加入异步逻辑和then方法的多次调用" class="headerlink" title="2.加入异步逻辑和then方法的多次调用"></a>2.加入异步逻辑和then方法的多次调用</h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        executor(this.resolve, this.reject)</span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line"></span><br><span class="line">    // 成功和失败的信息</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    //成功和失败的回调</span><br><span class="line">    successCallback = [];</span><br><span class="line">    failCallback = [];</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        // 判断成功回调是否存在 存在即调用</span><br><span class="line">        while (this.successCallback.length) this.successCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line"></span><br><span class="line">        //判断失败回调是否存在，存在及调用</span><br><span class="line">        while (this.failCallback.length) this.failCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line"></span><br><span class="line">        // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line"></span><br><span class="line">            successCallback(this.value)</span><br><span class="line"></span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">            failCallback(this.reason)</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            // 等待、将成功和失败的回调存储起来</span><br><span class="line">            this.successCallback.push(successCallback)</span><br><span class="line">            this.failCallback.push(failCallback)</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="3-添加then方法的链式调用和取得then方法的返回值"><a href="#3-添加then方法的链式调用和取得then方法的返回值" class="headerlink" title="3.添加then方法的链式调用和取得then方法的返回值"></a>3.添加then方法的链式调用和取得then方法的返回值</h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        executor(this.resolve, this.reject)</span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line"></span><br><span class="line">    // 成功和失败的信息</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    //成功和失败的回调</span><br><span class="line">    successCallback = [];</span><br><span class="line">    failCallback = [];</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        // 判断成功回调是否存在 存在即调用</span><br><span class="line">        while (this.successCallback.length) this.successCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line"></span><br><span class="line">        //判断失败回调是否存在，存在及调用</span><br><span class="line">        while (this.failCallback.length) this.failCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line">        let promise2 = new MyPromise((resolve,reject)=&gt;{</span><br><span class="line">            // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line"></span><br><span class="line">           let x = successCallback(this.value)</span><br><span class="line"></span><br><span class="line">           //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">           resolve(x)</span><br><span class="line"></span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">            failCallback(this.reason)</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            // 等待、将成功和失败的回调存储起来</span><br><span class="line">            this.successCallback.push(successCallback)</span><br><span class="line">            this.failCallback.push(failCallback)</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        });</span><br><span class="line">        return promise2</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>上面这个成功的返回值<code>x</code>只能传递普通的值，那如果是一个promise对象呢？<br>这时候我们就要看promise返回的对象的结果，再根据返回的结果决定是调用resolve，还是reject。<br>这里有个问题可能大家已经想到了, 这个返回值有可能是为promise对象的情况,<br>而且<code>在then方法的回调函数当中，不能返回当前这个then方法所返回的promise对象的</code>,因为这样就触发了promise的循环调用，浏览器就会报错<br>那么，根据上述情况, 接下来我们就要再改造一下</p>
+<h3 id="2-加入异步逻辑和then方法的多次调用">2.加入异步逻辑和then方法的多次调用</h3>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        executor(this.resolve, this.reject)</span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line"></span><br><span class="line">    // 成功和失败的信息</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    //成功和失败的回调</span><br><span class="line">    successCallback = [];</span><br><span class="line">    failCallback = [];</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        // 判断成功回调是否存在 存在即调用</span><br><span class="line">        while (this.successCallback.length) this.successCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line"></span><br><span class="line">        //判断失败回调是否存在，存在及调用</span><br><span class="line">        while (this.failCallback.length) this.failCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line"></span><br><span class="line">        // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line"></span><br><span class="line">            successCallback(this.value)</span><br><span class="line"></span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">            failCallback(this.reason)</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            // 等待、将成功和失败的回调存储起来</span><br><span class="line">            this.successCallback.push(successCallback)</span><br><span class="line">            this.failCallback.push(failCallback)</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="3-添加then方法的链式调用和取得then方法的返回值">3.添加then方法的链式调用和取得then方法的返回值</h3>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        executor(this.resolve, this.reject)</span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line"></span><br><span class="line">    // 成功和失败的信息</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    //成功和失败的回调</span><br><span class="line">    successCallback = [];</span><br><span class="line">    failCallback = [];</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        // 判断成功回调是否存在 存在即调用</span><br><span class="line">        while (this.successCallback.length) this.successCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line"></span><br><span class="line">        //判断失败回调是否存在，存在及调用</span><br><span class="line">        while (this.failCallback.length) this.failCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line">        let promise2 = new MyPromise((resolve,reject)=&gt;{</span><br><span class="line">            // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line"></span><br><span class="line">           let x = successCallback(this.value)</span><br><span class="line"></span><br><span class="line">           //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">           resolve(x)</span><br><span class="line"></span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">            failCallback(this.reason)</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            // 等待、将成功和失败的回调存储起来</span><br><span class="line">            this.successCallback.push(successCallback)</span><br><span class="line">            this.failCallback.push(failCallback)</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        });</span><br><span class="line">        return promise2</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>上面这个成功的返回值<code>x</code>只能传递普通的值，那如果是一个promise对象呢？<br>
+这时候我们就要看promise返回的对象的结果，再根据返回的结果决定是调用resolve，还是reject。<br>
+这里有个问题可能大家已经想到了, 这个返回值有可能是为promise对象的情况,<br>
+而且<code>在then方法的回调函数当中，不能返回当前这个then方法所返回的promise对象的</code>,因为这样就触发了promise的循环调用，浏览器就会报错<br>
+那么，根据上述情况, 接下来我们就要再改造一下</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        executor(this.resolve, this.reject)</span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line"></span><br><span class="line">    // 成功和失败的信息</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    //成功和失败的回调</span><br><span class="line">    successCallback = [];</span><br><span class="line">    failCallback = [];</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        // 判断成功回调是否存在 存在即调用</span><br><span class="line">        while (this.successCallback.length) this.successCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line"></span><br><span class="line">        //判断失败回调是否存在，存在及调用</span><br><span class="line">        while (this.failCallback.length) this.failCallback.shift()(this.value)</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line">        let promise2 = new MyPromise((resolve,reject)=&gt;{</span><br><span class="line">            // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line">            // 所有同步代码执行完成后，执行下面异步代码</span><br><span class="line">            setTimeout(()=&gt;{</span><br><span class="line">                let x = successCallback(this.value)</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">            failCallback(this.reason)</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            // 等待、将成功和失败的回调存储起来</span><br><span class="line">            this.successCallback.push(successCallback)</span><br><span class="line">            this.failCallback.push(failCallback)</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        });</span><br><span class="line">        return promise2</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">function resolvePromise( promise2, x, resolve, reject) {</span><br><span class="line">    // 判断传递的promise对象是否和本身promise相等，如果是就返回报错</span><br><span class="line">    if (promise2 === x) {</span><br><span class="line">        return reject(new TypeError('Chaining cycle detected for promise #&lt;Promise&gt;'))</span><br><span class="line">    }</span><br><span class="line">    if (x instanceof MyPromise) {</span><br><span class="line">        // promise对象</span><br><span class="line">        // x.then(value =&gt; resolve(value), reason =&gt; reject(reason))</span><br><span class="line">        x.then(resolve,reject)</span><br><span class="line">    } else {</span><br><span class="line">        // 普通值</span><br><span class="line">        resolve(x)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="4-添加错误处理"><a href="#4-添加错误处理" class="headerlink" title="4.添加错误处理"></a>4.添加错误处理</h3><p>1.当执行器<code>executor</code>错误时<br>2.<code>then</code>方法当中的回调函数报错时<br>3.上述代码只处理了成功状态，现在我们要将失败或者异步时的状态也一并处理了</p>
+<h3 id="4-添加错误处理">4.添加错误处理</h3>
+<p>1.当执行器<code>executor</code>错误时<br>
+2.<code>then</code>方法当中的回调函数报错时<br>
+3.上述代码只处理了成功状态，现在我们要将失败或者异步时的状态也一并处理了</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        try{</span><br><span class="line">            executor(this.resolve, this.reject)</span><br><span class="line">        } catch (e) {</span><br><span class="line">            this.reject(e);</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line"></span><br><span class="line">    // 成功和失败的信息</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    //成功和失败的回调</span><br><span class="line">    successCallback = [];</span><br><span class="line">    failCallback = [];</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        // 判断成功回调是否存在 存在即调用</span><br><span class="line">        while (this.successCallback.length) this.successCallback.shift()()</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line"></span><br><span class="line">        //判断失败回调是否存在，存在及调用</span><br><span class="line">        while (this.failCallback.length) this.failCallback.shift()()</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line">        let promise2 = new MyPromise((resolve,reject)=&gt;{</span><br><span class="line">            // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line">            // 所有同步代码执行完成后，执行下面异步代码</span><br><span class="line">            setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = successCallback(this.value);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">             setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = failCallback(this.reason);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            // 等待、将成功和失败的回调存储起来</span><br><span class="line">            this.successCallback.push(()=&gt;{</span><br><span class="line">                setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = successCallback(this.value);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">            })</span><br><span class="line">            this.failCallback.push(()=&gt;{</span><br><span class="line">               setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = failCallback(this.reason);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">            })</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        });</span><br><span class="line">        return promise2</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">function resolvePromise( promise2, x, resolve, reject) {</span><br><span class="line">    // 判断传递的promise对象是否和本身promise相等，如果是就返回报错</span><br><span class="line">    if (promise2 === x) {</span><br><span class="line">        return reject(new TypeError('Chaining cycle detected for promise #&lt;Promise&gt;'))</span><br><span class="line">    }</span><br><span class="line">    if (x instanceof MyPromise) {</span><br><span class="line">        // promise对象</span><br><span class="line">        // x.then(value =&gt; resolve(value), reason =&gt; reject(reason))</span><br><span class="line">        x.then(resolve,reject)</span><br><span class="line">    } else {</span><br><span class="line">        // 普通值</span><br><span class="line">        resolve(x)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>OK，我知道各位道友看到这一步可能有点厌烦了, 那么我宣布一个事情：<br>咱们这个Promise类的核心功能已经实现了👍<br>当然，还想知道更多的咱们一起往下看</p>
-<h3 id="5-将then方法的参数变成可选参数"><a href="#5-将then方法的参数变成可选参数" class="headerlink" title="5.将then方法的参数变成可选参数"></a>5.将then方法的参数变成可选参数</h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        try{</span><br><span class="line">            executor(this.resolve, this.reject)</span><br><span class="line">        } catch (e) {</span><br><span class="line">            this.reject(e);</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line"></span><br><span class="line">    // 成功和失败的信息</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    //成功和失败的回调</span><br><span class="line">    successCallback = [];</span><br><span class="line">    failCallback = [];</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        // 判断成功回调是否存在 存在即调用</span><br><span class="line">        while (this.successCallback.length) this.successCallback.shift()()</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line"></span><br><span class="line">        //判断失败回调是否存在，存在及调用</span><br><span class="line">        while (this.failCallback.length) this.failCallback.shift()()</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line"></span><br><span class="line">        // 当then()方法为空的时候其实等同于``then(value =&gt; value)``</span><br><span class="line">        successCallback = successCallback ? successCallback:value =&gt; value;</span><br><span class="line">        failCallback = failCallback ? failCallback:reason =&gt; { throw reason };</span><br><span class="line"></span><br><span class="line">        let promise2 = new MyPromise((resolve,reject)=&gt;{</span><br><span class="line">            // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line">            // 所有同步代码执行完成后，执行下面异步代码</span><br><span class="line">            setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = successCallback(this.value);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">             setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = failCallback(this.reason);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            // 等待、将成功和失败的回调存储起来</span><br><span class="line">            this.successCallback.push(()=&gt;{</span><br><span class="line">                setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = successCallback(this.value);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">            })</span><br><span class="line">            this.failCallback.push(()=&gt;{</span><br><span class="line">               setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = failCallback(this.reason);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">            })</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        });</span><br><span class="line">        return promise2</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">function resolvePromise( promise2, x, resolve, reject) {</span><br><span class="line">    // 判断传递的promise对象是否和本身promise相等，如果是就返回报错</span><br><span class="line">    if (promise2 === x) {</span><br><span class="line">        return reject(new TypeError('Chaining cycle detected for promise #&lt;Promise&gt;'))</span><br><span class="line">    }</span><br><span class="line">    if (x instanceof MyPromise) {</span><br><span class="line">        // promise对象</span><br><span class="line">        // x.then(value =&gt; resolve(value), reason =&gt; reject(reason))</span><br><span class="line">        x.then(resolve,reject)</span><br><span class="line">    } else {</span><br><span class="line">        // 普通值</span><br><span class="line">        resolve(x)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="拓展1：实现promise-all-方法"><a href="#拓展1：实现promise-all-方法" class="headerlink" title="拓展1：实现promise.all()方法"></a>拓展1：实现promise.all()方法</h3><p>此方法主要用来解决异步并发问题的，此方法允许我们按照异步代买调用的顺序得到异步代码执行的结果</p>
+<p>OK，我知道各位道友看到这一步可能有点厌烦了, 那么我宣布一个事情：<br>
+咱们这个Promise类的核心功能已经实现了👍<br>
+当然，还想知道更多的咱们一起往下看</p>
+<h3 id="5-将then方法的参数变成可选参数">5.将then方法的参数变成可选参数</h3>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    constructor (executor){</span><br><span class="line">        try{</span><br><span class="line">            executor(this.resolve, this.reject)</span><br><span class="line">        } catch (e) {</span><br><span class="line">            this.reject(e);</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    }</span><br><span class="line">    //promise 状态</span><br><span class="line">    status = PENDING;</span><br><span class="line"></span><br><span class="line">    // 成功和失败的信息</span><br><span class="line">    value = undefined;</span><br><span class="line">    reason = undefined;</span><br><span class="line"></span><br><span class="line">    //成功和失败的回调</span><br><span class="line">    successCallback = [];</span><br><span class="line">    failCallback = [];</span><br><span class="line"></span><br><span class="line">    resolve = value =&gt; {</span><br><span class="line"></span><br><span class="line">        // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为成功</span><br><span class="line">        this.status = FULFILLED;</span><br><span class="line"></span><br><span class="line">        // 保存成功之后的值</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        // 判断成功回调是否存在 存在即调用</span><br><span class="line">        while (this.successCallback.length) this.successCallback.shift()()</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    reject = reason =&gt; {</span><br><span class="line">         // 如果不是等待状态、阻止程序向下执行</span><br><span class="line">        if(this.status !== PENDING) return;</span><br><span class="line"></span><br><span class="line">        // 将状态更改为失败</span><br><span class="line">        this.status = REJECTED;</span><br><span class="line"></span><br><span class="line">        //保存失败的原因</span><br><span class="line">        this.reason = reason</span><br><span class="line"></span><br><span class="line">        //判断失败回调是否存在，存在及调用</span><br><span class="line">        while (this.failCallback.length) this.failCallback.shift()()</span><br><span class="line">    }</span><br><span class="line">    then ( successCallback, failCallback ) {</span><br><span class="line"></span><br><span class="line">        // 当then()方法为空的时候其实等同于``then(value =&gt; value)``</span><br><span class="line">        successCallback = successCallback ? successCallback:value =&gt; value;</span><br><span class="line">        failCallback = failCallback ? failCallback:reason =&gt; { throw reason };</span><br><span class="line"></span><br><span class="line">        let promise2 = new MyPromise((resolve,reject)=&gt;{</span><br><span class="line">            // 判断状态</span><br><span class="line">        if ( this.status === FULFILLED ){</span><br><span class="line">            // 所有同步代码执行完成后，执行下面异步代码</span><br><span class="line">            setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = successCallback(this.value);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">        }else if (this.status === REJECTED){</span><br><span class="line"></span><br><span class="line">             setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = failCallback(this.reason);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            // 等待、将成功和失败的回调存储起来</span><br><span class="line">            this.successCallback.push(()=&gt;{</span><br><span class="line">                setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = successCallback(this.value);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">            })</span><br><span class="line">            this.failCallback.push(()=&gt;{</span><br><span class="line">               setTimeout(()=&gt;{</span><br><span class="line"></span><br><span class="line">                try{</span><br><span class="line">                    let x = failCallback(this.reason);</span><br><span class="line"></span><br><span class="line">                //将上一个then的回调函数的返回值传递给下一个then方法成功的回调</span><br><span class="line">                resolvePromise( promise2, x, resolve, reject)</span><br><span class="line">                }catch (e){</span><br><span class="line">                    reject(e);</span><br><span class="line">                }</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            }, 0)</span><br><span class="line">            })</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        });</span><br><span class="line">        return promise2</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">function resolvePromise( promise2, x, resolve, reject) {</span><br><span class="line">    // 判断传递的promise对象是否和本身promise相等，如果是就返回报错</span><br><span class="line">    if (promise2 === x) {</span><br><span class="line">        return reject(new TypeError('Chaining cycle detected for promise #&lt;Promise&gt;'))</span><br><span class="line">    }</span><br><span class="line">    if (x instanceof MyPromise) {</span><br><span class="line">        // promise对象</span><br><span class="line">        // x.then(value =&gt; resolve(value), reason =&gt; reject(reason))</span><br><span class="line">        x.then(resolve,reject)</span><br><span class="line">    } else {</span><br><span class="line">        // 普通值</span><br><span class="line">        resolve(x)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="拓展1：实现promise-all-方法">拓展1：实现promise.all()方法</h3>
+<p>此方法主要用来解决异步并发问题的，此方法允许我们按照异步代买调用的顺序得到异步代码执行的结果</p>
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    static all (array) {</span><br><span class="line">        let result = []</span><br><span class="line">        let index = 0</span><br><span class="line">       </span><br><span class="line">        </span><br><span class="line">        return new MyPromise((resolve, reject) =&gt; {</span><br><span class="line"></span><br><span class="line">             function addData (key, value) =&gt;{</span><br><span class="line">                reslut[key] = value;</span><br><span class="line">                index++;</span><br><span class="line"></span><br><span class="line">                if (index === array.length) {</span><br><span class="line"></span><br><span class="line">                    resolve(result)</span><br><span class="line">                    </span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            for( let i = 0; i &lt; array.length; i++) {</span><br><span class="line"></span><br><span class="line">                let current = array[i]</span><br><span class="line">                if (current instanceof MyPromise) {</span><br><span class="line"></span><br><span class="line">                    // promise 对象</span><br><span class="line">                    current.then( value =&gt; addData(i, value), reason =&gt; reject(reason))</span><br><span class="line">                } else {</span><br><span class="line">                    // 普通值</span><br><span class="line">                    addData(i, array[i]);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">        })</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="拓展2：实现promise-resolve-方法"><a href="#拓展2：实现promise-resolve-方法" class="headerlink" title="拓展2：实现promise.resolve()方法"></a>拓展2：实现promise.resolve()方法</h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    static resolve(value) {</span><br><span class="line">        if ( value instanceof MyPromise) return value;</span><br><span class="line">        return new MyPromise(resolve =&gt; resolve(value));</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="拓展3：-实现promise-finally-方法"><a href="#拓展3：-实现promise-finally-方法" class="headerlink" title="拓展3： 实现promise.finally()方法"></a>拓展3： 实现promise.finally()方法</h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    finally (callback) {</span><br><span class="line">        return this.then(value =&gt; {</span><br><span class="line">            return MyPromise.resolve(callback()).then(() =&gt; value)</span><br><span class="line">        }, reason =&gt; {</span><br><span class="line">            return MyPromise.resolve(callback()).then(() =&gt; { throw reason})</span><br><span class="line">        });</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="拓展4：-实现promise-catch-方法"><a href="#拓展4：-实现promise-catch-方法" class="headerlink" title="拓展4： 实现promise.catch()方法"></a>拓展4： 实现promise.catch()方法</h3><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    catch (failCallback) {</span><br><span class="line">        return this.then(undefined, failCallback)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-
+<h3 id="拓展2：实现promise-resolve-方法">拓展2：实现promise.resolve()方法</h3>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    static resolve(value) {</span><br><span class="line">        if ( value instanceof MyPromise) return value;</span><br><span class="line">        return new MyPromise(resolve =&gt; resolve(value));</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="拓展3：-实现promise-finally-方法">拓展3： 实现promise.finally()方法</h3>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    finally (callback) {</span><br><span class="line">        return this.then(value =&gt; {</span><br><span class="line">            return MyPromise.resolve(callback()).then(() =&gt; value)</span><br><span class="line">        }, reason =&gt; {</span><br><span class="line">            return MyPromise.resolve(callback()).then(() =&gt; { throw reason})</span><br><span class="line">        });</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="拓展4：-实现promise-catch-方法">拓展4： 实现promise.catch()方法</h3>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const PENDING ='pending' // 等待</span><br><span class="line">const FULFILLED ='fulfilled' // 成功</span><br><span class="line">const REJECTED = 'rejected' // 失败</span><br><span class="line">class MyPromise{</span><br><span class="line">    .....</span><br><span class="line"></span><br><span class="line">    catch (failCallback) {</span><br><span class="line">        return this.then(undefined, failCallback)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 ]]></content>
       <categories>
         <category>JavaScript</category>

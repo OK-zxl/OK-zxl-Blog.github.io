@@ -182,13 +182,29 @@
 
   
   <div class="content">
-        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
-<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined // 已声明未赋值<br>    null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
-<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><h5 id="基本类型的判断"><a href="#基本类型的判断" class="headerlink" title="基本类型的判断"></a>基本类型的判断</h5><pre><code>    typeof: 返回数据类型的字符串表达 "undefined"/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
+        <div><h3 id="前言">前言</h3>
+<p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
+<h3 id="1-数据类型">1.数据类型</h3>
+<p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>
+其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>
+一：基本(值)类型<br>
+String: 任意字符串<br>
+Number: 任意数字<br>
+boolean: true/false<br>
+undefined: undefined // 已声明未赋值<br>
+null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>
+二：引用(对象)类型<br>
+Object：任意对象类型<br>
+Function: 一种特殊的对象(可执行)<br>
+Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
+<h3 id="判断数据类型">判断数据类型</h3>
+<h5 id="基本类型的判断">基本类型的判断</h5>
+<pre><code>    typeof: 返回数据类型的字符串表达 "undefined"/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
     instanceof: 判断对象的具体类型，判断A是不是构造函数B的实例
     ===： 可以判断undefined、null
 </code></pre>
-<h4 id="引用数据类型的判断"><a href="#引用数据类型的判断" class="headerlink" title="引用数据类型的判断"></a>引用数据类型的判断</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var b1 ={</span><br><span class="line">    b2:[1,'abc',console.log],</span><br><span class="line">    b3:function (){</span><br><span class="line">        console.log('b3)</span><br><span class="line">        return function() {</span><br><span class="line">            return 'js'</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) //true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(typeof b1.b3 === 'function') //true</span><br><span class="line">console.log(typeof b1.b[2] === 'function') //true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) //这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) //js</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="引用数据类型的判断">引用数据类型的判断</h4>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var b1 ={</span><br><span class="line">    b2:[1,'abc',console.log],</span><br><span class="line">    b3:function (){</span><br><span class="line">        console.log('b3)</span><br><span class="line">        return function() {</span><br><span class="line">            return 'js'</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) //true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(typeof b1.b3 === 'function') //true</span><br><span class="line">console.log(typeof b1.b[2] === 'function') //true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) //这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) //js</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>最后一个题外话：我们如何区分数据类型和变量类型呢？</p>
 </div>
         
@@ -205,7 +221,7 @@
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/07/javascript/copy/" >深浅拷贝<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/04/07/javascript/curry/" >函数式编程的柯里化<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
