@@ -182,22 +182,12 @@
 
   
   <div class="content">
-        <div><h3 id="前言">前言</h3>
-<p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>
-基本类型：<br>
-string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>
-基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
-<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>
-在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>
-当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
+        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>基本类型：<br>string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
+<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
 <p>所以想要深浅拷贝这里有一个前提就是必须是引用类型</p>
-<h3 id="浅拷贝及简单实现">浅拷贝及简单实现</h3>
-<p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
+<h3 id="浅拷贝及简单实现"><a href="#浅拷贝及简单实现" class="headerlink" title="浅拷贝及简单实现"></a>浅拷贝及简单实现</h3><p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:2</span><br><span class="line">}</span><br><span class="line">funcion simpClone(){</span><br><span class="line">    var cloneObj = {}</span><br><span class="line">    &lt;!-- 常规循环 --&gt;</span><br><span class="line">    for(var i in obj){</span><br><span class="line">        cloneObj[i] = obj[i];</span><br><span class="line">    }</span><br><span class="line">    &lt;!-- Es6循环 --&gt;</span><br><span class="line">    for (var [] of Object.enteies(obj)){</span><br><span class="line">        cloneObj[key] = value</span><br><span class="line">    }</span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="深拷贝及简单实现">深拷贝及简单实现</h3>
-<p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>
-只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>
-目前实现深拷贝的方法不多，主要是两种：</p>
+<h3 id="深拷贝及简单实现"><a href="#深拷贝及简单实现" class="headerlink" title="深拷贝及简单实现"></a>深拷贝及简单实现</h3><p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>目前实现深拷贝的方法不多，主要是两种：</p>
 <ol>
 <li>利用 JSON 对象中的 parse 和 stringify</li>
 <li>利用递归来实现每一层都重新创建对象并赋值</li>
@@ -206,8 +196,7 @@ string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:{</span><br><span class="line">        c:3,</span><br><span class="line">        d:{</span><br><span class="line">            e:5,</span><br><span class="line">            f:[1,2,3,4,5,6]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">funcion deepClone(obj,cloneObj){</span><br><span class="line">    var cloneObj = cloneObj || {}</span><br><span class="line"></span><br><span class="line">    for(var i in obj){</span><br><span class="line">        if (typeof obj[i] === 'object' &amp;&amp; obj[i] !== null){</span><br><span class="line"></span><br><span class="line">           cloneObj[i] =Array.isArray(obj[i] </span><br><span class="line">           )?[] : {}</span><br><span class="line">           deepClone(obj[i],cloneObj[i])</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            cloneObj[i] = obj[i];</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    } </span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>利用 JSON 对象中的 parse 和 stringify实现</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj){</span><br><span class="line"></span><br><span class="line">    return JSON.oarse(JSON.stringify(obj));</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="提问">提问</h3>
-<p>Array的slice和concat方法是深拷贝还是浅拷贝呢? 那Object.assign()呢?</p>
+<h3 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h3><p>Array的slice和concat方法是深拷贝还是浅拷贝呢? 那Object.assign()呢?</p>
 </div>
         
   </div>
@@ -218,12 +207,12 @@ string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放
     <div class="post-nav">
       
         <div class="post-nav-prev post-nav-item">
-            <a href="/2020/04/07/javascript/curry/" >函数式编程的柯里化<i class="fa fa-chevron-left"></i></a>
+            <a href="/2020/04/07/javascript/02/" >数据的类型<i class="fa fa-chevron-left"></i></a>
         </div>
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/06/javascript/debounce/" >防抖节流<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/04/07/javascript/curry/" >函数式编程的柯里化<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
