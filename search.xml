@@ -6,12 +6,6 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>你好，很荣幸您能来到我的博客！</title>
-    <url>/2021/02/14/hello-world/</url>
-    <content><![CDATA[<p>此博客为本人近期才正式上传，此前一直放在本地(别问为什么，问就是害怕被大佬笑话)，中途因为个人原因和工作繁忙一直未能上线，逢此春节七天留沪过年的时间，经过激烈的思想斗争，最终还是上来了，望大佬轻喷~，有错误的地方还请务必提醒笔者改正，万分感谢！</p>
-]]></content>
-  </entry>
-  <entry>
     <title>golang 入门笔记(一)-基础语法</title>
     <url>/2020/04/07/golang/golangDay-01/</url>
     <content><![CDATA[<h3 id="前言：什么是GO"><a href="#前言：什么是GO" class="headerlink" title="前言：什么是GO"></a>前言：什么是GO</h3><p>Go即为Golang,是Google公司2009年11月正式对外公开的一门编程语言。<br>Go语言不仅拥有静态编译语言的安全和高性能，而且又达到了动态语言开发速度和维护性。有人形容Go语言:Go=C+Python（暗自窃喜，说明我选对了<span class="github-emoji"><span>😆</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f606.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）,说明Go既有C语言的运行速度，又能达到Python语言的快速开发。<br>主要服务场景：Web开发、区块链开发、游戏服务端开发、分布式/云计算开发</p>
@@ -79,36 +73,133 @@ scrollbar-shadow-color:#eeeeee;
       </categories>
   </entry>
   <entry>
-    <title>react Hooks</title>
-    <url>/2020/04/12/react/reactHooks/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
-<h5 id="1-缺少逻辑复用机制"><a href="#1-缺少逻辑复用机制" class="headerlink" title="1.缺少逻辑复用机制"></a>1.缺少逻辑复用机制</h5><p>为了服用逻辑增加无实际渲染效果的组件，<br>增加了组件层级显得十分臃肿，<br>增加了调试的难度以及运行效率的降低。</p>
-<h5 id="2-类组件经常会变得很复杂难以维护"><a href="#2-类组件经常会变得很复杂难以维护" class="headerlink" title="2.类组件经常会变得很复杂难以维护"></a>2.类组件经常会变得很复杂难以维护</h5><p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>在一个生命周期函数内存在多个不相干的业务逻辑</p>
-<h5 id="3-类成员方法不能保证this指向的正确性"><a href="#3-类成员方法不能保证this指向的正确性" class="headerlink" title="3.类成员方法不能保证this指向的正确性"></a>3.类成员方法不能保证this指向的正确性</h5><p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
-<h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><p> 此hook是可以让函数式组件保存状态<br> </p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure><br> <strong>useState细节:<strong><br> 1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br> 2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br> 3.方法可以被多次调用，用以保存不同状态值<br> 4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br> 注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部<p></p>
-<h3 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h3><p> 此hook是另一种让函数组件保存状态的方式，和redux极其相似<br>  </p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h3><p>用于简化跨组件通信createContext函数代码</p>
-<h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect()"></a>useEffect()</h3><p> 让函数组件拥有处理副作用的能力。类似于生命周期<br> 我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
-<p> useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br> useEffect(() =&gt; {}, [])      ===   componentDidMount<br> useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br> 注意：如果是要在此hook中请求数据，那么请求函数得要自执行</p>
-<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
-<h3 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h3><p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>如果本组件中的数据没有发生变化，阻止更新<br>和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新</p>
-<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const resetCount = useCallback(()=&gt;setCount(0),[setCount])</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><p> 获取DOM对象<br> 跨组建周期保存数据</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const box = useRef()</span><br><span class="line">return &lt;div ref={box}&gt;app&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p> 持续更新中~</p>
-</strong></strong>]]></content>
+    <title>你好，很荣幸您能来到我的博客！</title>
+    <url>/2021/02/16/hello-world/</url>
+    <content><![CDATA[<p>此博客为本人近期才正式上传，此前一直放在本地(别问为什么，问就是害怕被大佬笑话)，中途因为个人原因和工作繁忙一直未能上线，逢此春节七天留沪过年的时间，经过激烈的思想斗争，最终还是上来了，望大佬轻喷~，有错误的地方还请务必提醒笔者改正，万分感谢！</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>深浅拷贝</title>
+    <url>/2020/04/07/javascript/copy/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>基本类型：<br>string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
+<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
+<p>所以想要深浅拷贝这里有一个前提就是必须是引用类型</p>
+<h3 id="浅拷贝及简单实现"><a href="#浅拷贝及简单实现" class="headerlink" title="浅拷贝及简单实现"></a>浅拷贝及简单实现</h3><p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:2</span><br><span class="line">}</span><br><span class="line">funcion simpClone(){</span><br><span class="line">    var cloneObj = {}</span><br><span class="line">    &lt;!-- 常规循环 --&gt;</span><br><span class="line">    for(var i in obj){</span><br><span class="line">        cloneObj[i] = obj[i];</span><br><span class="line">    }</span><br><span class="line">    &lt;!-- Es6循环 --&gt;</span><br><span class="line">    for (var [] of Object.enteies(obj)){</span><br><span class="line">        cloneObj[key] = value</span><br><span class="line">    }</span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="深拷贝及简单实现"><a href="#深拷贝及简单实现" class="headerlink" title="深拷贝及简单实现"></a>深拷贝及简单实现</h3><p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>目前实现深拷贝的方法不多，主要是两种：</p>
+<ol>
+<li>利用 JSON 对象中的 parse 和 stringify</li>
+<li>利用递归来实现每一层都重新创建对象并赋值</li>
+</ol>
+<p>首先我们原生递归使用</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:{</span><br><span class="line">        c:3,</span><br><span class="line">        d:{</span><br><span class="line">            e:5,</span><br><span class="line">            f:[1,2,3,4,5,6]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">funcion deepClone(obj,cloneObj){</span><br><span class="line">    var cloneObj = cloneObj || {}</span><br><span class="line"></span><br><span class="line">    for(var i in obj){</span><br><span class="line">        if (typeof obj[i] === 'object' &amp;&amp; obj[i] !== null){</span><br><span class="line"></span><br><span class="line">           cloneObj[i] =Array.isArray(obj[i] </span><br><span class="line">           )?[] : {}</span><br><span class="line">           deepClone(obj[i],cloneObj[i])</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            cloneObj[i] = obj[i];</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    } </span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>利用 JSON 对象中的 parse 和 stringify实现</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function deepClone(obj){</span><br><span class="line"></span><br><span class="line">    return JSON.oarse(JSON.stringify(obj));</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h3><p>Array的slice和concat方法是深拷贝还是浅拷贝呢? 那Object.assign()呢?</p>
+]]></content>
       <categories>
-        <category>react</category>
+        <category>JavaScript</category>
       </categories>
   </entry>
   <entry>
-    <title>Next.js+koa项目环境搭建</title>
-    <url>/2020/04/08/react/next/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
+    <title>函数式编程的柯里化</title>
+    <url>/2020/04/07/javascript/curry/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> 在聊函数柯里化之前我们要知道一下概念：</p>
+<ol>
+<li>什么是高阶函数，什么是回调函数？<br>我们都知道函数可以作为参数传递到函数中，那么这个作为参数的函数就叫做回调函数、而使用这个参数的函数就叫做高阶函数</li>
+<li>那什么是函数式编程呢？<br>高阶函数执行的时候,根据回调函数内部的逻辑不同高阶函数的执行结果也会有所不同，这就叫函数式编程</li>
+</ol>
+<hr>
+<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>上面我们了解了什么是函数式编程，那么函数柯里化其实就是函数式编程的一个重要思想，也是高阶函数的一个重要应用。就是给函数分步骤传递参数，每次传递部分参数，并返回一个更具体的函数接收剩下的参数，这期间可嵌套多层这样的接收部分参数的函数，直至返回最后的结果。</p>
+<h4 id="1-简单的柯里化"><a href="#1-简单的柯里化" class="headerlink" title="1.简单的柯里化"></a>1.简单的柯里化</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">// 原函数</span><br><span class="line">function sum(a,b,c){</span><br><span class="line">    return a+b+c</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 调用原函数</span><br><span class="line">sum(1,2,3)</span><br><span class="line"></span><br><span class="line">// 柯里化函数</span><br><span class="line">function sumCurry(a){</span><br><span class="line"> return function(b){</span><br><span class="line">     return function(c){</span><br><span class="line">         return a+b+c</span><br><span class="line">     }</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">// 调用柯里化函数</span><br><span class="line">sumCurry(1)(2)(3)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>这就是一个最基本的柯里化拆分， 柯里化后的函数<code>sumCurry</code>每次的返回值都为一个函数，并使用下一个参数作为形参，直到三个参数都被传入后，在返回的最后一个函数内部执行求和操作，这其实利用了闭包的特性来实现的。</p>
+<h4 id="2-通用柯里化函数"><a href="#2-通用柯里化函数" class="headerlink" title="2.通用柯里化函数"></a>2.通用柯里化函数</h4><p>上面的柯里化函数只是最基本最简单的函数，并没有涉及到高阶函数，也没有通用性，面对形参个数不定或者不知道的函数时就束手无策了，那么下面我们就用<code>ES6</code>来封装一个通用的柯里化转换函数</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function curry (func){</span><br><span class="line">    return function curriedFn(...args){</span><br><span class="line">        if( args.length &lt; func.length ){</span><br><span class="line">            return function(){</span><br><span class="line">                return curriedFn(...args.concat.(Array.from(arguments)))</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        return func(...args)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h4><p>1.函数的柯里化可以让我们给一个函数传递较少的参数得到一个已经记住的某些固定参数的新函数<br>2.这是一种对函数参数的’缓存’<br>3.让函数变的更灵活，让函数的粒度更小<br>可以把多元函数转换为一元函数，可以组合使用函数产生强大的功能</p>
 ]]></content>
       <categories>
-        <category>react</category>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数据的类型</title>
+    <url>/2020/04/07/javascript/02/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
+<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined // 已声明未赋值<br>    null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
+<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><h5 id="基本类型的判断"><a href="#基本类型的判断" class="headerlink" title="基本类型的判断"></a>基本类型的判断</h5><pre><code>    typeof: 返回数据类型的字符串表达 "undefined"/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
+    instanceof: 判断对象的具体类型，判断A是不是构造函数B的实例
+    ===： 可以判断undefined、null
+</code></pre>
+<h4 id="引用数据类型的判断"><a href="#引用数据类型的判断" class="headerlink" title="引用数据类型的判断"></a>引用数据类型的判断</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var b1 ={</span><br><span class="line">    b2:[1,'abc',console.log],</span><br><span class="line">    b3:function (){</span><br><span class="line">        console.log('b3)</span><br><span class="line">        return function() {</span><br><span class="line">            return 'js'</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) //true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(typeof b1.b3 === 'function') //true</span><br><span class="line">console.log(typeof b1.b[2] === 'function') //true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) //这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) //js</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>最后一个题外话：我们如何区分数据类型和变量类型呢？</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>this、call、apply、bind</title>
+    <url>/2020/04/08/javascript/this-call-bind-apply/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>小伙伴们，这篇文章的作用不用我多说了吧~~~，直接肝就完了</p>
+<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p>首先我们聊聊this指向的问题，我也不多说啥了，你们只要记住我接下来说的这就话就行了，记住是打死也要记住：<br><strong>this永远指向最后调用它的那个对象</strong></p>
+<p>就这句啊，打死也要记住咯！！！</p>
+<p>那么，我们接下来就来看几个栗子：</p>
+<h5 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子 1"></a>栗子 1</h5><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">function fn() {</span><br><span class="line">    var name = "Soliton";</span><br><span class="line"></span><br><span class="line">    console.log(this.name);          // windows</span><br><span class="line"></span><br><span class="line">    console.log("函数内:" + this);    // 函数内: Window</span><br><span class="line">}</span><br><span class="line">fn();</span><br><span class="line">console.log("全局:" + this)         // 全局: Window</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>就这个，咱们先不说你看不看的懂，咱们直接先把那句<strong>this永远指向最后调用它的那个对象</strong>套进去。<br>先定义了一个fn函数，最后在后面调用了一下，看清楚这个调用是在哪调的？<br>是不是全局啊，我们都知道JS的全局对象是window。<br>所以在全局调用的fn()函数我们就可以看作是window.fn()，<br>所以按照规则，是不是this指向的就是window对象啊，而window对象是全局对象，全局我们是不是定义了一个name变量。<br>所以，函数fn()中打印的name是不是就是windows啊。<br>那这时候你是不是要问那我函数内部的name什么时候打印呢？别急接下来我们再来说说这个</p>
+<h5 id="栗子-2"><a href="#栗子-2" class="headerlink" title="栗子 2"></a>栗子 2</h5><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // Soliton</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">fn.fn2();</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>来，咱们继续套，这里最后调用的时候是不是fn.fn2(),照老规矩，<br>全局调用咱们是不是可以看成window.fn.fn2(),再把之前的那个规则套进来，<br>咱们会发现最后调用它的最后的对象是不是fn啊，<br>而fn2函数是不是在fn这个对象的局部变量之中？，<br>所以它取到的this.name最后是不是fn2这个局部对象中的name变量值？那就是Soliton了吧</p>
+<p>照这个规律那下面两个结果是怎么样呢？各位不妨自行操作一下</p>
+<p>题 1</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    // name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // undefined</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">window.fn.fn2();</span><br></pre></td></tr></tbody></table></figure>
+
+<p>题 2</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name : null,</span><br><span class="line">    // name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // windows</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">var f = fn.fn2;</span><br><span class="line">f();</span><br></pre></td></tr></tbody></table></figure>
+<p>那么我们再思考下一个问题，如果我们要改变this指向呢</p>
+<h3 id="改变this的指向"><a href="#改变this的指向" class="headerlink" title="改变this的指向"></a>改变this的指向</h3><ol>
+<li>使用ES6的箭头函数</li>
+<li>在函数内部使用_this = this</li>
+<li>使用 apply、call、bind</li>
+<li>new实例化一个对象</li>
+</ol>
+<h4 id="1-箭头函数"><a href="#1-箭头函数" class="headerlink" title="1. 箭头函数"></a>1. 箭头函数</h4><p>我们都知道ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。<strong>箭头函数的 this 始终指向函数定义时的 this，而非执行时</strong>。箭头函数需要记着这句话：“<strong>箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined</strong>”。</p>
+<h4 id="2-使用-this-this"><a href="#2-使用-this-this" class="headerlink" title="2. 使用 _this=this"></a>2. 使用 _this=this</h4><p>此方法的原理就是将调用此函数的对象保存在新定一的一个_this变量之中，然后在函数的内部都是用这已经保存对象的_this就好了</p>
+<h4 id="3-new实例化一个对象"><a href="#3-new实例化一个对象" class="headerlink" title="3. new实例化一个对象"></a>3. new实例化一个对象</h4><p>我们前面说到<strong>this永远指向最后调用它的那个对象</strong>，这时候它的this指向就指向最后调用它的那个对象了<br>例如：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line">// 构造函数:</span><br><span class="line">function myFunction(arg1, arg2) {</span><br><span class="line">    this.firstName = arg1;</span><br><span class="line">    this.lastName  = arg2;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// This    creates a new object</span><br><span class="line">var a = new myFunction("xzl","Soliton");</span><br><span class="line">a.lastName;                             // 返回 "Soliton"</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>那么肯定有人问new?，我怎new？new是过程是啥？好家伙，我直接给你安排了</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var a = new myFunction("xzl","Soliton");</span><br><span class="line"></span><br><span class="line">new myFunction{</span><br><span class="line">    var obj = {};                                             // 创建一个空对象 obj;</span><br><span class="line">    obj.__proto__ = myFunction.prototype;                     // 将新创建的空对象的隐式原型指向其构造函数的显示原型。 </span><br><span class="line">    var result = myFunction.call(obj,"xzl","Soliton");        //使用 call 改变 this 的指向</span><br><span class="line">    return typeof result === 'obj'? result : obj;             //如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="4-使用-apply、call、bind"><a href="#4-使用-apply、call、bind" class="headerlink" title="4. 使用 apply、call、bind"></a>4. 使用 apply、call、bind</h4><h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><ol>
+<li>apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；</li>
+</ol>
+<ol start="2">
+<li>apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；</li>
+</ol>
+<ol start="3">
+<li>apply 、 call 、bind 三者都可以利用后续参数传参；</li>
+</ol>
+<h4 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h4><ol>
+<li>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列,所以bind 是创建一个新的函数，我们必须要手动去调用；apply、call则是立即调用 。</li>
+<li></li>
+</ol>
+<p>2.call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。</p>
+<p>3.某个函数的参数是明确知道数量时用 call ; 而不确定的时候用 apply，然后把参数 push进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个数组来遍历所有的参数</p>
+<p>func.call(this, arg1, arg2);</p>
+<p>func.apply(this, [arg1, arg2])</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>防抖节流</title>
+    <url>/2020/04/06/javascript/debounce/</url>
+    <content><![CDATA[<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>原理：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。<br>适用场景：<br>按钮提交场景：防止多次提交按钮，只执行最后提交的一次<br>搜索框联想场景：防止联想发送请求，只发送最后一次输入</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function debounce(func, wait) {</span><br><span class="line">    let timeout;</span><br><span class="line">    return function () {</span><br><span class="line">        const context = this;</span><br><span class="line">        const args = arguments;</span><br><span class="line">        clearTimeout(timeout)</span><br><span class="line">        timeout = setTimeout(function(){</span><br><span class="line">            func.apply(context, args)</span><br><span class="line">        }, wait);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h3 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流 throttle"></a>节流 throttle</h3><p>原理：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。<br>适用场景<br>拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动<br>缩放场景：监控浏览器resize</p>
+<h4 id="定时器版本"><a href="#定时器版本" class="headerlink" title="定时器版本"></a>定时器版本</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function throttle(fn, delay) {</span><br><span class="line">               let hasRun = false;</span><br><span class="line">               return function () {</span><br><span class="line">                   if (hasRun) {</span><br><span class="line">                       return;</span><br><span class="line">                   }</span><br><span class="line">                   hasRun = true;</span><br><span class="line">                   setTimeout(() =&gt; {</span><br><span class="line">                       hasRun = false;</span><br><span class="line">                       fn.apply(this, arguments);</span><br><span class="line">                   }, delay);</span><br><span class="line">               }</span><br><span class="line">       }</span><br><span class="line">       var mydiv = document.getElementById('mydiv');</span><br><span class="line">       let count = 0;</span><br><span class="line">       function myEvent(){</span><br><span class="line">           mydiv.innerText = count++;</span><br><span class="line">       }        </span><br><span class="line">       mydiv.addEventListener('click', throttle(myEvent,2000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="时间戳版本"><a href="#时间戳版本" class="headerlink" title="时间戳版本"></a>时间戳版本</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let div = document.querySelector('div');</span><br><span class="line">var count = 0;</span><br><span class="line">function myEvent() {</span><br><span class="line">    div.innerText = count++;</span><br><span class="line">}</span><br><span class="line">div.onclick = throttle(myEvent,2000);</span><br><span class="line">function throttle(func, wait) {</span><br><span class="line">    let pre = 0;</span><br><span class="line">    return function () {</span><br><span class="line">        let now = new Date().getTime();</span><br><span class="line">        if (now - pre &gt; wait) {</span><br><span class="line">            pre = now;</span><br><span class="line">            func.apply(this);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
+      <categories>
+        <category>JavaScript</category>
       </categories>
   </entry>
   <entry>
@@ -232,86 +323,6 @@ scrollbar-shadow-color:#eeeeee;
       </categories>
   </entry>
   <entry>
-    <title>数据的类型</title>
-    <url>/2020/04/07/javascript/02/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我不知道大家有没有发现，你做前端做了几年之后，突然间再让你复盘一下以前学过的基础知识的时候，你突然会发现自己好像记不太清了，我相信这是很多人的痛点，这时候我欧俄美就需要好好的总结下以前学的东西，并以此作为笔记录下来，只有通过此方法，日后你才会有充足的准备来应对接下来的各种变化。接下来我就来简单的为大家梳理一下以前学过的一些东西</p>
-<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><p>我们都知道内存是用来存储数据的空间，而变量又是内存的标识。那么这个数据到底是什么呢？<br>其实这个数据我们可以分为两大类，一是基本类型，又叫值类型，第二种是引用类型，接下来我们就来说说两者具体包含那些<br>一：基本(值)类型<br>    String: 任意字符串<br>    Number: 任意数字<br>    boolean: true/false<br>    undefined: undefined // 已声明未赋值<br>    null: null     // 此类型一般在初始赋值前表明接下来赋值为对象和运算结束后改为垃圾对象被浏览器内的垃圾回收器回收<br>二：引用(对象)类型<br>    Object：任意对象类型<br>    Function: 一种特殊的对象(可执行)<br>    Array: 一种特别的对象(数值下标的集合,内部数据有序的)</p>
-<h3 id="判断数据类型"><a href="#判断数据类型" class="headerlink" title="判断数据类型"></a>判断数据类型</h3><h5 id="基本类型的判断"><a href="#基本类型的判断" class="headerlink" title="基本类型的判断"></a>基本类型的判断</h5><pre><code>    typeof: 返回数据类型的字符串表达 "undefined"/数值/字符串/布尔/function;注意：此API中object与null不能区别、object与array不能区别
-    instanceof: 判断对象的具体类型，判断A是不是构造函数B的实例
-    ===： 可以判断undefined、null
-</code></pre>
-<h4 id="引用数据类型的判断"><a href="#引用数据类型的判断" class="headerlink" title="引用数据类型的判断"></a>引用数据类型的判断</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var b1 ={</span><br><span class="line">    b2:[1,'abc',console.log],</span><br><span class="line">    b3:function (){</span><br><span class="line">        console.log('b3)</span><br><span class="line">        return function() {</span><br><span class="line">            return 'js'</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">console.log(b1 instanceof Object, b1 instanceof Array) //true false</span><br><span class="line">console.log(b1.b2 instanceof Array , b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(b1.b3 instanceof Function, b1.b2 instanceof Object) //true true</span><br><span class="line">console.log(typeof b1.b3 === 'function') //true</span><br><span class="line">console.log(typeof b1.b[2] === 'function') //true</span><br><span class="line"></span><br><span class="line">console.log(b1.b3()) //这里返回我们return那个函数，所以我们需要再次通过()来进行调用</span><br><span class="line">console.log(b1.b3()()) //js</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>最后一个题外话：我们如何区分数据类型和变量类型呢？</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>深浅拷贝</title>
-    <url>/2020/04/07/javascript/copy/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>基本类型：<br>string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
-<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
-<p>所以想要深浅拷贝这里有一个前提就是必须是引用类型</p>
-<h3 id="浅拷贝及简单实现"><a href="#浅拷贝及简单实现" class="headerlink" title="浅拷贝及简单实现"></a>浅拷贝及简单实现</h3><p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:2</span><br><span class="line">}</span><br><span class="line">funcion simpClone(){</span><br><span class="line">    var cloneObj = {}</span><br><span class="line">    &lt;!-- 常规循环 --&gt;</span><br><span class="line">    for(var i in obj){</span><br><span class="line">        cloneObj[i] = obj[i];</span><br><span class="line">    }</span><br><span class="line">    &lt;!-- Es6循环 --&gt;</span><br><span class="line">    for (var [] of Object.enteies(obj)){</span><br><span class="line">        cloneObj[key] = value</span><br><span class="line">    }</span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="深拷贝及简单实现"><a href="#深拷贝及简单实现" class="headerlink" title="深拷贝及简单实现"></a>深拷贝及简单实现</h3><p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>目前实现深拷贝的方法不多，主要是两种：</p>
-<ol>
-<li>利用 JSON 对象中的 parse 和 stringify</li>
-<li>利用递归来实现每一层都重新创建对象并赋值</li>
-</ol>
-<p>首先我们原生递归使用</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:{</span><br><span class="line">        c:3,</span><br><span class="line">        d:{</span><br><span class="line">            e:5,</span><br><span class="line">            f:[1,2,3,4,5,6]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">funcion deepClone(obj,cloneObj){</span><br><span class="line">    var cloneObj = cloneObj || {}</span><br><span class="line"></span><br><span class="line">    for(var i in obj){</span><br><span class="line">        if (typeof obj[i] === 'object' &amp;&amp; obj[i] !== null){</span><br><span class="line"></span><br><span class="line">           cloneObj[i] =Array.isArray(obj[i] </span><br><span class="line">           )?[] : {}</span><br><span class="line">           deepClone(obj[i],cloneObj[i])</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            cloneObj[i] = obj[i];</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    } </span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>利用 JSON 对象中的 parse 和 stringify实现</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function deepClone(obj){</span><br><span class="line"></span><br><span class="line">    return JSON.oarse(JSON.stringify(obj));</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="提问"><a href="#提问" class="headerlink" title="提问"></a>提问</h3><p>Array的slice和concat方法是深拷贝还是浅拷贝呢? 那Object.assign()呢?</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>函数式编程的柯里化</title>
-    <url>/2020/04/07/javascript/curry/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> 在聊函数柯里化之前我们要知道一下概念：</p>
-<ol>
-<li>什么是高阶函数，什么是回调函数？<br>我们都知道函数可以作为参数传递到函数中，那么这个作为参数的函数就叫做回调函数、而使用这个参数的函数就叫做高阶函数</li>
-<li>那什么是函数式编程呢？<br>高阶函数执行的时候,根据回调函数内部的逻辑不同高阶函数的执行结果也会有所不同，这就叫函数式编程</li>
-</ol>
-<hr>
-<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>上面我们了解了什么是函数式编程，那么函数柯里化其实就是函数式编程的一个重要思想，也是高阶函数的一个重要应用。就是给函数分步骤传递参数，每次传递部分参数，并返回一个更具体的函数接收剩下的参数，这期间可嵌套多层这样的接收部分参数的函数，直至返回最后的结果。</p>
-<h4 id="1-简单的柯里化"><a href="#1-简单的柯里化" class="headerlink" title="1.简单的柯里化"></a>1.简单的柯里化</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">// 原函数</span><br><span class="line">function sum(a,b,c){</span><br><span class="line">    return a+b+c</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 调用原函数</span><br><span class="line">sum(1,2,3)</span><br><span class="line"></span><br><span class="line">// 柯里化函数</span><br><span class="line">function sumCurry(a){</span><br><span class="line"> return function(b){</span><br><span class="line">     return function(c){</span><br><span class="line">         return a+b+c</span><br><span class="line">     }</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">// 调用柯里化函数</span><br><span class="line">sumCurry(1)(2)(3)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>这就是一个最基本的柯里化拆分， 柯里化后的函数<code>sumCurry</code>每次的返回值都为一个函数，并使用下一个参数作为形参，直到三个参数都被传入后，在返回的最后一个函数内部执行求和操作，这其实利用了闭包的特性来实现的。</p>
-<h4 id="2-通用柯里化函数"><a href="#2-通用柯里化函数" class="headerlink" title="2.通用柯里化函数"></a>2.通用柯里化函数</h4><p>上面的柯里化函数只是最基本最简单的函数，并没有涉及到高阶函数，也没有通用性，面对形参个数不定或者不知道的函数时就束手无策了，那么下面我们就用<code>ES6</code>来封装一个通用的柯里化转换函数</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function curry (func){</span><br><span class="line">    return function curriedFn(...args){</span><br><span class="line">        if( args.length &lt; func.length ){</span><br><span class="line">            return function(){</span><br><span class="line">                return curriedFn(...args.concat.(Array.from(arguments)))</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        return func(...args)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h4><p>1.函数的柯里化可以让我们给一个函数传递较少的参数得到一个已经记住的某些固定参数的新函数<br>2.这是一种对函数参数的’缓存’<br>3.让函数变的更灵活，让函数的粒度更小<br>可以把多元函数转换为一元函数，可以组合使用函数产生强大的功能</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>防抖节流</title>
-    <url>/2020/04/06/javascript/debounce/</url>
-    <content><![CDATA[<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><p>原理：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。<br>适用场景：<br>按钮提交场景：防止多次提交按钮，只执行最后提交的一次<br>搜索框联想场景：防止联想发送请求，只发送最后一次输入</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function debounce(func, wait) {</span><br><span class="line">    let timeout;</span><br><span class="line">    return function () {</span><br><span class="line">        const context = this;</span><br><span class="line">        const args = arguments;</span><br><span class="line">        clearTimeout(timeout)</span><br><span class="line">        timeout = setTimeout(function(){</span><br><span class="line">            func.apply(context, args)</span><br><span class="line">        }, wait);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<hr>
-<h3 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流 throttle"></a>节流 throttle</h3><p>原理：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。<br>适用场景<br>拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动<br>缩放场景：监控浏览器resize</p>
-<h4 id="定时器版本"><a href="#定时器版本" class="headerlink" title="定时器版本"></a>定时器版本</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">function throttle(fn, delay) {</span><br><span class="line">               let hasRun = false;</span><br><span class="line">               return function () {</span><br><span class="line">                   if (hasRun) {</span><br><span class="line">                       return;</span><br><span class="line">                   }</span><br><span class="line">                   hasRun = true;</span><br><span class="line">                   setTimeout(() =&gt; {</span><br><span class="line">                       hasRun = false;</span><br><span class="line">                       fn.apply(this, arguments);</span><br><span class="line">                   }, delay);</span><br><span class="line">               }</span><br><span class="line">       }</span><br><span class="line">       var mydiv = document.getElementById('mydiv');</span><br><span class="line">       let count = 0;</span><br><span class="line">       function myEvent(){</span><br><span class="line">           mydiv.innerText = count++;</span><br><span class="line">       }        </span><br><span class="line">       mydiv.addEventListener('click', throttle(myEvent,2000));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="时间戳版本"><a href="#时间戳版本" class="headerlink" title="时间戳版本"></a>时间戳版本</h4><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let div = document.querySelector('div');</span><br><span class="line">var count = 0;</span><br><span class="line">function myEvent() {</span><br><span class="line">    div.innerText = count++;</span><br><span class="line">}</span><br><span class="line">div.onclick = throttle(myEvent,2000);</span><br><span class="line">function throttle(func, wait) {</span><br><span class="line">    let pre = 0;</span><br><span class="line">    return function () {</span><br><span class="line">        let now = new Date().getTime();</span><br><span class="line">        if (now - pre &gt; wait) {</span><br><span class="line">            pre = now;</span><br><span class="line">            func.apply(this);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vue-Router</title>
-    <url>/2020/04/08/vue/vue-Router/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter {</span><br><span class="line">  static install(Vue) {</span><br><span class="line">    // 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) {</span><br><span class="line">      return;</span><br><span class="line">    }</span><br><span class="line">    VueRouter.install.installed = true;</span><br><span class="line">    // 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue = Vue;</span><br><span class="line">    // 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    // 混入</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">      beforeCreate() {</span><br><span class="line">        if (this.$options.router) {</span><br><span class="line">          _Vue.prototype.$router = this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  constructor(options) {</span><br><span class="line">    this.options = options;</span><br><span class="line">    this.routeMap = {};</span><br><span class="line">    this.data = _Vue.observable({</span><br><span class="line">      current: "/",</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  init() {</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initRouterMap() {</span><br><span class="line">    // 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) =&gt; {</span><br><span class="line">      this.routeMap[route.path] = route.component;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) {</span><br><span class="line">    Vue.component("router-link", {</span><br><span class="line">      props: {</span><br><span class="line">        to: String,</span><br><span class="line">      },</span><br><span class="line">      // template: `</span><br><span class="line">      //   &lt;a :href="to"&gt;</span><br><span class="line">      //     &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      //   &lt;/a&gt;</span><br><span class="line">      // `,</span><br><span class="line">      render(h) {</span><br><span class="line">        return h(</span><br><span class="line">          "a",</span><br><span class="line">          {</span><br><span class="line">            attrs: {</span><br><span class="line">              href: this.to,</span><br><span class="line">            },</span><br><span class="line">            on: {</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            },</span><br><span class="line">          },</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      },</span><br><span class="line">      methods: {</span><br><span class="line">        clickHandler(e) {</span><br><span class="line">          history.pushState({}, "", this.to);</span><br><span class="line">          this.$router.data.current = this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    const self = this;</span><br><span class="line">    Vue.component("router-view", {</span><br><span class="line">      render(h) {</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component = self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initEvent() {</span><br><span class="line">    window.addEventListener("popstate", () =&gt; {</span><br><span class="line">      this.data.current = window.location.pathname;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-  </entry>
-  <entry>
     <title>事件轮询(Event Loop)</title>
     <url>/2020/04/11/javascript/eventloop/</url>
     <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>首选我们都知道js是单线程的，也就是说所有的代码是一行接着一行运行的。此外js提供了宏任务和微任务这两个概念。<br>先说宏任务。宏任务是一个外部脚本文件，一个用户交互触发的事件或一个setTimeout调用的回调函数。为了实现单线程这个概念，js有一个宏任务队列（先进先出），宏任务不断地创建出来塞到队尾，js引擎不断地从队首取任务出来执行。<br>例如：script 、setTimeout、setInterval，setImmediate</p>
@@ -324,55 +335,58 @@ scrollbar-shadow-color:#eeeeee;
       </categories>
   </entry>
   <entry>
-    <title>this、call、apply、bind</title>
-    <url>/2020/04/08/javascript/this-call-bind-apply/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>小伙伴们，这篇文章的作用不用我多说了吧~~~，直接肝就完了</p>
-<h3 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h3><p>首先我们聊聊this指向的问题，我也不多说啥了，你们只要记住我接下来说的这就话就行了，记住是打死也要记住：<br><strong>this永远指向最后调用它的那个对象</strong></p>
-<p>就这句啊，打死也要记住咯！！！</p>
-<p>那么，我们接下来就来看几个栗子：</p>
-<h5 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子 1"></a>栗子 1</h5><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">function fn() {</span><br><span class="line">    var name = "Soliton";</span><br><span class="line"></span><br><span class="line">    console.log(this.name);          // windows</span><br><span class="line"></span><br><span class="line">    console.log("函数内:" + this);    // 函数内: Window</span><br><span class="line">}</span><br><span class="line">fn();</span><br><span class="line">console.log("全局:" + this)         // 全局: Window</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>就这个，咱们先不说你看不看的懂，咱们直接先把那句<strong>this永远指向最后调用它的那个对象</strong>套进去。<br>先定义了一个fn函数，最后在后面调用了一下，看清楚这个调用是在哪调的？<br>是不是全局啊，我们都知道JS的全局对象是window。<br>所以在全局调用的fn()函数我们就可以看作是window.fn()，<br>所以按照规则，是不是this指向的就是window对象啊，而window对象是全局对象，全局我们是不是定义了一个name变量。<br>所以，函数fn()中打印的name是不是就是windows啊。<br>那这时候你是不是要问那我函数内部的name什么时候打印呢？别急接下来我们再来说说这个</p>
-<h5 id="栗子-2"><a href="#栗子-2" class="headerlink" title="栗子 2"></a>栗子 2</h5><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // Soliton</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">fn.fn2();</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>来，咱们继续套，这里最后调用的时候是不是fn.fn2(),照老规矩，<br>全局调用咱们是不是可以看成window.fn.fn2(),再把之前的那个规则套进来，<br>咱们会发现最后调用它的最后的对象是不是fn啊，<br>而fn2函数是不是在fn这个对象的局部变量之中？，<br>所以它取到的this.name最后是不是fn2这个局部对象中的name变量值？那就是Soliton了吧</p>
-<p>照这个规律那下面两个结果是怎么样呢？各位不妨自行操作一下</p>
-<p>题 1</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    // name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // undefined</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">window.fn.fn2();</span><br></pre></td></tr></tbody></table></figure>
-
-<p>题 2</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var name = "windows";</span><br><span class="line">var fn = {</span><br><span class="line">    name : null,</span><br><span class="line">    // name: "Soliton",</span><br><span class="line">    fn2 : function () {</span><br><span class="line">        console.log(this.name);      // windows</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">var f = fn.fn2;</span><br><span class="line">f();</span><br></pre></td></tr></tbody></table></figure>
-<p>那么我们再思考下一个问题，如果我们要改变this指向呢</p>
-<h3 id="改变this的指向"><a href="#改变this的指向" class="headerlink" title="改变this的指向"></a>改变this的指向</h3><ol>
-<li>使用ES6的箭头函数</li>
-<li>在函数内部使用_this = this</li>
-<li>使用 apply、call、bind</li>
-<li>new实例化一个对象</li>
-</ol>
-<h4 id="1-箭头函数"><a href="#1-箭头函数" class="headerlink" title="1. 箭头函数"></a>1. 箭头函数</h4><p>我们都知道ES6 的箭头函数是可以避免 ES5 中使用 this 的坑的。<strong>箭头函数的 this 始终指向函数定义时的 this，而非执行时</strong>。箭头函数需要记着这句话：“<strong>箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined</strong>”。</p>
-<h4 id="2-使用-this-this"><a href="#2-使用-this-this" class="headerlink" title="2. 使用 _this=this"></a>2. 使用 _this=this</h4><p>此方法的原理就是将调用此函数的对象保存在新定一的一个_this变量之中，然后在函数的内部都是用这已经保存对象的_this就好了</p>
-<h4 id="3-new实例化一个对象"><a href="#3-new实例化一个对象" class="headerlink" title="3. new实例化一个对象"></a>3. new实例化一个对象</h4><p>我们前面说到<strong>this永远指向最后调用它的那个对象</strong>，这时候它的this指向就指向最后调用它的那个对象了<br>例如：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line">// 构造函数:</span><br><span class="line">function myFunction(arg1, arg2) {</span><br><span class="line">    this.firstName = arg1;</span><br><span class="line">    this.lastName  = arg2;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// This    creates a new object</span><br><span class="line">var a = new myFunction("xzl","Soliton");</span><br><span class="line">a.lastName;                             // 返回 "Soliton"</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>那么肯定有人问new?，我怎new？new是过程是啥？好家伙，我直接给你安排了</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">var a = new myFunction("xzl","Soliton");</span><br><span class="line"></span><br><span class="line">new myFunction{</span><br><span class="line">    var obj = {};                                             // 创建一个空对象 obj;</span><br><span class="line">    obj.__proto__ = myFunction.prototype;                     // 将新创建的空对象的隐式原型指向其构造函数的显示原型。 </span><br><span class="line">    var result = myFunction.call(obj,"xzl","Soliton");        //使用 call 改变 this 的指向</span><br><span class="line">    return typeof result === 'obj'? result : obj;             //如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；如果返回值是一个新对象的话那么直接直接返回该对象。</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h4 id="4-使用-apply、call、bind"><a href="#4-使用-apply、call、bind" class="headerlink" title="4. 使用 apply、call、bind"></a>4. 使用 apply、call、bind</h4><h4 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h4><ol>
-<li>apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；</li>
-</ol>
-<ol start="2">
-<li>apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；</li>
-</ol>
-<ol start="3">
-<li>apply 、 call 、bind 三者都可以利用后续参数传参；</li>
-</ol>
-<h4 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h4><ol>
-<li>bind()方法创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列,所以bind 是创建一个新的函数，我们必须要手动去调用；apply、call则是立即调用 。</li>
-<li></li>
-</ol>
-<p>2.call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。</p>
-<p>3.某个函数的参数是明确知道数量时用 call ; 而不确定的时候用 apply，然后把参数 push进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个数组来遍历所有的参数</p>
-<p>func.call(this, arg1, arg2);</p>
-<p>func.apply(this, [arg1, arg2])</p>
+    <title>Next.js+koa项目环境搭建</title>
+    <url>/2020/04/08/react/next/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>react</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>react Hooks</title>
+    <url>/2020/04/12/react/reactHooks/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
+<h5 id="1-缺少逻辑复用机制"><a href="#1-缺少逻辑复用机制" class="headerlink" title="1.缺少逻辑复用机制"></a>1.缺少逻辑复用机制</h5><p>为了服用逻辑增加无实际渲染效果的组件，<br>增加了组件层级显得十分臃肿，<br>增加了调试的难度以及运行效率的降低。</p>
+<h5 id="2-类组件经常会变得很复杂难以维护"><a href="#2-类组件经常会变得很复杂难以维护" class="headerlink" title="2.类组件经常会变得很复杂难以维护"></a>2.类组件经常会变得很复杂难以维护</h5><p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>在一个生命周期函数内存在多个不相干的业务逻辑</p>
+<h5 id="3-类成员方法不能保证this指向的正确性"><a href="#3-类成员方法不能保证this指向的正确性" class="headerlink" title="3.类成员方法不能保证this指向的正确性"></a>3.类成员方法不能保证this指向的正确性</h5><p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
+<h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><p> 此hook是可以让函数式组件保存状态<br> </p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure><br> <strong>useState细节:<strong><br> 1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br> 2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br> 3.方法可以被多次调用，用以保存不同状态值<br> 4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br> 注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部<p></p>
+<h3 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h3><p> 此hook是另一种让函数组件保存状态的方式，和redux极其相似<br>  </p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h3><p>用于简化跨组件通信createContext函数代码</p>
+<h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect()"></a>useEffect()</h3><p> 让函数组件拥有处理副作用的能力。类似于生命周期<br> 我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
+<p> useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br> useEffect(() =&gt; {}, [])      ===   componentDidMount<br> useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br> 注意：如果是要在此hook中请求数据，那么请求函数得要自执行</p>
+<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
+<h3 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h3><p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>如果本组件中的数据没有发生变化，阻止更新<br>和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新</p>
+<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const resetCount = useCallback(()=&gt;setCount(0),[setCount])</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><p> 获取DOM对象<br> 跨组建周期保存数据</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">const box = useRef()</span><br><span class="line">return &lt;div ref={box}&gt;app&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p> 持续更新中~</p>
+</strong></strong>]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vue-Router</title>
+    <url>/2020/04/08/vue/vue-Router/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">let _Vue = null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter {</span><br><span class="line">  static install(Vue) {</span><br><span class="line">    // 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) {</span><br><span class="line">      return;</span><br><span class="line">    }</span><br><span class="line">    VueRouter.install.installed = true;</span><br><span class="line">    // 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue = Vue;</span><br><span class="line">    // 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    // 混入</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">      beforeCreate() {</span><br><span class="line">        if (this.$options.router) {</span><br><span class="line">          _Vue.prototype.$router = this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  constructor(options) {</span><br><span class="line">    this.options = options;</span><br><span class="line">    this.routeMap = {};</span><br><span class="line">    this.data = _Vue.observable({</span><br><span class="line">      current: "/",</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  init() {</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initRouterMap() {</span><br><span class="line">    // 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) =&gt; {</span><br><span class="line">      this.routeMap[route.path] = route.component;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) {</span><br><span class="line">    Vue.component("router-link", {</span><br><span class="line">      props: {</span><br><span class="line">        to: String,</span><br><span class="line">      },</span><br><span class="line">      // template: `</span><br><span class="line">      //   &lt;a :href="to"&gt;</span><br><span class="line">      //     &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      //   &lt;/a&gt;</span><br><span class="line">      // `,</span><br><span class="line">      render(h) {</span><br><span class="line">        return h(</span><br><span class="line">          "a",</span><br><span class="line">          {</span><br><span class="line">            attrs: {</span><br><span class="line">              href: this.to,</span><br><span class="line">            },</span><br><span class="line">            on: {</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            },</span><br><span class="line">          },</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      },</span><br><span class="line">      methods: {</span><br><span class="line">        clickHandler(e) {</span><br><span class="line">          history.pushState({}, "", this.to);</span><br><span class="line">          this.$router.data.current = this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    const self = this;</span><br><span class="line">    Vue.component("router-view", {</span><br><span class="line">      render(h) {</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component = self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initEvent() {</span><br><span class="line">    window.addEventListener("popstate", () =&gt; {</span><br><span class="line">      this.data.current = window.location.pathname;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>web前端性能优化</title>
+    <url>/2020/04/10/xingneng/web/</url>
+    <content><![CDATA[<h4 id="1-打包公共代码"><a href="#1-打包公共代码" class="headerlink" title="1.打包公共代码"></a>1.打包公共代码</h4><p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
+<h4 id="2-按需加载"><a href="#2-按需加载" class="headerlink" title="2.按需加载"></a>2.按需加载</h4><p>在单页面中，有多个路由，使用webpack的按需加载就能达到单独访问某个页面的时候单独某个的页面代码，如import(/<em>webpackChunkName: ‘xx’</em> ‘yourpath’/)</p>
+<h4 id="3-使用CDN"><a href="#3-使用CDN" class="headerlink" title="3.使用CDN"></a>3.使用CDN</h4><p>CDN全称是Content Delivery Network，即内容分发网络，它能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度</p>
+<h4 id="4-使用静态资源分域存放来增加下载并行数"><a href="#4-使用静态资源分域存放来增加下载并行数" class="headerlink" title="4.使用静态资源分域存放来增加下载并行数"></a>4.使用静态资源分域存放来增加下载并行数</h4><p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
+<h3 id="5-减少js、css阻塞"><a href="#5-减少js、css阻塞" class="headerlink" title="5.减少js、css阻塞"></a>5.减少js、css阻塞</h3><h4 id="1-js组塞"><a href="#1-js组塞" class="headerlink" title="1. js组塞"></a>1. js组塞</h4><p>当html解析遇到js会先下载和执行js文件，这是为了防止js操作了dom等情况的发生。但我们作为操作者，可以人为的指定，那些元素可以延迟加载。<br>为script标签指定 async 或 defer来延迟脚本。<br>async表示js不会阻塞，但会在下载完成后立刻执行<br>defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事件被触发前开始执行</p>
+<h4 id="2-css组塞"><a href="#2-css组塞" class="headerlink" title="2.css组塞"></a>2.css组塞</h4><p>css会阻塞html进行渲染，但是为了界面没有任何样式的展现在用户面前，因此我们需要将css提前</p>
+<h3 id="6-避免回流和重绘"><a href="#6-避免回流和重绘" class="headerlink" title="6.避免回流和重绘"></a>6.避免回流和重绘</h3><h3 id="7-懒加载"><a href="#7-懒加载" class="headerlink" title="7.懒加载"></a>7.懒加载</h3><h3 id="8-减少DOM操作"><a href="#8-减少DOM操作" class="headerlink" title="8.减少DOM操作"></a>8.减少DOM操作</h3>]]></content>
+      <categories>
+        <category>vue</category>
       </categories>
   </entry>
   <entry>
@@ -389,20 +403,6 @@ scrollbar-shadow-color:#eeeeee;
 <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">export default {</span><br><span class="line">    Store,</span><br><span class="line">    install</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>另外需要注意的是：<br>vuex刷新数据丢失的问题，其实答案很简单，因为js代码运行在内存中，代码运行时所有的变量和函数都是保存在 内存 中的，但我们 按下F5的时候以前申请的内存将会被释放，并会被重新加载js脚本，变量重新赋值。所以在我们使用vuex的时候只要一刷新数据就没了。如果我们想要持久化保存可以使用 localStorage 或者 sessionStorage 存储本地数据保证刷新后数据不会丢失。</p>
 ]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>web前端性能优化</title>
-    <url>/2020/04/10/xingneng/web/</url>
-    <content><![CDATA[<h4 id="1-打包公共代码"><a href="#1-打包公共代码" class="headerlink" title="1.打包公共代码"></a>1.打包公共代码</h4><p>通过webpack将公共的模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用，这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。在webpack的splitChunks就能够把多次引入的包，都打包到一个文件中。</p>
-<h4 id="2-按需加载"><a href="#2-按需加载" class="headerlink" title="2.按需加载"></a>2.按需加载</h4><p>在单页面中，有多个路由，使用webpack的按需加载就能达到单独访问某个页面的时候单独某个的页面代码，如import(/<em>webpackChunkName: ‘xx’</em> ‘yourpath’/)</p>
-<h4 id="3-使用CDN"><a href="#3-使用CDN" class="headerlink" title="3.使用CDN"></a>3.使用CDN</h4><p>CDN全称是Content Delivery Network，即内容分发网络，它能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度</p>
-<h4 id="4-使用静态资源分域存放来增加下载并行数"><a href="#4-使用静态资源分域存放来增加下载并行数" class="headerlink" title="4.使用静态资源分域存放来增加下载并行数"></a>4.使用静态资源分域存放来增加下载并行数</h4><p>浏览器在同一时刻向同一个域名请求文件的并行下载数是有限的，因此可以利用多个域名的主机来存放不同的静态资源，增大页面加载时资源的并行下载数，缩短页面资源加载的时间。通常根据多个域名来分别存储 JavaScript、CSS 和图片文件。</p>
-<h3 id="5-减少js、css阻塞"><a href="#5-减少js、css阻塞" class="headerlink" title="5.减少js、css阻塞"></a>5.减少js、css阻塞</h3><h4 id="1-js组塞"><a href="#1-js组塞" class="headerlink" title="1. js组塞"></a>1. js组塞</h4><p>当html解析遇到js会先下载和执行js文件，这是为了防止js操作了dom等情况的发生。但我们作为操作者，可以人为的指定，那些元素可以延迟加载。<br>为script标签指定 async 或 defer来延迟脚本。<br>async表示js不会阻塞，但会在下载完成后立刻执行<br>defer则会在下载完成并且整个文档解析完成、DOMContentLoaded事件被触发前开始执行</p>
-<h4 id="2-css组塞"><a href="#2-css组塞" class="headerlink" title="2.css组塞"></a>2.css组塞</h4><p>css会阻塞html进行渲染，但是为了界面没有任何样式的展现在用户面前，因此我们需要将css提前</p>
-<h3 id="6-避免回流和重绘"><a href="#6-避免回流和重绘" class="headerlink" title="6.避免回流和重绘"></a>6.避免回流和重绘</h3><h3 id="7-懒加载"><a href="#7-懒加载" class="headerlink" title="7.懒加载"></a>7.懒加载</h3><h3 id="8-减少DOM操作"><a href="#8-减少DOM操作" class="headerlink" title="8.减少DOM操作"></a>8.减少DOM操作</h3>]]></content>
       <categories>
         <category>vue</category>
       </categories>
