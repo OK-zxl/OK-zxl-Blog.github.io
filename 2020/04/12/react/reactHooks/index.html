@@ -170,7 +170,7 @@
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">920 words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">923 words</span>
            
         
           <i class="far fa-clock"></i> <span class="post-count">3 min</span>
@@ -182,22 +182,54 @@
 
   
   <div class="content">
-        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
-<h5 id="1-缺少逻辑复用机制"><a href="#1-缺少逻辑复用机制" class="headerlink" title="1.缺少逻辑复用机制"></a>1.缺少逻辑复用机制</h5><p>为了服用逻辑增加无实际渲染效果的组件，<br>增加了组件层级显得十分臃肿，<br>增加了调试的难度以及运行效率的降低。</p>
-<h5 id="2-类组件经常会变得很复杂难以维护"><a href="#2-类组件经常会变得很复杂难以维护" class="headerlink" title="2.类组件经常会变得很复杂难以维护"></a>2.类组件经常会变得很复杂难以维护</h5><p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>在一个生命周期函数内存在多个不相干的业务逻辑</p>
-<h5 id="3-类成员方法不能保证this指向的正确性"><a href="#3-类成员方法不能保证this指向的正确性" class="headerlink" title="3.类成员方法不能保证this指向的正确性"></a>3.类成员方法不能保证this指向的正确性</h5><p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
-<h3 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h3><p> 此hook是可以让函数式组件保存状态<br> </p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure><br> <strong>useState细节:<strong><br> 1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br> 2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br> 3.方法可以被多次调用，用以保存不同状态值<br> 4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br> 注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部<p></p>
-<h3 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h3><p> 此hook是另一种让函数组件保存状态的方式，和redux极其相似<br>  </p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h3 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h3><p>用于简化跨组件通信createContext函数代码</p>
-<h3 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect()"></a>useEffect()</h3><p> 让函数组件拥有处理副作用的能力。类似于生命周期<br> 我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
-<p> useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br> useEffect(() =&gt; {}, [])      ===   componentDidMount<br> useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br> 注意：如果是要在此hook中请求数据，那么请求函数得要自执行</p>
-<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
-<h3 id="memo"><a href="#memo" class="headerlink" title="memo"></a>memo</h3><p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>如果本组件中的数据没有发生变化，阻止更新<br>和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新</p>
-<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
+        <div><h3 id="前言">前言</h3>
+<p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
+<h5 id="1-缺少逻辑复用机制">1.缺少逻辑复用机制</h5>
+<p>为了服用逻辑增加无实际渲染效果的组件，<br>
+增加了组件层级显得十分臃肿，<br>
+增加了调试的难度以及运行效率的降低。</p>
+<h5 id="2-类组件经常会变得很复杂难以维护">2.类组件经常会变得很复杂难以维护</h5>
+<p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>
+在一个生命周期函数内存在多个不相干的业务逻辑</p>
+<h5 id="3-类成员方法不能保证this指向的正确性">3.类成员方法不能保证this指向的正确性</h5>
+<p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
+<h3 id="useState">useState</h3>
+<p>此hook是可以让函数式组件保存状态</p>
+ <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>useState细节:<strong><br>
+1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br>
+2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br>
+3.方法可以被多次调用，用以保存不同状态值<br>
+4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br>
+注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部</strong></strong></p><strong><strong>
+<h3 id="useReducer">useReducer</h3>
+<p>此hook是另一种让函数组件保存状态的方式，和redux极其相似</p>
+  <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="useContext">useContext</h3>
+<p>用于简化跨组件通信createContext函数代码</p>
+<h3 id="useEffect">useEffect()</h3>
+<p>让函数组件拥有处理副作用的能力。类似于生命周期<br>
+我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
+<p>useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br>
+useEffect(() =&gt; {}, [])      ===   componentDidMount<br>
+useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br>
+注意：如果是要在此hook中请求数据，那么请求函数得要自执行</p>
+<h3 id="useMemo">useMemo</h3>
+<p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>
+同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
+<h3 id="memo">memo</h3>
+<p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>
+如果本组件中的数据没有发生变化，阻止更新<br>
+和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新</p>
+<h3 id="useCallback">useCallback</h3>
+<p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>
+理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const resetCount = useCallback(()=&gt;setCount(0),[setCount])</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h3><p> 获取DOM对象<br> 跨组建周期保存数据</p>
+<h3 id="useRef">useRef</h3>
+<p>获取DOM对象<br>
+跨组建周期保存数据</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const box = useRef()</span><br><span class="line">return &lt;div ref={box}&gt;app&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p> 持续更新中~</p>
+<p>持续更新中~</p>
 </strong></strong></div>
         
   </div>
@@ -213,7 +245,7 @@
       
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/11/javascript/eventloop/" >事件轮询(Event Loop)<i class="fa fa-chevron-right"></i></a>
+            <a href="/2020/04/10/xingneng/web/" >web前端性能优化<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
