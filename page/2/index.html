@@ -152,6 +152,49 @@
     
       <div class="recent-post-item">
           <div class="post-title ">
+            <a href="/2020/04/08/react/next/">Next.js+koa项目环境搭建</a>
+          </div>
+          <div class="post-meta">
+            
+            
+              <div class="post-meta-item date">
+                <span title="Created 2020.04.08"><i class="far fa-calendar-alt"></i> 2020.04.08</span>
+              </div>
+              <div class="post-meta-item updated">
+                <span title="Updated 2021.02.26"><i class="far fa-calendar-check"></i> 2021.02.26</span>
+              </div>
+             
+            
+              <div class="post-meta-item categories">
+                
+                  <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/react/">react</a>
+                
+              </div>
+             
+            
+             <div class="post-meta-item wordcount">
+                
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">70 words</span>
+                   
+                
+                  <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                                       
+              </div>
+             
+        </div>
+          <div class="content">
+            
+                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从19年中开始做UG以来，这大半年时间也算完成了从Vue到React的转型，也学会了运用Next.js这个SSR框架，接下来我就手把手教大家初步运用Next.js+Koa搭建一个初步的全栈项目</p>
+
+             
+          </div>
+        </div>
+      <div class="post-footer">
+        
+    </div>
+    
+      <div class="recent-post-item">
+          <div class="post-title ">
             <a href="/2020/04/08/vue/vue-Router/">vue-Router</a>
           </div>
           <div class="post-meta">
@@ -185,6 +228,51 @@
           <div class="content">
             
                   <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">let _Vue = null;</span><br><span class="line"></span><br><span class="line">export default class VueRouter {</span><br><span class="line">  static install(Vue) {</span><br><span class="line">    // 1. 判断当前插件是否已经被安装</span><br><span class="line">    if (VueRouter.install.installed) {</span><br><span class="line">      return;</span><br><span class="line">    }</span><br><span class="line">    VueRouter.install.installed = true;</span><br><span class="line">    // 2. 把 Vue 构造函数记录到全局变量</span><br><span class="line">    _Vue = Vue;</span><br><span class="line">    // 3. 把创建的 Vue 实例时所传入的 router 对象注入到 Vue 实例上</span><br><span class="line">    // 混入</span><br><span class="line">    _Vue.mixin({</span><br><span class="line">      beforeCreate() {</span><br><span class="line">        if (this.$options.router) {</span><br><span class="line">          _Vue.prototype.$router = this.$options.router;</span><br><span class="line">          this.$options.router.init();</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  constructor(options) {</span><br><span class="line">    this.options = options;</span><br><span class="line">    this.routeMap = {};</span><br><span class="line">    this.data = _Vue.observable({</span><br><span class="line">      current: "/",</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  init() {</span><br><span class="line">    this.initRouterMap();</span><br><span class="line">    this.initComponents(_Vue);</span><br><span class="line">    this.initEvent();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initRouterMap() {</span><br><span class="line">    // 遍历所有的路由规则，把路由规则解析成键值对的形式 存储到 routerMap 中</span><br><span class="line">    this.options.routes.forEach((route) =&gt; {</span><br><span class="line">      this.routeMap[route.path] = route.component;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initComponents(Vue) {</span><br><span class="line">    Vue.component("router-link", {</span><br><span class="line">      props: {</span><br><span class="line">        to: String,</span><br><span class="line">      },</span><br><span class="line">      // template: `</span><br><span class="line">      //   &lt;a :href="to"&gt;</span><br><span class="line">      //     &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      //   &lt;/a&gt;</span><br><span class="line">      // `,</span><br><span class="line">      render(h) {</span><br><span class="line">        return h(</span><br><span class="line">          "a",</span><br><span class="line">          {</span><br><span class="line">            attrs: {</span><br><span class="line">              href: this.to,</span><br><span class="line">            },</span><br><span class="line">            on: {</span><br><span class="line">              click: this.clickHandler,</span><br><span class="line">            },</span><br><span class="line">          },</span><br><span class="line">          [this.$slots.default]</span><br><span class="line">        );</span><br><span class="line">      },</span><br><span class="line">      methods: {</span><br><span class="line">        clickHandler(e) {</span><br><span class="line">          history.pushState({}, "", this.to);</span><br><span class="line">          this.$router.data.current = this.to;</span><br><span class="line">          e.preventDefault();</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    const self = this;</span><br><span class="line">    Vue.component("router-view", {</span><br><span class="line">      render(h) {</span><br><span class="line">        console.log(self);</span><br><span class="line">        const component = self.routeMap[self.data.current];</span><br><span class="line">        return h(component);</span><br><span class="line">      },</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  initEvent() {</span><br><span class="line">    window.addEventListener("popstate", () =&gt; {</span><br><span class="line">      this.data.current = window.location.pathname;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+             
+          </div>
+        </div>
+      <div class="post-footer">
+        
+    </div>
+    
+      <div class="recent-post-item">
+          <div class="post-title ">
+            <a href="/2020/04/07/golang/golangDay-01/">golang 入门笔记(一)-基础语法</a>
+          </div>
+          <div class="post-meta">
+            
+            
+              <div class="post-meta-item date">
+                <span title="Created 2020.04.07"><i class="far fa-calendar-alt"></i> 2020.04.07</span>
+              </div>
+              <div class="post-meta-item updated">
+                <span title="Updated 2021.05.09"><i class="far fa-calendar-check"></i> 2021.05.09</span>
+              </div>
+             
+            
+              <div class="post-meta-item categories">
+                
+                  <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/golang/">golang</a>
+                
+              </div>
+             
+            
+             <div class="post-meta-item wordcount">
+                
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">162 words</span>
+                   
+                
+                  <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                                       
+              </div>
+             
+        </div>
+          <div class="content">
+            
+                  <h3 id="前言：什么是GO"><a href="#前言：什么是GO" class="headerlink" title="前言：什么是GO"></a>前言：什么是GO</h3><p>Go即为Golang,是Google公司2009年11月正式对外公开的一门编程语言。<br>Go语言不仅拥有静态编译语言的安全和高性能，而且又达到了动态语言开发速度和维护性。有人形容Go语言:Go=C+Python（暗自窃喜，说明我选对了<span class="github-emoji"><span>😆</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f606.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）,说明Go既有C语言的运行速度，又能达到Python语言的快速开发。<br>主要服务场景：Web开发、区块链开发、游戏服务端开发、分布式/云计算开发</p>
+<h4 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import "fmt"</span><br><span class="line"></span><br><span class="line">func main(){</span><br><span class="line">    fmt.PrintIn('hello word')</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>在终端输入<code>go run [文件名]</code>就好啦！！！</p>
+
              
           </div>
         </div>
@@ -284,7 +372,7 @@ scrollbar-shadow-color:#eeeeee;
     
       <div class="recent-post-item">
           <div class="post-title ">
-            <a href="/2020/04/07/golang/golangDay-01/">golang 入门笔记(一)-基础语法</a>
+            <a href="/2020/04/07/javascript/copy/">深浅拷贝</a>
           </div>
           <div class="post-meta">
             
@@ -293,32 +381,47 @@ scrollbar-shadow-color:#eeeeee;
                 <span title="Created 2020.04.07"><i class="far fa-calendar-alt"></i> 2020.04.07</span>
               </div>
               <div class="post-meta-item updated">
-                <span title="Updated 2021.05.09"><i class="far fa-calendar-check"></i> 2021.05.09</span>
+                <span title="Updated 2022.04.08"><i class="far fa-calendar-check"></i> 2022.04.08</span>
               </div>
              
             
               <div class="post-meta-item categories">
                 
-                  <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/golang/">golang</a>
+                  <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/JavaScript/">JavaScript</a>
                 
               </div>
              
             
              <div class="post-meta-item wordcount">
                 
-                  <i class="fas fa-pencil-alt"></i> <span class="post-count">162 words</span>
+                  <i class="fas fa-pencil-alt"></i> <span class="post-count">558 words</span>
                    
                 
-                  <i class="far fa-clock"></i> <span class="post-count">1 min</span>
+                  <i class="far fa-clock"></i> <span class="post-count">2 min</span>
                                        
               </div>
              
         </div>
           <div class="content">
             
-                  <h3 id="前言：什么是GO"><a href="#前言：什么是GO" class="headerlink" title="前言：什么是GO"></a>前言：什么是GO</h3><p>Go即为Golang,是Google公司2009年11月正式对外公开的一门编程语言。<br>Go语言不仅拥有静态编译语言的安全和高性能，而且又达到了动态语言开发速度和维护性。有人形容Go语言:Go=C+Python（暗自窃喜，说明我选对了<span class="github-emoji"><span>😆</span><img src= "/img/loading.gif" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f606.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）,说明Go既有C语言的运行速度，又能达到Python语言的快速开发。<br>主要服务场景：Web开发、区块链开发、游戏服务端开发、分布式/云计算开发</p>
-<h4 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h4><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import "fmt"</span><br><span class="line"></span><br><span class="line">func main(){</span><br><span class="line">    fmt.PrintIn('hello word')</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>在终端输入<code>go run [文件名]</code>就好啦！！！</p>
+                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>基本类型：<br>string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
+<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
+<p>所以想要深浅拷贝这里有一个前提就是必须是引用类型</p>
+<h3 id="浅拷贝及简单实现"><a href="#浅拷贝及简单实现" class="headerlink" title="浅拷贝及简单实现"></a>浅拷贝及简单实现</h3><p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:2</span><br><span class="line">}</span><br><span class="line">funcion simpClone(){</span><br><span class="line">    var cloneObj = {}</span><br><span class="line">    &lt;!-- 常规循环 --&gt;</span><br><span class="line">    for(var i in obj){</span><br><span class="line">        cloneObj[i] = obj[i];</span><br><span class="line">    }</span><br><span class="line">    &lt;!-- Es6循环 --&gt;</span><br><span class="line">    for (var [] of Object.enteies(obj)){</span><br><span class="line">        cloneObj[key] = value</span><br><span class="line">    }</span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="深拷贝及简单实现"><a href="#深拷贝及简单实现" class="headerlink" title="深拷贝及简单实现"></a>深拷贝及简单实现</h3><p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>目前实现深拷贝的方法不多，主要是两种：</p>
+<ol>
+<li>利用 JSON 对象中的 parse 和 stringify</li>
+<li>利用递归来实现每一层都重新创建对象并赋值</li>
+</ol>
+<p>首先我们原生递归使用</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:{</span><br><span class="line">        c:3,</span><br><span class="line">        d:{</span><br><span class="line">            e:5,</span><br><span class="line">            f:[1,2,3,4,5,6]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">funcion deepClone(obj,cloneObj){</span><br><span class="line">    var cloneObj = cloneObj || {}</span><br><span class="line"></span><br><span class="line">    for(var i in obj){</span><br><span class="line">        if (typeof obj[i] === 'object' &amp;&amp; obj[i] !== null){</span><br><span class="line"></span><br><span class="line">           cloneObj[i] =Array.isArray(obj[i] </span><br><span class="line">           )?[] : {}</span><br><span class="line">           deepClone(obj[i],cloneObj[i])</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            cloneObj[i] = obj[i];</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    } </span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>利用 JSON 对象中的 parse 和 stringify实现</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj){</span><br><span class="line"></span><br><span class="line">    return JSON.oarse(JSON.stringify(obj));</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="提问1"><a href="#提问1" class="headerlink" title="提问1"></a>提问1</h3><p>Array的slice和concat方法是深拷贝还是浅拷贝呢? 那Object.assign()呢?</p>
+<h3 id="⚠️注意"><a href="#⚠️注意" class="headerlink" title="⚠️注意"></a>⚠️注意</h3><p>for…in 用于可枚举数据，如对象、数组、字符串，得到key</p>
+<p>for…of 用于可迭代数据，如数组、字符串、Map、Set,得到value</p>
+<p>for await…of 用于遍历多个Promise </p>
 
              
           </div>
@@ -501,66 +604,6 @@ scrollbar-shadow-color:#eeeeee;
 <h4 id="2-通用柯里化函数"><a href="#2-通用柯里化函数" class="headerlink" title="2.通用柯里化函数"></a>2.通用柯里化函数</h4><p>上面的柯里化函数只是最基本最简单的函数，并没有涉及到高阶函数，也没有通用性，面对形参个数不定或者不知道的函数时就束手无策了，那么下面我们就用<code>ES6</code>来封装一个通用的柯里化转换函数</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function curry (func){</span><br><span class="line">    return function curriedFn(...args){</span><br><span class="line">        if( args.length &lt; func.length ){</span><br><span class="line">            return function(){</span><br><span class="line">                return curriedFn(...args.concat.(Array.from(arguments)))</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        return func(...args)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <h4 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h4><p>1.函数的柯里化可以让我们给一个函数传递较少的参数得到一个已经记住的某些固定参数的新函数<br>2.这是一种对函数参数的’缓存’<br>3.让函数变的更灵活，让函数的粒度更小<br>可以把多元函数转换为一元函数，可以组合使用函数产生强大的功能</p>
-
-             
-          </div>
-        </div>
-      <div class="post-footer">
-        
-    </div>
-    
-      <div class="recent-post-item">
-          <div class="post-title ">
-            <a href="/2020/04/07/javascript/copy/">深浅拷贝</a>
-          </div>
-          <div class="post-meta">
-            
-            
-              <div class="post-meta-item date">
-                <span title="Created 2020.04.07"><i class="far fa-calendar-alt"></i> 2020.04.07</span>
-              </div>
-              <div class="post-meta-item updated">
-                <span title="Updated 2022.04.08"><i class="far fa-calendar-check"></i> 2022.04.08</span>
-              </div>
-             
-            
-              <div class="post-meta-item categories">
-                
-                  <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/JavaScript/">JavaScript</a>
-                
-              </div>
-             
-            
-             <div class="post-meta-item wordcount">
-                
-                  <i class="fas fa-pencil-alt"></i> <span class="post-count">558 words</span>
-                   
-                
-                  <i class="far fa-clock"></i> <span class="post-count">2 min</span>
-                                       
-              </div>
-             
-        </div>
-          <div class="content">
-            
-                  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>首先我们知道Javascript中的数据是分为基本类型和引用类型的<br>基本类型：<br>string、number、null、undefined、boolean、symbol(ES6新增) 变量值存放在栈内存中，可直接访问和修改变量的值<br>基本数据类型不存在拷贝，好比如说你无法修改数值1的值</p>
-<p>Object Function RegExp Math Date 值为对象，存放在堆内存中<br>在栈内存中变量保存的是一个指针，指向对应在堆内存中的地址。<br>当访问引用类型的时候，要先从栈中取出该对象的地址指针，然后再从堆内存中取得所需的数据</p>
-<p>所以想要深浅拷贝这里有一个前提就是必须是引用类型</p>
-<h3 id="浅拷贝及简单实现"><a href="#浅拷贝及简单实现" class="headerlink" title="浅拷贝及简单实现"></a>浅拷贝及简单实现</h3><p>浅拷贝的意思就是只复制引用，而未复制真正的值。</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:2</span><br><span class="line">}</span><br><span class="line">funcion simpClone(){</span><br><span class="line">    var cloneObj = {}</span><br><span class="line">    &lt;!-- 常规循环 --&gt;</span><br><span class="line">    for(var i in obj){</span><br><span class="line">        cloneObj[i] = obj[i];</span><br><span class="line">    }</span><br><span class="line">    &lt;!-- Es6循环 --&gt;</span><br><span class="line">    for (var [] of Object.enteies(obj)){</span><br><span class="line">        cloneObj[key] = value</span><br><span class="line">    }</span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="深拷贝及简单实现"><a href="#深拷贝及简单实现" class="headerlink" title="深拷贝及简单实现"></a>深拷贝及简单实现</h3><p>深拷贝就是对目标的完全拷贝，不像浅拷贝那样只是复制了一层引用，就连值也都复制了。<br>只要进行了深拷贝,那就是重新在堆中开辟了一块空间给予新的变量来存放数据。<br>目前实现深拷贝的方法不多，主要是两种：</p>
-<ol>
-<li>利用 JSON 对象中的 parse 和 stringify</li>
-<li>利用递归来实现每一层都重新创建对象并赋值</li>
-</ol>
-<p>首先我们原生递归使用</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var obj = {</span><br><span class="line">    a:1,</span><br><span class="line">    b:{</span><br><span class="line">        c:3,</span><br><span class="line">        d:{</span><br><span class="line">            e:5,</span><br><span class="line">            f:[1,2,3,4,5,6]</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">funcion deepClone(obj,cloneObj){</span><br><span class="line">    var cloneObj = cloneObj || {}</span><br><span class="line"></span><br><span class="line">    for(var i in obj){</span><br><span class="line">        if (typeof obj[i] === 'object' &amp;&amp; obj[i] !== null){</span><br><span class="line"></span><br><span class="line">           cloneObj[i] =Array.isArray(obj[i] </span><br><span class="line">           )?[] : {}</span><br><span class="line">           deepClone(obj[i],cloneObj[i])</span><br><span class="line"></span><br><span class="line">        }else{</span><br><span class="line">            cloneObj[i] = obj[i];</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">    } </span><br><span class="line">    return cloneObj;</span><br><span class="line">}</span><br><span class="line">console.log(simpleClone(obj))</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>利用 JSON 对象中的 parse 和 stringify实现</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function deepClone(obj){</span><br><span class="line"></span><br><span class="line">    return JSON.oarse(JSON.stringify(obj));</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h3 id="提问1"><a href="#提问1" class="headerlink" title="提问1"></a>提问1</h3><p>Array的slice和concat方法是深拷贝还是浅拷贝呢? 那Object.assign()呢?</p>
-<h3 id="⚠️注意"><a href="#⚠️注意" class="headerlink" title="⚠️注意"></a>⚠️注意</h3><p>for…in 用于可枚举数据，如对象、数组、字符串，得到key</p>
-<p>for…of 用于可迭代数据，如数组、字符串、Map、Set,得到value</p>
-<p>for await…of 用于遍历多个Promise </p>
 
              
           </div>
