@@ -182,14 +182,12 @@
 
   
   <div class="content">
-        <div><h3 id="前言">前言</h3>
-<p>在学习HTTP之前我们得先了解计算机网络的分层基本上分为两种</p>
+        <div><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在学习HTTP之前我们得先了解计算机网络的分层基本上分为两种</p>
 <ol>
 <li>OSI(Open System Interconnection Reference Mode)：开放系统互联参考模型（international standard orgnization国际标准组织，简称ISO提出）</li>
 <li>TCP/IP：因为在OSI模型出台之前，TCP/IP模型已经成为了行业主流参考模型。所以导致两种模型并存。而且，目前，我们主要用的也是TCP/IP模型。</li>
 </ol>
-<h4 id="OSI七层模型">OSI七层模型</h4>
-<p>ISO为了更好的使用网络应用更为普及，推出了OSI参考模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，就能互联。</p>
+<h4 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h4><p>ISO为了更好的使用网络应用更为普及，推出了OSI参考模型。其含义就是推荐所有公司使用这个规范来控制网络。这样所有公司都有相同的规范，就能互联。</p>
 <p><strong> OSI七层参考模型由上到下分为如下</strong></p>
 <ol>
 <li>应用层： 为应用提供服务</li>
@@ -209,18 +207,13 @@
 <li>物理层： 机器硬件之前的链接物理层(光纤、双绞线电缆、无线设备)</li>
 </ol>
 <p>那么为什么<code>TCP/IP</code>会比<code>OSI</code>网络模型少两层呢？那是因为TCP/IP的协议栈认为绘画整个表示层应该都交由程序本身去处理，如果单独拿出来会非常复杂</p>
-<h3 id="一个HTTP请求的分层解析">一个HTTP请求的分层解析</h3>
-<h4 id="1-DNS域名解析">1. DNS域名解析</h4>
-<p>在网络世界，你肯定记得住网站的名称，但是很难记住网站的 IP 地址，因而也需要一个地址簿，就是 DNS 服务器。DNS 服务器是高可用、高并发和分布式的，它是树状结构。主要分为三层，环环相扣</p>
+<h3 id="一个HTTP请求的分层解析"><a href="#一个HTTP请求的分层解析" class="headerlink" title="一个HTTP请求的分层解析"></a>一个HTTP请求的分层解析</h3><h4 id="1-DNS域名解析"><a href="#1-DNS域名解析" class="headerlink" title="1. DNS域名解析"></a>1. DNS域名解析</h4><p>在网络世界，你肯定记得住网站的名称，但是很难记住网站的 IP 地址，因而也需要一个地址簿，就是 DNS 服务器。DNS 服务器是高可用、高并发和分布式的，它是树状结构。主要分为三层，环环相扣</p>
 <ul>
-<li>
-<p>顶层：根 DNS 服务器：返回顶级域 DNS 服务器的 IP 地址</p>
+<li><p>顶层：根 DNS 服务器：返回顶级域 DNS 服务器的 IP 地址</p>
 </li>
-<li>
-<p>中间层：顶级域 DNS 服务器：返回权威 DNS 服务器的 IP 地址</p>
+<li><p>中间层：顶级域 DNS 服务器：返回权威 DNS 服务器的 IP 地址</p>
 </li>
-<li>
-<p>下层：权威 DNS 服务器 ：返回相应主机的 IP 地址</p>
+<li><p>下层：权威 DNS 服务器 ：返回相应主机的 IP 地址</p>
 <p>DNS的域名查找，在客户端和浏览器，本地DNS之间的查询方式是递归查询；在本地DNS服务器与根域及其子域之间的查询方式是迭代查询；从输入URL开始过程如下：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">客户端 -&gt; 浏览器缓存 -&gt; 本地hosts文件 -&gt; 本地DNS解析器缓存 -&gt; 本地DNS服务器</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p>这个过程中任何一步找到了都会结束查找流程。</p>
@@ -232,72 +225,56 @@
 </ol>
 </li>
 </ul>
-<h4 id="2-建立TCP链接">2. 建立TCP链接</h4>
-<p>首先，判断是不是<code>https</code>的，如果是，则<code>HTTPS</code>其实是<code>HTTP + SSL / TLS </code>两部分组成，也就是在<code>HTTP</code>上又加了一层<code>处理加密信息</code>的模块。服务端和客户端的信息传输都会<code>通过TLS进行加密</code>，所以传输的数据都是加密后的数据。</p>
+<h4 id="2-建立TCP链接"><a href="#2-建立TCP链接" class="headerlink" title="2. 建立TCP链接"></a>2. 建立TCP链接</h4><p>首先，判断是不是<code>https</code>的，如果是，则<code>HTTPS</code>其实是<code>HTTP + SSL / TLS </code>两部分组成，也就是在<code>HTTP</code>上又加了一层<code>处理加密信息</code>的模块。服务端和客户端的信息传输都会<code>通过TLS进行加密</code>，所以传输的数据都是加密后的数据。</p>
 <p><strong>进行三次握手，建立TCP连接。</strong></p>
 <ol>
-<li>
-<p>第一次握手：建立连接。客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x；然后，客户端进入SYN_SEND状态，等待服务器的确认；</p>
+<li><p>第一次握手：建立连接。客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x；然后，客户端进入SYN_SEND状态，等待服务器的确认；</p>
 </li>
-<li>
-<p>二次握手：服务器收到SYN报文段。服务器收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledgment Number为x+1(Sequence Number+1)；同时，自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y；服务器端将上述所有信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务器进入SYN_RECV状态；</p>
+<li><p>二次握手：服务器收到SYN报文段。服务器收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledgment Number为x+1(Sequence Number+1)；同时，自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y；服务器端将上述所有信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务器进入SYN_RECV状态；</p>
 </li>
-<li>
-<p>第三次握手：客户端收到服务器的SYN+ACK报文段。然后将Acknowledgment Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕以后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手。</p>
+<li><p>第三次握手：客户端收到服务器的SYN+ACK报文段。然后将Acknowledgment Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕以后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手。</p>
 <p><strong>SSL握手过程 </strong></p>
 </li>
-<li>
-<p>第一阶段 建立安全能力 包括协议版本 会话Id 密码构件 压缩方法和初始随机数</p>
+<li><p>第一阶段 建立安全能力 包括协议版本 会话Id 密码构件 压缩方法和初始随机数</p>
 </li>
-<li>
-<p>第二阶段 服务器发送证书 密钥交换数据和证书请求，最后发送请求-相应阶段的结束信号</p>
+<li><p>第二阶段 服务器发送证书 密钥交换数据和证书请求，最后发送请求-相应阶段的结束信号</p>
 </li>
-<li>
-<p>第三阶段 如果有证书请求客户端发送此证书 之后客户端发送密钥交换数据 也可以发送证书验证消息</p>
+<li><p>第三阶段 如果有证书请求客户端发送此证书 之后客户端发送密钥交换数据 也可以发送证书验证消息</p>
 </li>
-<li>
-<p>第四阶段 变更密码构件和结束握手协议</p>
+<li><p>第四阶段 变更密码构件和结束握手协议</p>
+<p>完成了之后，客户端和服务器端就可以开始传送数据</p>
 </li>
 </ol>
-<p>完成了之后，客户端和服务器端就可以开始传送数据</p>
 <p><code>&lt;STRONG&gt;名词解释&lt;/STRONG&gt; </code>ACK`：此标志表示应答域有效，就是说前面所说的TCP应答号将会包含在TCP数据包中；有两个取值：0和1，为1的时候表示应答域有效，反之为0。TCP协议规定，只有ACK=1时有效，也规定连接建立后所有发送的报文的ACK必须为1。</p>
 <p><code>SYN(SYNchronization)</code>：在连接建立时用来同步序号。当SYN=1而ACK=0时，表明这是一个连接请求报文。对方若同意建立连接，则应在响应报文中使SYN=1和ACK=1. 因此, SYN置1就表示这是一个连接请求或连接接受报文。</p>
 <p><code>FIN(finis）</code>即完，终结的意思， 用来释放一个连接。当 FIN = 1 时，表明此报文段的发送方的数据已经发送完毕，并要求释放连接。</p>
-<h4 id="3-发送HTTP请求，服务器处理请求，返回响应结果">3.发送HTTP请求，服务器处理请求，返回响应结果</h4>
-<p>TCP连接建立后，浏览器就可以利用HTTP／HTTPS协议向服务器发送请求了。服务器接受到请求，就解析请求头，如果头部有缓存相关信息如if-none-match与if-modified-since，则验证缓存是否有效，若有效则返回状态码为304，若无效则重新返回资源，状态码为200.</p>
-<h4 id="4-关闭TCP连接">4.关闭TCP连接</h4>
-<p>返回相应结果之后就真的要关闭吗？ 答案肯定是不一定的因为<strong>如果浏览器或者服务器头信息有上面的字段的话，TCP连接会仍然保持，保持TCP连接可以节省下次请求需要建立TCP连接的时间,提升资源加载进度</strong>。如果是要关闭这时候就需要四次挥手了</p>
+<h4 id="3-发送HTTP请求，服务器处理请求，返回响应结果"><a href="#3-发送HTTP请求，服务器处理请求，返回响应结果" class="headerlink" title="3.发送HTTP请求，服务器处理请求，返回响应结果"></a>3.发送HTTP请求，服务器处理请求，返回响应结果</h4><p>TCP连接建立后，浏览器就可以利用HTTP／HTTPS协议向服务器发送请求了。服务器接受到请求，就解析请求头，如果头部有缓存相关信息如if-none-match与if-modified-since，则验证缓存是否有效，若有效则返回状态码为304，若无效则重新返回资源，状态码为200.</p>
+<h4 id="4-关闭TCP连接"><a href="#4-关闭TCP连接" class="headerlink" title="4.关闭TCP连接"></a>4.关闭TCP连接</h4><p>返回相应结果之后就真的要关闭吗？ 答案肯定是不一定的因为<strong>如果浏览器或者服务器头信息有上面的字段的话，TCP连接会仍然保持，保持TCP连接可以节省下次请求需要建立TCP连接的时间,提升资源加载进度</strong>。如果是要关闭这时候就需要四次挥手了</p>
 <ol>
 <li>第一阶段 客户端发送FIN报文给服务端 (兄弟,我这边已经没有数据要传了,关闭吧关闭吧)</li>
 <li>第二阶段 服务端发送ACK报文给客户端 (收到了收到了! 我看看我还有没有数据要传)</li>
 <li>第三阶段 服务端发送FIN报文给客户端 (兄弟,我这边也没有数据要传了,关闭吧关闭吧)</li>
 <li>第四阶段 客户端发送ACK报文给服务端 (收到了收到了!)</li>
 </ol>
-<h4 id="5-浏览器根据返回的结果进行渲染">5.浏览器根据返回的结果进行渲染</h4>
-<ol>
+<h4 id="5-浏览器根据返回的结果进行渲染"><a href="#5-浏览器根据返回的结果进行渲染" class="headerlink" title="5.浏览器根据返回的结果进行渲染"></a>5.浏览器根据返回的结果进行渲染</h4><ol>
 <li>渲染进程将 HTML 内容转换为能够读懂DOM 树结构。</li>
 <li>渲染引擎将 CSS 样式表转化为浏览器可以理解的styleSheets，计算出 DOM 节点的样式</li>
 <li>创建布局树，并计算元素的布局信息。</li>
 <li>对布局树进行分层，并生成分层树。</li>
 <li>为每个图层生成绘制列表，并将其提交到合成线程。合成线程将图层分图块，并栅格化将图块转换成位图。</li>
-<li>合成线程发送绘制图块命令给浏览器进程。浏览器进程根据指令生成页面，并显示到显示器上。<br>
-好了到这里就结束了，不过接下来我还有东西得给大家说一下，那就是第一个就是浏览器缓存，然后是get和post区别</li>
+<li>合成线程发送绘制图块命令给浏览器进程。浏览器进程根据指令生成页面，并显示到显示器上。<br>好了到这里就结束了，不过接下来我还有东西得给大家说一下，那就是第一个就是浏览器缓存，然后是get和post区别</li>
 </ol>
-<h4 id="浏览器缓存">浏览器缓存</h4>
-<p><code>浏览器缓存</code>：是浏览器将用户请求过的静态资料(html, css, js),存储到电脑本地磁盘中, 当浏览器再次访问时, 就可以直接从本地加载了, 不需要再去请求服务端了。<br>
-而缓存呢又分为<code>强缓存</code>和<code>协商缓存</code><br>
-<code>强缓存</code>:无需与服务端发生交互。<br>
-<code>协商缓存</code>：需要与服务端发生交互，判断是否使用本地缓存的文件。<br>
-关于他俩的区别呢，还请各位看官自行查找了</p>
-<h5 id="优点">优点</h5>
-<ol>
-<li>减少了冗余的数据传输</li>
-<li>减少服务器的负担, 提升网站性能</li>
-<li>加快了客户端加载网页的速度</li>
-</ol>
+<h4 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h4><p><code>浏览器缓存</code>：是浏览器将用户请求过的静态资料(html, css, js),存储到电脑本地磁盘中, 当浏览器再次访问时, 就可以直接从本地加载了, 不需要再去请求服务端了。<br>而缓存呢又分为<code>强缓存</code>和<code>协商缓存</code><br><code>强缓存</code>:无需与服务端发生交互。<br><code>协商缓存</code>：需要与服务端发生交互，判断是否使用本地缓存的文件。<br>关于他俩的区别呢，还请各位看官自行查找了</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
+<li><p>减少了冗余的数据传输</p>
+</li>
+<li><p>减少服务器的负担, 提升网站性能</p>
+</li>
+<li><p>加快了客户端加载网页的速度</p>
 <p>一般情况下,在浏览器中,浏览器会在js和图片等文件解析执行后直接存入内存缓存中,那么当刷洗页面时只需要从内存缓存中读取(from memory cache); 而css文件则会存入硬盘中, 渲染页面从硬盘读取缓存(from disk cache)</p>
-<h4 id="get和post区别">get和post区别</h4>
-<ol>
+</li>
+</ol>
+<h4 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a>get和post区别</h4><ol>
 <li><code>GET</code> 请求的请求参数是添加到 head 中，可以在 url 中可以看到；<code>POST</code> 请求的请求参数是添加到BODY中,在url 中不可见。</li>
 <li><code>GET</code> 请求参数需要使用 encodeURIComponent 进行编码，必须用 &amp; 符号隔开。</li>
 <li>请求的url有长度限制，这个限制由浏览器和 web 服务器决定和设置的。例如IE浏览器对 URL的最大限制为2083个字符，如果超过这个数字，提交按钮没有任何反应。因为<code>GET</code>请求的参数是添加到URL中，所以<code>GET</code>请求的URL的长度限制需要将请求参数长度也考虑进去。而<code>POST</code>请求不用考虑请求参数的长度。</li>
@@ -306,8 +283,7 @@
 <li><code>GET</code> 请求会被浏览器主动缓存下来，留下历史记录，而 POST 默认不会。</li>
 <li><code>GET</code>是幂等的，而<code>POST</code>不是。(幂等表示执行相同的操作，结果也是相同的)</li>
 </ol>
-<h3 id="未完待续">未完待续 !!!~~~</h3>
-</div>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续 !!!~~~"></a>未完待续 !!!~~~</h3></div>
         
   </div>
 
