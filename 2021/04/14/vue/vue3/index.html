@@ -22,7 +22,7 @@
 
   
 
-  <title>react Hooks | Soliton&#39;s Blog</title>
+  <title>Vue3 | Soliton&#39;s Blog</title>
 
   
 
@@ -148,32 +148,32 @@
 
     
 <article id="post">
-  <div class="post-title">react Hooks</div>
+  <div class="post-title">Vue3</div>
   
 <div class="post-meta">
     
     
       <div class="post-meta-item date">
-        <span title="Created 2020.04.12"><i class="far fa-calendar-alt"></i> 2020.04.12</span>
+        <span title="Created 2021.04.14"><i class="far fa-calendar-alt"></i> 2021.04.14</span>
       </div>
       <div class="post-meta-item updated">
-        <span title="Updated 2022.06.16"><i class="far fa-calendar-check"></i> 2022.06.16</span>
+        <span title="Updated 2022.06.15"><i class="far fa-calendar-check"></i> 2022.06.15</span>
       </div>
      
     
       <div class="post-meta-item categories">
         
-          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/react/">react</a>
+          <i class="fas fa-inbox article-meta__icon"></i> <a href="/categories/vue/">vue</a>
         
       </div>
      
     
      <div class="post-meta-item wordcount">
         
-          <i class="fas fa-pencil-alt"></i> <span class="post-count">1k words</span>
+          <i class="fas fa-pencil-alt"></i> <span class="post-count">1.1k words</span>
            
         
-          <i class="far fa-clock"></i> <span class="post-count">3 min</span>
+          <i class="far fa-clock"></i> <span class="post-count">4 min</span>
                                
       </div>
      
@@ -182,57 +182,110 @@
 
   
   <div class="content">
-        <div><h3 id="前言">前言</h3>
-<p>我们都知道rewact开发有两种组件开发模式，一是函数式组件开发，二是类组件式开发，但是相比于函数式组件开发类组件有很多不足之处：</p>
-<h5 id="1-缺少逻辑复用机制">1.缺少逻辑复用机制</h5>
-<p>为了服用逻辑增加无实际渲染效果的组件，<br>
-增加了组件层级显得十分臃肿，<br>
-增加了调试的难度以及运行效率的降低。</p>
-<h5 id="2-类组件经常会变得很复杂难以维护">2.类组件经常会变得很复杂难以维护</h5>
-<p>将一组相干的业务逻辑拆分到了多个生命周期函数之中<br>
-在一个生命周期函数内存在多个不相干的业务逻辑</p>
-<h5 id="3-类成员方法不能保证this指向的正确性">3.类成员方法不能保证this指向的正确性</h5>
-<p>为此react16.8版本出了一个非常强大的更新，那就是react hooks，很好的解决了类组件的不足，这让我们能更好的把精力集中在函数式组件的开发之中，今天我们就来聊一聊这个react hooks</p>
-<h3 id="useState">useState</h3>
-<p>此hook是可以让函数式组件保存状态</p>
- <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from 'react'</span><br><span class="line">····</span><br><span class="line">const [num setNum] = (0)</span><br></pre></td></tr></tbody></table></figure>
-<p><strong>useState细节:<strong><br>
-1.接收唯一的参数即状态初始值，初始值可以为任意数据类型<br>
-2.返回值为数组，数组中存储状态值和更改状态值的方法，方法名约定以set开头<br>
-3.方法可以被多次调用，用以保存不同状态值<br>
-4.参数可以是一个函数，函数返回什么，初始状态就是什么，函数只会被调用一次，用在初始值为动态值的情况下<br>
-5.如果代码依赖方法的最新执行结果，那么代码就必须放在useState的执行回调函数当中<br>
-注意：在参数为一个函数的时候，如果页面渲染依赖返回id结果那么这个执行语句就要被放在回调函数内部</strong></strong></p><strong><strong>
-<h3 id="useReducer">useReducer</h3>
-<p>此hook是另一种让函数组件保存状态的方式，和redux极其相似</p>
-  <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import { useReducer } from 'react'</span><br><span class="line"></span><br><span class="line">function reducer (state, action) {</span><br><span class="line">    switch (action.type) {</span><br><span class="line">        case 'initAdd':</span><br><span class="line">           return state + 1</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">····</span><br><span class="line">const [count dispatch] = useReducer(reducer, 0)</span><br><span class="line">return &lt;div&gt;</span><br><span class="line">&lt;span&gt;{count}&lt;/span&gt;</span><br><span class="line">&lt;button onClick={() =&gt; dispatch({type:'initAdd'})}&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="useContext">useContext</h3>
-<p>用于简化跨组件通信createContext函数代码</p>
-<h3 id="useEffect">useEffect()</h3>
-<p>让函数组件拥有处理副作用的能力。类似于生命周期<br>
-我们可以将此hook看成是类组件中componentDidMount、componentDidUpdate、componentWillUumount三个函数的组合</p>
-<p>useEffect(()=&gt;{})            ===   componentDidMount、componentDidUpdate<br>
-useEffect(() =&gt; {}, [])      ===   componentDidMount<br>
-useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br>
-注意：如果是要在此hook中请求数据，那么请求函数得要自执行，意思就是不能存在异步函数，如果真要有异步函数，那么就得把这个异步函数变为自执行函数</p>
-<h3 id="useMemo">useMemo</h3>
-<p>此hook类似于VUE中的计算属性，可以监测某个值的变化，根据变化值计算新值<br>
-同时此hook也会缓存计算结果。如果监测值没有发生变化，即使组件重新渲染，也不会重新计算，此行为有助于避免在每个渲染上进行昂贵的计算，可做性能优化</p>
-<h3 id="memo">memo</h3>
-<p>性能优化 组件重新渲染之前判断组件有没有发生变化，<br>
-如果本组件中的数据没有发生变化，阻止更新<br>
-和useMemo显著的区别是前者阻止组件更新，后者监测某个值的变化来更新<br>
-类似于类组件的pureCompoment和shouldCompomentUpdate</p>
-<h3 id="useCallback">useCallback</h3>
-<p>性能优化 缓存函数，使组件重新渲染时得到相同的函数实例<br>
-理解就是父组件传值给子组件情况下，如果父组件重新渲染，因为传值的变化子组件这时候也重新渲染了（函数实例也发生改变了），这不是我们想要的</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const resetCount = useCallback(()=&gt;setCount(0),[setCount])</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="useRef">useRef</h3>
-<p>获取DOM对象<br>
-跨组建周期保存数据</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const box = useRef()</span><br><span class="line">return &lt;div ref={box}&gt;app&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p>持续更新中~</p>
-</strong></strong></div>
+        <div><h4 id="vue3比vue2有什么优势">vue3比vue2有什么优势</h4>
+<p>1.性能更好。<br>
+2.体积更小。<br>
+3.更好的ts支持。<br>
+4.更好的代码组织。<br>
+5.更好的逻辑抽离。<br>
+6.更多的新功能。</p>
+<h4 id="vue3生命周期">vue3生命周期</h4>
+<h5 id="1-options-API生命周期">1.options API生命周期</h5>
+<p>beforeDestory改为beforeUnmount<br>
+destroyed改为unmouted<br>
+其他沿用Vue2的生命周期</p>
+<h5 id="2-Composition-API生命周期">2.Composition API生命周期</h5>
+<p>setup相当于beforeCreate和created<br>
+onBeforeMount、onMouted、onBeforeUpate、onUpated、onbeforeUnmount、onUnmouted</p>
+<h4 id="如何理解options-API与Composition-API？">如何理解options API与Composition API？</h4>
+<p>Composition API特点<br>
+1.更好的代码组织<br>
+2.更好的逻辑复用<br>
+3.更好的类型推导</p>
+<h4 id="如何理解ref-toRef和toRefs">如何理解ref toRef和toRefs</h4>
+<h5 id="ref">ref</h5>
+<p>给定null值后可获度dom节点<br>
+生成值类型的响应数据，reactive做对象的响应式<br>
+可用于模板和reactive<br>
+通过.value修改值(原因：<br>
+1.ref为了不丢失响应式所以是个对象，通过value来存储值。<br>
+2.通过.value属性的get和set实现响应式。<br>
+3.用于模板、reactive时，不需要.value，其他情况都需要<br>
+)</p>
+<p>为什么需要ref？<br>
+1.返回值类型，会丢失响应式<br>
+2.在setup、computed、合成函数中都有可能返回值类型<br>
+3.vue如不定义ref，用户将会自造ref，反而混乱</p>
+<h5 id="toRef">toRef</h5>
+<p>针对一个响应式对象（reactive封装）的prop<br>
+创建一个ref，具有响应式<br>
+两者保持引用关系<br>
+如果用于普通对象，产出的结果不具备响应式</p>
+<h5 id="toRefs">toRefs</h5>
+<p>将响应式对象（reactive）转换成普通对象<br>
+对象的每一个prop都是对应的ref<br>
+两者保持引用关系<br>
+合成函数中使用toRefs返回数据，这样可以在不失去响应性的情况下破坏结构</p>
+<h5 id="为什么需要toRef和toRefs">为什么需要toRef和toRefs</h5>
+<p>1.初衷：在不丢失响应式的情况下，把对象数据分解/扩散<br>
+2.前提：针对响应式对象（reactive封装的）非普通对象<br>
+3.注意：不是创建响应式，而是延续响应式</p>
+<h4 id="vue3升级了哪些重要功能">vue3升级了哪些重要功能</h4>
+<p>1.createApp<br>
+2.emits属性<br>
+3.生命周期<br>
+4.多事件<br>
+5.fragment<br>
+6.移除.sync<br>
+7.异步组件写法<br>
+8.移除filter<br>
+9.Teleport<br>
+10.Suspense<br>
+11.Composition API</p>
+<h4 id="Composition-API如何实现逻辑复用">Composition API如何实现逻辑复用</h4>
+<p>1.抽离逻辑代码到一个函数<br>
+2.函数命名约定use开头<br>
+3.在setup中引用use函数</p>
+<h4 id="Vue3的响应式原理">Vue3的响应式原理</h4>
+<h5 id="Vue2的Object-defineproperty的缺点">Vue2的Object.defineproperty的缺点</h5>
+<p>1.深度监听需要一次性递归。（如果data层级较深的时候会卡在这里知道递归完成）<br>
+2.无法监听新增属性/删除属性（可以通过Vue.set   Vue.delete 解决 ）<br>
+3.无法原生监听数组，需要特殊处理</p>
+<h5 id="Vue3响应式Proxy-Reflect">Vue3响应式Proxy+Reflect</h5>
+<h5 id="Proxy-Reflect基本使用">Proxy+Reflect基本使用</h5>
+<p>Reflect与Proxy一一对应<br>
+标准化、规范化、函数式<br>
+代替Object上的工具函数</p>
+<h5 id="实现响应式">实现响应式</h5>
+<p>Reflect.ownKeys()检测是原有key值还是新增key值</p>
+<h4 id="watch和watchEffect区别">watch和watchEffect区别</h4>
+<p>两者都可以监听属性变化<br>
+watch需要明确监听哪个属性<br>
+watchEffect会根据其中的属性，自动监听其变化（初始化时会自动执行一次，收集监听的数据，直接监听操作即可）</p>
+<h4 id="setup中如何获取组件实例">setup中如何获取组件实例</h4>
+<p>在setup和Composition API中是没有this的<br>
+可通过getCurrentInstance获取当前实例<br>
+如果是使用Oprions API可照常使用this</p>
+<h4 id="vue3为什么比vue2快">vue3为什么比vue2快</h4>
+<p>1.proxy响应式<br>
+2.PatchFlag（编译模板时，动态节点做标记，diff算法时，可以区分静态节点，以及不同类型的动态节点）<br>
+3.hoistStatic（将静态节点的定义提升到父作用域，缓存起来。多个相邻的静态节点会被合并，典型的拿空间换时间的优化策略）<br>
+4.cacheHandler（缓存事件）<br>
+5.SSR优化（静态节点输出直接输出，绕过vdom，动态节点还是需要动态渲染）<br>
+6.tree-shaking（根据不同引入不同的API，需要什么引入什么）</p>
+<h4 id="什么是Vite">什么是Vite</h4>
+<p>一个前端打包工具<br>
+优势：开发环境下无需打包，启动快（开发环境使用ES6 Module,无需打包，非常快。生产环境使用rollup，并不会快很多。）</p>
+<h4 id="Composition-API与React-Hooks对比">Composition API与React Hooks对比</h4>
+<p>前者setup只会被调用一次，而后者函数会被多次调用<br>
+前者无需useMeno、useCallback,因为setup只调用一次<br>
+前者无需顾虑调用顺序，后者要保证react hooks的顺序一致</p>
+<p>前者reactive+ref比后者useState,要更难理解</p>
+<h4 id="JSX与template语法区别">JSX与template语法区别</h4>
+<p>jsx本质就是js代码，可以使用js的任何能力<br>
+template只是嵌入简单的js表达式，其他需要指令，如v-if<br>
+jsx已经成为ES规范，template还是vue自家规范</p>
+</div>
         
   </div>
 
@@ -241,13 +294,9 @@ useEffect(() =&gt; () =&gt; {})    ===   componentWillUumount<br>
     </div>
     <div class="post-nav">
       
-        <div class="post-nav-prev post-nav-item">
-            <a href="/2020/04/12/http/https/" >HTTP协议详解<i class="fa fa-chevron-left"></i></a>
-        </div>
-      
       
         <div class="post-nav-next post-nav-item">
-            <a href="/2020/04/11/javascript/eventloop/" >事件轮询(Event Loop)<i class="fa fa-chevron-right"></i></a>
+            <a href="/2021/02/16/hello-world/" >你好，很荣幸您能来到我的博客！<i class="fa fa-chevron-right"></i></a>
         </div>
       
     </div>
